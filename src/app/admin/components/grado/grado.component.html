@@ -1,0 +1,22 @@
+<div class="card grado-card">
+    <div class="card-header">
+      <h4>{{ grado.descripcion }}</h4>
+      <!-- Icono de tres puntos para las acciones -->
+      <div class="dropdown">
+        <button class="btn btn-link" type="button" (click)="toggleDropdown()">
+          <i class="fa fa-ellipsis-v"></i> <!-- FontAwesome icon -->
+        </button>
+        <!-- Menú desplegable que aparece cuando se hace clic en el icono -->
+        <div class="dropdown-menu" *ngIf="isDropdownVisible">
+          <button class="dropdown-item" (click)="onEdit()">Editar</button>
+          <button class="dropdown-item" (click)="eliminarGrado()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card-body">
+      <p><strong>Año:</strong> {{ grado.fecha_anio }}</p>
+      <p><strong>Tipo de Grado:</strong> {{ getTipoGrado() }}</p>
+    </div>
+  </div>
+  

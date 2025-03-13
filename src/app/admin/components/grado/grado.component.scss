@@ -1,0 +1,38 @@
+.grado-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .grado-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .grado-card .card-body {
+    padding: 15px;
+  }
+  
+  .grado-card .dropdown {
+    position: relative;
+  }
+  
+  .grado-card .dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 5px;
+    min-width: 150px;
+  }
+  
+  .grado-card .fa-ellipsis-v {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
