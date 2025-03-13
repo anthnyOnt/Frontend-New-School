@@ -1,0 +1,18 @@
+<div class="page-container">
+    <h1>Registrar Estudiante</h1>
+    <form (submit)="registrar()">
+        <label>Nombre:</label>
+        <input [(ngModel)]="nombre" required />
+
+        <label>Apellido:</label>
+        <input [(ngModel)]="apellido" required />
+
+        <label>CI:</label>
+        <input [(ngModel)]="carnet" required />
+
+        <label>Email:</label>
+        <input [(ngModel)]="email" type="email" required />
+
+        <button type="submit">Registrar</button>
+    </form>
+</div>

@@ -14,6 +14,6 @@ export class LoginComponent {
   //authService =
   router = inject(Router); 
   login(){
-
+    
   }
 }
