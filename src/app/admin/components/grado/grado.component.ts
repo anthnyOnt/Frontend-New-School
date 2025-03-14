@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Grado } from '../../../core/interfaces/grado';
 import { CommonModule } from '@angular/common';
 import { GradoService } from '../../services/grado/grado.service';
+import { ClickOutsideDirective } from '../../../shared/directives/click-outside.directive';
 
 @Component({
   selector: 'app-grado',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ClickOutsideDirective],
   templateUrl: './grado.component.html',
   styleUrl: './grado.component.scss'
 })
@@ -30,6 +31,7 @@ export class GradoComponent {
   onEdit(): void {
     console.log('Editar grado', this.grado.id);
     console.log("grado: ",this.grado);
+    this.isDropdownVisible = false;
     console.log(this.gradoEditar.emit(this.grado)); // Emitimos el grado para que el padre lo maneje
   }
 

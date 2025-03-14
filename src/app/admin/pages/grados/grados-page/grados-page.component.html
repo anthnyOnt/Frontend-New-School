@@ -1,4 +1,15 @@
 <div class="page-container">
+
+
+  <div class="search-container">
+    <input 
+      type="text" 
+      placeholder="Buscar grados..." 
+      [(ngModel)]="terminoBusqueda" 
+      (input)="filtrarGrados()"
+      class="search-input">
+  </div>
+  
   <!-- Contenedor que centra los grados -->
   <div class="grados-container">
     <div *ngFor="let grado of gradosFiltrados; trackBy: trackById" class="grado-card">

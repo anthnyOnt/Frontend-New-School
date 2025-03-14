@@ -3,71 +3,113 @@ import { Grado } from '../../../../core/interfaces/grado';
 import { GradoComponent } from "../../../components/grado/grado.component";
 import { CommonModule } from '@angular/common';
 import { GradosAddComponent } from '../grados-add/grados-add.component';
-
+import { FormsModule } from '@angular/forms';
+import { GradoService } from '../../../services/grado/grado.service';
 
 @Component({
   selector: 'app-grados-page',
   standalone: true,
-  imports: [GradoComponent, CommonModule,GradosAddComponent],
+  imports: [GradoComponent, CommonModule, GradosAddComponent, FormsModule],
   templateUrl: './grados-page.component.html',
   styleUrl: './grados-page.component.scss'
 })
 export class GradosPageComponent implements OnInit {
-
   
-  // Lista de grados filtrados (esto puede venir del backend)
-  gradosFiltrados = [
-    { id: 1, descripcion: 'Grado 1', primaria_secundaria: true },
-    { id: 2, descripcion: 'Grado 2', primaria_secundaria: false },
-    { id: 3, descripcion: 'Grado 3', primaria_secundaria: true },
-    // Añadir más grados si es necesario
-  ];
+  // Lista original de grados
+  grados: Grado[] = [];
+
+  // Lista de grados filtrados que se muestra
+  gradosFiltrados: Grado[] = [];
+  
+  // Término de búsqueda
+  terminoBusqueda: string = '';
+  
   mostrarFormulario = false;
- 
-  gradoEditar!: Grado; // Grado a editar
+  gradoEditar: Grado | null = null; // Grado a editar
+  
+  // Indicadores de estado
+  cargando: boolean = false;
+  error: string | null = null;
 
+  constructor(private gradoService: GradoService) { }
 
+  ngOnInit(): void {
+    this.cargarGrados();
+  }
 
-  constructor() { }
+  // Método para cargar los grados desde el servicio
+  cargarGrados(): void {
+    this.cargando = true;
+    this.error = null;
+    
+    this.gradoService.getGrados().subscribe({
+      next: (grados) => {
+        this.grados = grados;
+        this.gradosFiltrados = [...this.grados];
+        this.cargando = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar los grados:', err);
+        this.error = 'No se pudieron cargar los grados. Por favor, intente nuevamente.';
+        this.cargando = false;
+      }
+    });
+  }
 
+  // Método para filtrar grados según el término de búsqueda
+  filtrarGrados(): void {
+    if (!this.terminoBusqueda.trim()) {
+      // Si no hay término de búsqueda, mostrar todos los grados
+      this.gradosFiltrados = [...this.grados];
+    } else {
+      const termino = this.terminoBusqueda.toLowerCase().trim();
+      this.gradosFiltrados = this.grados.filter(grado => 
+        grado.descripcion.toLowerCase().includes(termino)
+      );
+    }
+  }
 
-   // Método para editar grado
+  // Método para editar grado
   editarGrado(grado: Grado): void {
     this.gradoEditar = { ...grado }; // Copia los datos del grado para edición
     this.mostrarFormulario = true; // Mostrar el formulario
-    console.log("asadsadsd",this.mostrarFormulario);
-  }
-
-  ngOnInit(): void {
-    // Aquí puedes cargar los grados desde un servicio, si es necesario
   }
 
   abrirFormulario() {
-    // Aquí puedes redirigir a una nueva página o abrir un modal para agregar un grado
-    this.mostrarFormulario=true;
-    // Lógica para mostrar el formulario de grado
+    this.gradoEditar = null;
+    this.mostrarFormulario = true;
   }
-
+  
   cerrarFormulario() {
     this.mostrarFormulario = false;
-    
+    this.gradoEditar = null;
   }
 
   agregarNuevoGrado(nuevoGrado: Grado) {
-    this.gradosFiltrados.push(nuevoGrado);
+    // Ya no necesitamos manejar aquí la lógica de agregar/actualizar
+    // porque el componente de GradosAddComponent ya lo hace a través del servicio
+    
+    // Simplemente volvemos a cargar los grados después de agregar/actualizar
+    this.cargarGrados();
     this.cerrarFormulario();
   }
 
   // Método para manejar la eliminación de un grado
   manejarGradoEliminado(id: number): void {
-    // Filtrar la lista de grados eliminando el grado con el id proporcionado
-    this.gradosFiltrados = this.gradosFiltrados.filter(grado => grado.id !== id);
+    this.gradoService.deleteGrado(id).subscribe({
+      next: () => {
+        // Actualizar la lista después de eliminar
+        this.cargarGrados();
+      },
+      error: (err) => {
+        console.error('Error al eliminar el grado:', err);
+        // Opcional: Mostrar mensaje de error
+      }
+    });
   }
 
   // Función trackBy para mejorar el rendimiento
-  trackById(index: number, grado: any): number {
+  trackById(index: number, grado: Grado): number {
     return grado.id; // Devolver el id como identificador único para cada grado
   }
-  
-
 }

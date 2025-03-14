@@ -1,38 +1,149 @@
+/* Estilos mejorados para el componente Grado */
+
 .grado-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.grado-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.grado-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  background: linear-gradient(to right, #f8f9fa, #ffffff);
+}
+
+.grado-card .card-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.grado-card .card-body {
+  padding: 16px 20px;
+  color: #555;
+}
+
+.grado-card .card-body p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.grado-card .card-body strong {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Estilo para el tipo de grado */
+.grado-card .tipo-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.grado-card .tipo-primaria {
+  background-color: #e1f5fe;
+  color: #0288d1;
+}
+
+.grado-card .tipo-secundaria {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+/* Estilos para el dropdown */
+.grado-card .dropdown {
+  position: relative;
+}
+
+.grado-card .btn-link {
+  background: transparent;
+  border: none;
+  color: #777;
+  padding: 5px 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.grado-card .btn-link:hover {
+  background-color: #f0f0f0;
+  color: #444;
+}
+
+.grado-card .fa-ellipsis-v {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.grado-card .dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  min-width: 160px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  z-index: 1000;
+  border: 1px solid #eaeaea;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .grado-card .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .grado-card .card-body {
-    padding: 15px;
-  }
-  
-  .grado-card .dropdown {
-    position: relative;
-  }
-  
-  .grado-card .dropdown-menu {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    margin-top: 5px;
-    min-width: 150px;
-  }
-  
-  .grado-card .fa-ellipsis-v {
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
+}
+
+.grado-card .dropdown-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #444;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.grado-card .dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #222;
+}
+
+.grado-card .dropdown-item:focus {
+  outline: none;
+}
+
+/* Estilo para el botón de editar */
+.grado-card .dropdown-item:first-child {
+  color: #2196f3;
+}
+
+/* Estilo para el botón de eliminar */
+.grado-card .dropdown-item:last-child {
+  color: #f44336;
+}
