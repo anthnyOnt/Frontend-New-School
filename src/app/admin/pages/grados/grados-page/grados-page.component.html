@@ -1,0 +1,24 @@
+<div class="page-container">
+  <!-- Contenedor que centra los grados -->
+  <div class="grados-container">
+    <div *ngFor="let grado of gradosFiltrados; trackBy: trackById" class="grado-card">
+      <app-grado 
+        [grado]="grado" 
+        (gradoEliminado)="manejarGradoEliminado($event)" 
+        (gradoEditar)="editarGrado(grado)">
+      </app-grado>
+    </div>
+  </div>
+
+  <!-- Si no hay grados -->
+  <div *ngIf="gradosFiltrados.length === 0" class="no-grados">
+    <p>No existen grados</p>
+  </div>
+
+  <!-- Botón para abrir el formulario de agregar grado -->
+  <button class="btn-add-grade" (click)="abrirFormulario()">Agregar Grado</button>
+
+  <!-- Formulario emergente para añadir grados -->
+  <app-grados-add *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [gradoEditar]="gradoEditar" (gradoAgregado)="agregarNuevoGrado($event)"></app-grados-add>
+
+</div>

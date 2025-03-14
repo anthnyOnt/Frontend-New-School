@@ -1,0 +1,22 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>{{ gradoEditar ? 'Editar Grado' : 'Agregar Nuevo Grado' }}</h3>
+
+    <form (ngSubmit)="guardarGrado()">
+      <label>Descripción:</label>
+      <input type="text" [(ngModel)]="grado.descripcion" name="descripcion" required>
+
+
+      <label>Tipo:</label>
+      <select [(ngModel)]="grado.primaria_secundaria" name="primaria_secundaria">
+        <option [value]="true">Primaria</option>
+        <option [value]="false">Secundaria</option>
+      </select>
+
+      <div class="buttons">
+        <button type="button" (click)="cerrar.emit()">Cancelar</button>
+        <button type="submit">{{ gradoEditar ? 'Actualizar' : 'Guardar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

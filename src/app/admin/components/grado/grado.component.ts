@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Grado } from '../../../core/interfaces/grado';
 import { CommonModule } from '@angular/common';
+import { GradoService } from '../../services/grado/grado.service';
 
 @Component({
   selector: 'app-grado',
@@ -12,7 +13,10 @@ import { CommonModule } from '@angular/common';
 export class GradoComponent {
   @Input() grado!: Grado;  // Recibimos el objeto grado como un input
   @Output() gradoEliminado = new EventEmitter<number>();  // Emitimos el id del grado cuando se elimina
+  @Output() gradoEditar = new EventEmitter<Grado>();
   isDropdownVisible = false;
+
+  constructor(private gradoService: GradoService) {}
 
   toggleDropdown() {
     this.isDropdownVisible = !this.isDropdownVisible;
@@ -25,12 +29,22 @@ export class GradoComponent {
   // Métodos de acción (editar, eliminar)
   onEdit(): void {
     console.log('Editar grado', this.grado.id);
-    // Aquí va la lógica para editar el grado (ej. abrir un formulario de edición)
+    console.log("grado: ",this.grado);
+    console.log(this.gradoEditar.emit(this.grado)); // Emitimos el grado para que el padre lo maneje
   }
 
   onDelete(): void {
-    console.log('Eliminar grado', this.grado.id);
-    // Aquí va la lógica para eliminar el grado
+    if (confirm(`¿Estás seguro de que quieres eliminar el grado ${this.grado.descripcion}?`)) {
+      this.gradoService.deleteGrado(this.grado.id).subscribe({
+        next: () => {
+          console.log('Grado eliminado correctamente');
+          this.gradoEliminado.emit(this.grado.id); // Emitimos el evento para que el padre lo actualice
+        },
+        error: (error) => {
+          console.error('Error al eliminar grado:', error);
+        }
+      });
+    }
   }
 
   eliminarGrado(): void {
