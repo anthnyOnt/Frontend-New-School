@@ -1,0 +1,21 @@
+.estudiantes-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .estudiante-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .estudiante-item:hover {
+    transform: scale(1.02);
+  }

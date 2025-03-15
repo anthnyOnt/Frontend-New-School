@@ -1,0 +1,12 @@
+<li class="estudiante-item">
+    <div class="estudiante-info">
+      <p><strong>Nombre:</strong> {{ estudiante.nombre }}</p>
+      <p><strong>Email:</strong> {{ estudiante.email }}</p>
+      <p><strong>CI:</strong> {{ estudiante.ci }}</p>
+    </div>
+    <div class="estudiante-actions">
+      <button (click)="editarEstudiante()">✏️ Editar</button>
+      <button (click)="eliminarEstudiante()">🗑️ Eliminar</button>
+    </div>
+  </li>
+  

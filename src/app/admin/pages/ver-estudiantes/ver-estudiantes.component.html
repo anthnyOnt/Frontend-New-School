@@ -1,0 +1,9 @@
+<h2>Lista de Estudiantes</h2>
+
+<ul class="estudiantes-list">
+  <app-estudiante 
+    *ngFor="let estudiante of estudiantes" 
+    [estudiante]="estudiante"
+    (eliminar)="eliminarEstudiante($event)">
+  </app-estudiante>
+</ul>
