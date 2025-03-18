@@ -1,0 +1,32 @@
+<div class="card profesor-card">
+    <div class="card-header">
+      <h4>{{ profesor.nombre }}</h4>
+      <!-- Icono de tres puntos para las acciones -->
+      <div class="dropdown" clickOutside (clickOutside)="isDropdownVisible = false">
+        <button class="btn btn-link" type="button" (click)="toggleDropdown()">
+          <i class="fa fa-ellipsis-v"></i>
+        </button>
+        <div class="dropdown-menu" *ngIf="isDropdownVisible">
+          <button class="dropdown-item" (click)="onEdit()">
+            <i class="fa fa-edit mr-2"></i> Editar
+          </button>
+          <button class="dropdown-item" (click)="eliminarProfesor()">
+            <i class="fa fa-trash mr-2"></i> Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card-body">
+      <p>
+        <strong>CI:</strong> {{ getNombre() }}
+      </p>
+      <p>
+        <strong>Correo:</strong> {{ getCorreo() }}
+      </p>
+      <p>
+        <strong>Teléfono:</strong> {{ getTelefono() }}
+      </p>
+    </div>
+  </div>
+  
