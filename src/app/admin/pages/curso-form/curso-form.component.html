@@ -1,1 +1,21 @@
-<p>curso-form works!</p>
+<div class="form-container">
+    <h1>Registrar Curso</h1>
+    <form (submit)="registrar()">
+        <h2>Nombre</h2>
+        <input type="text" name="nombre" [(ngModel)] = "nombre" required>
+        <h2>Descripcion</h2>
+        <input type="text" name="descripcion" [(ngModel)] = "descripcion" required>
+        <h2>Fecha de Inicio</h2>
+        <input type="date" name="fecha" [(ngModel)] = "fechaCreacion" required>
+        <h2>Grado</h2>
+        <div class="grado-buttons">
+            <label for="grado">
+                Primaria<input type="radio" name="grado" value="primaria" [(ngModel)]="grado" required>
+            </label>
+            <label for="grado">
+                Secundaria<input type="radio" name="grado" value="secundaria" [(ngModel)]="grado" required>
+            </label>
+        </div>
+        <button type="submit">Registrar</button>
+    </form>
+</div>

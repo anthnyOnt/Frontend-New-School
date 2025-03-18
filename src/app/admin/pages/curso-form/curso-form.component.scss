@@ -1,0 +1,36 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh; 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f8f8f8;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 20vw;
+}
+
+input[type="text"], input[type="date"] {
+    width: auto;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.grado-buttons{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+button{
+    padding: 10px;
+}
+
