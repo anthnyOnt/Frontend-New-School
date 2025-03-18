@@ -1,4 +1,5 @@
 /* Estilos mejorados para el formulario modal */
+@import '../../../../../styles.scss';
 
 .modal-overlay {
   position: fixed;
@@ -80,7 +81,7 @@
 .modal-content input:focus,
 .modal-content select:focus {
   outline: none;
-  border-color: #4a90e2;
+  border-color: $verde;
   box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
@@ -112,18 +113,18 @@
 }
 
 .modal-content button[type="submit"] {
-  background-color: #4a90e2;
+  background-color: $verde;
   color: white;
 }
 
 .modal-content button[type="submit"]:hover {
-  background-color: #3a7bc8;
+  background-color: $verde-oscuro;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilo para campo requerido */
 .modal-content input:required {
-  border-left: 3px solid #4a90e2;
+  border-left: 3px solid $verde-oscuro;
 }
 
 /* Responsive design */
