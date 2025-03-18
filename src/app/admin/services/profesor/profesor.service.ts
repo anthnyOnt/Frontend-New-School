@@ -12,16 +12,16 @@ export class ProfesorService {
   
   // Datos simulados (mock data)
   private mockProfesores: Profesor[] = [
-    { id: 1, nombre: 'Juan Pérez', fechaNacimiento: new Date(1980, 5, 15), nacionalidad: 'Argentina', correo: 'juan.perez@example.com', telefono: 123456789, direccion: 'Calle 123', rol: 'Profesor', ci: 12345678 },
-    { id: 2, nombre: 'María López', fechaNacimiento: new Date(1975, 8, 23), nacionalidad: 'España', correo: 'maria.lopez@example.com', telefono: 987654321, direccion: 'Avenida 456', rol: 'Coordinador', ci: 23456789 },
-    { id: 3, nombre: 'Carlos García', fechaNacimiento: new Date(1990, 2, 10), nacionalidad: 'México', correo: 'carlos.garcia@example.com', telefono: 456123789, direccion: 'Calle Falsa 789', rol: 'Docente', ci: 34567890 },
-    { id: 4, nombre: 'Ana Torres', fechaNacimiento: new Date(1988, 11, 5), nacionalidad: 'Chile', correo: 'ana.torres@example.com', telefono: 321987654, direccion: 'Avenida Central', rol: 'Asesor', ci: 45678901 },
-    { id: 5, nombre: 'Luis Fernández', fechaNacimiento: new Date(1979, 6, 30), nacionalidad: 'Colombia', correo: 'luis.fernandez@example.com', telefono: 789654123, direccion: 'Boulevard Sur', rol: 'Director', ci: 56789012 },
-    { id: 6, nombre: 'Elena Gómez', fechaNacimiento: new Date(1992, 3, 14), nacionalidad: 'Perú', correo: 'elena.gomez@example.com', telefono: 654321789, direccion: 'Calle Norte', rol: 'Profesor', ci: 67890123 },
-    { id: 7, nombre: 'Fernando Díaz', fechaNacimiento: new Date(1985, 7, 21), nacionalidad: 'Ecuador', correo: 'fernando.diaz@example.com', telefono: 951753468, direccion: 'Plaza Mayor', rol: 'Tutor', ci: 78901234 },
-    { id: 8, nombre: 'Gabriela Rojas', fechaNacimiento: new Date(1995, 9, 3), nacionalidad: 'Venezuela', correo: 'gabriela.rojas@example.com', telefono: 852963741, direccion: 'Centro Histórico', rol: 'Investigador', ci: 89012345 },
-    { id: 9, nombre: 'Ricardo Méndez', fechaNacimiento: new Date(1983, 1, 18), nacionalidad: 'Uruguay', correo: 'ricardo.mendez@example.com', telefono: 789456123, direccion: 'Calle Principal', rol: 'Coordinador', ci: 90123456 },
-    { id: 10, nombre: 'Patricia Castro', fechaNacimiento: new Date(1977, 12, 25), nacionalidad: 'Paraguay', correo: 'patricia.castro@example.com', telefono: 963852741, direccion: 'Avenida Libertad', rol: 'Profesor', ci: 10234567 }
+    { id: 1, nombre: 'Juan Pérez', fechaNacimiento: new Date(1980, 5, 15), nacionalidad: 'Argentina', correo: 'juan.perez@example.com', telefono: '123456789', direccion: 'Calle 123', rol: 'Profesor', ci: '12345678' },
+    { id: 2, nombre: 'María López', fechaNacimiento: new Date(1975, 8, 23), nacionalidad: 'España', correo: 'maria.lopez@example.com', telefono: '987654321', direccion: 'Avenida 456', rol: 'Coordinador', ci: '23456789' },
+    { id: 3, nombre: 'Carlos García', fechaNacimiento: new Date(1990, 2, 10), nacionalidad: 'México', correo: 'carlos.garcia@example.com', telefono: '456123789', direccion: 'Calle Falsa 789', rol: 'Docente', ci: '34567890' },
+    { id: 4, nombre: 'Ana Torres', fechaNacimiento: new Date(1988, 11, 5), nacionalidad: 'Chile', correo: 'ana.torres@example.com', telefono: '321987654', direccion: 'Avenida Central', rol: 'Asesor', ci: '45678901' },
+    { id: 5, nombre: 'Luis Fernández', fechaNacimiento: new Date(1979, 6, 30), nacionalidad: 'Colombia', correo: 'luis.fernandez@example.com', telefono: '789654123', direccion: 'Boulevard Sur', rol: 'Director', ci: '56789012' },
+    { id: 6, nombre: 'Elena Gómez', fechaNacimiento: new Date(1992, 3, 14), nacionalidad: 'Perú', correo: 'elena.gomez@example.com', telefono: '654321789', direccion: 'Calle Norte', rol: 'Profesor', ci: '67890123' },
+    { id: 7, nombre: 'Fernando Díaz', fechaNacimiento: new Date(1985, 7, 21), nacionalidad: 'Ecuador', correo: 'fernando.diaz@example.com', telefono: '951753468', direccion: 'Plaza Mayor', rol: 'Tutor', ci: '78901234' },
+    { id: 8, nombre: 'Gabriela Rojas', fechaNacimiento: new Date(1995, 9, 3), nacionalidad: 'Venezuela', correo: 'gabriela.rojas@example.com', telefono: '852963741', direccion: 'Centro Histórico', rol: 'Investigador', ci: '89012345' },
+    { id: 9, nombre: 'Ricardo Méndez', fechaNacimiento: new Date(1983, 1, 18), nacionalidad: 'Uruguay', correo: 'ricardo.mendez@example.com', telefono: '789456123', direccion: 'Calle Principal', rol: 'Coordinador', ci: '90123456' },
+    { id: 10, nombre: 'Patricia Castro', fechaNacimiento: new Date(1977, 12, 25), nacionalidad: 'Paraguay', correo: 'patricia.castro@example.com', telefono: '963852741', direccion: 'Avenida Libertad', rol: 'Profesor', ci: '10234567' }
   ];
   private useMockData = true;
 

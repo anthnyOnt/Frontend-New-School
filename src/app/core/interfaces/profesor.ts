@@ -4,8 +4,8 @@ export interface Profesor {
     fechaNacimiento: Date;
     nacionalidad: string;
     correo: string;
-    telefono: number;
+    telefono: string;
     direccion: string;
     rol: string;
-    ci: number;
+    ci: string;
 }
