@@ -1,0 +1,29 @@
+<div class="card grado-card">
+  <div class="card-header">
+    <h4>{{ grado.descripcion }}</h4>
+    <!-- Icono de tres puntos para las acciones -->
+    <div class="dropdown" clickOutside (clickOutside)="isDropdownVisible = false">
+      <button class="btn btn-link" type="button" (click)="toggleDropdown()">
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <!-- Menú desplegable que aparece cuando se hace clic en el icono -->
+      <div class="dropdown-menu" *ngIf="isDropdownVisible">
+        <button class="dropdown-item" (click)="onEdit()">
+          <i class="fa fa-edit mr-2"></i> Editar
+        </button>
+        <button class="dropdown-item" (click)="eliminarGrado()">
+          <i class="fa fa-trash mr-2"></i> Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+      
+  <div class="card-body">
+    <p>
+      <strong>Tipo de Grado:</strong> 
+      <span class="tipo-badge" [ngClass]="{'tipo-primaria': grado.primaria_secundaria, 'tipo-secundaria': !grado.primaria_secundaria}">
+        {{ getTipoGrado() }}
+      </span>
+    </p>
+  </div>
+</div>
