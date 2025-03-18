@@ -1,10 +1,24 @@
 <h2>Lista de Estudiantes</h2>
 
-<ul class="estudiantes-list">
-  <div *ngFor="let estudiante of estudiantes; trackBy: trackById" class="grado-card">
-  <app-estudiante 
-    [estudiante]="estudiante"
-    (eliminar)="eliminarEstudiante($event)">
-  </app-estudiante>
-  </div>
-</ul>
+<table class="estudiantes-table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>CI</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let estudiante of estudiantes; trackBy: trackById">
+      <td>{{ estudiante.nombre }}</td>
+      <td>{{ estudiante.email }}</td>
+      <td>{{ estudiante.ci }}</td>
+      <td class="estudiante-actions">
+        <!-- Call methods from parent directly -->
+        <button (click)="editarEstudiante(estudiante)">✏️</button>
+        <button (click)="eliminarEstudiante(estudiante)">🗑️</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

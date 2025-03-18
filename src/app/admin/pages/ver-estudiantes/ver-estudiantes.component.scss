@@ -1,21 +1,89 @@
-.estudiantes-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
+.estudiantes-table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  table-layout: fixed; /* Ensures equal column spacing */
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center; /* Centers content in all columns */
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #47663B;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+tr:hover {
+  background: #f5f5f5;
+}
+
+td {
+  font-size: 14px;
+  color: #333;
+  word-wrap: break-word; /* Ensures text doesn't overflow */
+}
+
+/* ✅ Ensuring the actions column stays small */
+th:last-child, td:last-child {
+  width: 150px; /* Fixed width for action buttons */
+}
+
+/* ✅ Action Buttons */
+.estudiante-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+  button {
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      min-width: 40px;
+
+      &:hover {
+          transform: scale(1.1);
+      }
   }
+
+  .edit-btn {
+      background: #FFD700;
+      color: #333;
+  }
+
+  .delete-btn {
+      background: #E53935;
+      color: white;
+  }
+}
+
+/* ✅ Responsive Fix */
+@media (max-width: 768px) {
+  .estudiantes-table {
+      width: 100%;
+      font-size: 12px;
+  }
+
+  th, td {
+      padding: 10px;
+  }
+
+  .estudiante-actions {
+      flex-direction: row;
+      gap: 5px;
+  }
+}
+
+
   
-  .estudiante-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    margin-bottom: 10px;
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .estudiante-item:hover {
-    transform: scale(1.02);
-  }
