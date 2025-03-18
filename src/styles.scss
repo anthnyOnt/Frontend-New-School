@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+$verde: #47663B;
+$verde-oscuro: #1F4529;
+
+body {
+    background-color: #E8ECD7;
+    margin: 0; /* Ensures no unwanted whitespace */
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+  }

@@ -1,3 +1,4 @@
+@import '../../../../../styles.scss';
 /* Estilos para el contenedor principal */
 .page-container {
     display: flex;
@@ -10,7 +11,7 @@
   /* Estilo para el botón de agregar grado */
   .btn-add-grade {
     margin-top: 20px;
-    background-color: #007bff;
+    background-color: $verde;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -22,7 +23,7 @@
   }
   
   .btn-add-grade:hover {
-    background-color: #0056b3;
+    background-color: $verde-oscuro;
   }
   
   /* Estilos para el contenedor de grados */

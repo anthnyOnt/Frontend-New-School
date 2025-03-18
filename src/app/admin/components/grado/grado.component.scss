@@ -1,3 +1,4 @@
+@import '../../../../styles.scss';
 /* Estilos mejorados para el componente Grado */
 
 .grado-card {
@@ -140,7 +141,7 @@
 
 /* Estilo para el botón de editar */
 .grado-card .dropdown-item:first-child {
-  color: #2196f3;
+  color: $verde;
 }
 
 /* Estilo para el botón de eliminar */
