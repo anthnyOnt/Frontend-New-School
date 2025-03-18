@@ -1,1 +1,6 @@
-<p>cursos works!</p>
+<div class="cursos-container">
+    <div *ngFor="let curso of cursosEj" class="curso-card">
+      <app-curso [curso]="curso"></app-curso>
+    </div>
+  </div>
+  

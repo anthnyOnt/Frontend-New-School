@@ -1,1 +1,6 @@
-<p>curso works!</p>
+<div class="card">
+    <h2>{{ curso.nombre }}</h2>
+    <p>{{ curso.descripcion }}</p>
+    <p><strong>Fecha de Creación:</strong> {{ curso.fechaCreacion | date:'longDate' }}</p>
+</div>
+  
