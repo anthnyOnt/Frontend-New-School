@@ -35,6 +35,10 @@ export class ProfesorComponent {
     return this.profesor.correo;
   }
 
+  getTelefono(): string{
+    return this.profesor.telefono;
+  }
+
   onEdit(): void {
     console.log('Editar profesor', this.profesor.id);
     console.log("profesor: ",this.profesor);

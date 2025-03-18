@@ -1,1 +1,35 @@
-<p>profesores-page works!</p>
+<div class="page-container">
+
+    <div class="search-container">
+      <input 
+        type="text" 
+        placeholder="Buscar profesores..." 
+        [(ngModel)]="terminoBusqueda" 
+        (input)="filtrarProfesores()"
+        class="search-input">
+    </div>
+    
+    <!-- Contenedor que centra los profesores -->
+    <div class="profesores-container">
+      <div *ngFor="let profesor of profesoresFiltrados; trackBy: trackById" class="profesor-card">
+        <app-profesor 
+          [profesor]="profesor" 
+          (profesorEliminado)="manejarProfesorEliminado($event)" 
+          (profesorEditar)="editarProfesor(profesor)">
+        </app-profesor>
+      </div>
+    </div>
+  
+    <!-- Si no hay profesores -->
+    <div *ngIf="profesoresFiltrados.length === 0" class="no-profesores">
+      <p>No existen profesores</p>
+    </div>
+  
+    <!-- Botón para abrir el formulario de agregar profesor -->
+    <button class="btn-add-profesor" (click)="abrirFormulario()">Agregar Profesor</button>
+  
+    <!-- Formulario emergente para añadir profesores -->
+    <app-profesores-add *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [profesorEditar]="profesorEditar" (profesorAgregado)="agregarNuevoProfesor($event)"></app-profesores-add>
+  
+  </div>
+  

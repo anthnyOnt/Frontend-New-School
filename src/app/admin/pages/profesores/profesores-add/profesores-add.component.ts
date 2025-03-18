@@ -6,11 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { ProfesorService } from '../../../services/profesor/profesor.service';
 
 @Component({
-  selector: 'app-profesor-add',
+  selector: 'app-profesores-add',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './profesor-add.component.html',
-  styleUrl: './profesor-add.component.scss',
+  templateUrl: './profesores-add.component.html',
+  styleUrl: './profesores-add.component.scss',
 })
 export class ProfesorAddComponent {
   @Input() profesorEditar: Profesor | null = null;

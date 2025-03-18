@@ -6,25 +6,27 @@
         <button class="btn btn-link" type="button" (click)="toggleDropdown()">
           <i class="fa fa-ellipsis-v"></i>
         </button>
-        <!-- Menú desplegable que aparece cuando se hace clic en el icono -->
         <div class="dropdown-menu" *ngIf="isDropdownVisible">
           <button class="dropdown-item" (click)="onEdit()">
             <i class="fa fa-edit mr-2"></i> Editar
           </button>
-          <button class="dropdown-item" (click)="eliminarGrado()">
+          <button class="dropdown-item" (click)="eliminarProfesor()">
             <i class="fa fa-trash mr-2"></i> Eliminar
           </button>
         </div>
       </div>
     </div>
-        
+  
     <div class="card-body">
       <p>
-        <strong>Profesor:</strong> 
-        <span class="tipo-badge" [ngClass]="">
-          {{ getNombre() }},{{ getCi() }}
-
-        </span>
+        <strong>CI:</strong> {{ getNombre() }}
+      </p>
+      <p>
+        <strong>Correo:</strong> {{ getCorreo() }}
+      </p>
+      <p>
+        <strong>Teléfono:</strong> {{ getTelefono() }}
       </p>
     </div>
   </div>
+  
