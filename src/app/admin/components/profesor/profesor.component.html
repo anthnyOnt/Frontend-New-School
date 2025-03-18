@@ -1,0 +1,19 @@
+<table class="profesor-table">
+  
+  <tbody>
+    <tr>
+      <td><div>{{ profesor.nombre }}</div></td>
+      <td><div>{{ getNombre() }}</div></td>
+      <td><div>{{ getCorreo() }}</div></td>
+      <td><div>{{ getTelefono() }}</div></td>
+      <td class="acciones">
+        <button class="btn btn-link" (click)="onEdit()">
+          <i class="fa fa-edit mr-2"></i> Editar
+        </button>
+        <button class="btn btn-link" (click)="eliminarProfesor()">
+          <i class="fa fa-trash mr-2"></i> Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

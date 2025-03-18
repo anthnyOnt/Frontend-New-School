@@ -1,0 +1,45 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+      <h3>{{ profesorEditar ? 'Editar Profesor' : 'Agregar Nuevo Profesor' }}</h3>
+  
+      <form (ngSubmit)="guardarProfesor()">
+        <!-- Campo para el nombre del profesor -->
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="profesor.nombre" name="nombre" required>
+  
+        <!-- Campo para el CI del profesor -->
+        <label>CI:</label>
+        <input type="text" [(ngModel)]="profesor.ci" name="ci" required>
+  
+        <!-- Campo para el correo del profesor -->
+        <label>Correo:</label>
+        <input type="email" [(ngModel)]="profesor.correo" name="correo" required>
+  
+        <!-- Campo para el teléfono del profesor -->
+        <label>Teléfono:</label>
+        <input type="tel" [(ngModel)]="profesor.telefono" name="telefono" required>
+  
+        <!-- Campo para la nacionalidad del profesor -->
+        <label>Nacionalidad:</label>
+        <input type="text" [(ngModel)]="profesor.nacionalidad" name="nacionalidad" required>
+  
+        <!-- Campo para la dirección del profesor -->
+        <label>Dirección:</label>
+        <input type="text" [(ngModel)]="profesor.direccion" name="direccion" required>
+  
+        <!-- Campo para la fecha de nacimiento del profesor -->
+        <label>Fecha de Nacimiento:</label>
+        <input type="date" [(ngModel)]="profesor.fechaNacimiento" name="fechaNacimiento" required>
+  
+        <!-- Campo para el rol del profesor -->
+        <label>Rol:</label>
+        <input type="text" [(ngModel)]="profesor.rol" name="rol" required>
+  
+        <div class="buttons">
+          <button type="button" (click)="cerrar.emit()">Cancelar</button>
+          <button type="submit">{{ profesorEditar ? 'Actualizar' : 'Guardar' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
