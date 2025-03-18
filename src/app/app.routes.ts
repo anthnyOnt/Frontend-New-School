@@ -8,7 +8,7 @@ import { MainComponent } from './admin/pages/main/main.component';
 
 export const routes: Routes = [
     {path: '', component: MainComponent},
-    {path: 'registrar', component: RegistrarEstudianteComponent},
+    {path: 'registrarestudiantes', component: RegistrarEstudianteComponent},
     {path: 'estudiantes', component: VerEstudiantesComponent},
     {path: 'grados', component: GradosPageComponent}
 ];

@@ -2,13 +2,14 @@ import { Component, OnInit, inject } from '@angular/core';
 import { EstudianteService } from '../../services/estudiante/estudiante.service';
 import { Estudiante } from  '../../../core/interfaces/estudiante';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ver-estudiantes',
   standalone: true,
   templateUrl: './ver-estudiantes.component.html',
   styleUrls: ['./ver-estudiantes.component.scss'],
-  imports: [CommonModule]
+  imports: [CommonModule, RouterLink]
 })
 export class VerEstudiantesComponent implements OnInit {
   estudiantes: Estudiante[] = [];

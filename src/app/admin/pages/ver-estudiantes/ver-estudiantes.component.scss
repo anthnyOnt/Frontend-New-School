@@ -1,3 +1,10 @@
+.estudiante-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;;
+}
+
+
 .estudiantes-table {
   width: 90%;
   margin: 0 auto;
@@ -6,12 +13,12 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  table-layout: fixed; /* Ensures equal column spacing */
+  table-layout: fixed; 
 }
 
 th, td {
   padding: 12px 15px;
-  text-align: center; /* Centers content in all columns */
+  text-align: center; 
   border-bottom: 1px solid #ddd;
 }
 
@@ -29,15 +36,13 @@ tr:hover {
 td {
   font-size: 14px;
   color: #333;
-  word-wrap: break-word; /* Ensures text doesn't overflow */
+  word-wrap: break-word; 
 }
 
-/* ✅ Ensuring the actions column stays small */
 th:last-child, td:last-child {
   width: 150px; /* Fixed width for action buttons */
 }
 
-/* ✅ Action Buttons */
 .estudiante-actions {
   display: flex;
   gap: 10px;
@@ -68,7 +73,6 @@ th:last-child, td:last-child {
   }
 }
 
-/* ✅ Responsive Fix */
 @media (max-width: 768px) {
   .estudiantes-table {
       width: 100%;
@@ -85,5 +89,18 @@ th:last-child, td:last-child {
   }
 }
 
+.registrar-button {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: #47663B;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
 
+  &:hover {
+      background-color: #36502A;
+  }
+}
   

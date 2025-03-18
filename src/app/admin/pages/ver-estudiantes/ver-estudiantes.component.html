@@ -1,24 +1,28 @@
-<h2>Lista de Estudiantes</h2>
 
-<table class="estudiantes-table">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Email</th>
-      <th>CI</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let estudiante of estudiantes; trackBy: trackById">
-      <td>{{ estudiante.nombre }}</td>
-      <td>{{ estudiante.email }}</td>
-      <td>{{ estudiante.ci }}</td>
-      <td class="estudiante-actions">
-        <!-- Call methods from parent directly -->
-        <button (click)="editarEstudiante(estudiante)">✏️</button>
-        <button (click)="eliminarEstudiante(estudiante)">🗑️</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="estudiante-container">
+  <h2>Lista de Estudiantes</h2>
+  <button class="registrar-button" routerLink="/registrarestudiantes">Registrar Estudiante</button>
+  <hr>
+  <table class="estudiantes-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>CI</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estudiante of estudiantes; trackBy: trackById">
+        <td>{{ estudiante.nombre }}</td>
+        <td>{{ estudiante.email }}</td>
+        <td>{{ estudiante.ci }}</td>
+        <td class="estudiante-actions">
+          <!-- Call methods from parent directly -->
+          <button (click)="editarEstudiante(estudiante)">✏️</button>
+          <button (click)="eliminarEstudiante(estudiante)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
