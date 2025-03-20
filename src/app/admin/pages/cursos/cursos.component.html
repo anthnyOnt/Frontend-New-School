@@ -1,0 +1,13 @@
+<div class="curso-container">
+  <h2>Lista de Cursos</h2>
+  <div class="cursos-list">
+    <div class="curso card" *ngFor="let curso of cursos">
+      <h2>{{ curso.nombre }}</h2> <br>
+      <p>{{ curso.descripcion }}</p> <br>
+      <p>{{ curso.fechaCreacion }}</p>
+    </div>
+    <div class="registrar card">
+      <button class="registrar-button" routerLink="/registrarcurso">Registrar Curso</button>
+    </div>
+  </div>
+</div>

@@ -19,9 +19,8 @@
         <td>{{ estudiante.email }}</td>
         <td>{{ estudiante.ci }}</td>
         <td class="estudiante-actions">
-          <!-- Call methods from parent directly -->
-          <button (click)="editarEstudiante(estudiante)">✏️</button>
-          <button (click)="eliminarEstudiante(estudiante)">🗑️</button>
+          <button class ="edit-btn" (click)="editarEstudiante(estudiante)">✏️</button>
+          <button class="delete-btn" (click)="eliminarEstudiante(estudiante)">🗑️</button>
         </td>
       </tr>
     </tbody>
