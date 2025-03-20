@@ -27,7 +27,7 @@
   
     <!-- Botón para abrir el formulario de agregar profesor -->
     <button class="btn-add-profesor" (click)="abrirFormulario()">Agregar Profesor</button>
-  
+    <button class="btn-add-profesor" routerLink="/">Volver</button>
     <!-- Formulario emergente para añadir profesores -->
     <app-profesores-add *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [profesorEditar]="profesorEditar" (profesorAgregado)="agregarNuevoProfesor($event)"></app-profesores-add>
   

@@ -1,8 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { EstudianteService } from '../../services/estudiante/estudiante.service';
-import { Estudiante } from  '../../../core/interfaces/estudiante';
+
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Estudiante } from '../../../core/interfaces/estudiante';
 
 @Component({
   selector: 'app-ver-estudiantes',

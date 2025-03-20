@@ -1,49 +1,106 @@
-.profesor-table {
-  width: 100%;
+.estudiante-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;;
+}
+
+
+.estudiantes-table {
+  width: 90%;
+  margin: 0 auto;
   border-collapse: collapse;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  table-layout: fixed; 
 }
 
-.profesor-table th, 
-.profesor-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
+th, td {
+  padding: 12px 15px;
+  text-align: center; 
+  border-bottom: 1px solid #ddd;
 }
 
-.profesor-table th {
-  background: #f4f4f4;
+th {
+  background: #47663B;
+  color: white;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
-.profesor-table td div {
-  padding: 8px;
+tr:hover {
+  background: #f5f5f5;
 }
 
-.acciones {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 10px;
-  align-items: center;
-}
-
-.acciones .btn-link {
-  background: transparent;
-  border: none;
-  color: #777;
+td {
   font-size: 14px;
-  padding: 5px 8px;
-  transition: background-color 0.2s, color 0.2s;
+  color: #333;
+  word-wrap: break-word; 
 }
 
-.acciones .btn-link:hover {
-  background-color: #f0f0f0;
-  color: #444;
+th:last-child, td:last-child {
+  width: 150px; /* Fixed width for action buttons */
 }
 
-.acciones .fa {
-  margin-right: 5px;
+.estudiante-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+  button {
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      min-width: 40px;
+
+      &:hover {
+          transform: scale(1.1);
+      }
+  }
+
+  .edit-btn {
+      background: #FFD700;
+      color: #333;
+  }
+
+  .delete-btn {
+      background: #E53935;
+      color: white;
+  }
 }
+
+@media (max-width: 768px) {
+  .estudiantes-table {
+      width: 100%;
+      font-size: 12px;
+  }
+
+  th, td {
+      padding: 10px;
+  }
+
+  .estudiante-actions {
+      flex-direction: row;
+      gap: 5px;
+  }
+}
+
+.registrar-button {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: #47663B;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+
+  &:hover {
+      background-color: #36502A;
+  }
+}
+  

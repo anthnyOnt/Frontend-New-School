@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { GradosAddComponent } from '../grados-add/grados-add.component';
 import { FormsModule } from '@angular/forms';
 import { GradoService } from '../../../services/grado/grado.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-grados-page',
   standalone: true,
-  imports: [GradoComponent, CommonModule, GradosAddComponent, FormsModule],
+  imports: [GradoComponent, CommonModule, GradosAddComponent, FormsModule,RouterLink],
   templateUrl: './grados-page.component.html',
   styleUrl: './grados-page.component.scss'
 })
