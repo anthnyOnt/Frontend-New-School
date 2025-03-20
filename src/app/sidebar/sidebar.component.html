@@ -1,0 +1,39 @@
+<!-- sidebar.component.html -->
+<div class="sidebar">
+    <div class="logo">
+      <a routerLink="/main">
+        <h2>NEW SCHOOL</h2>
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/estudiantes" routerLinkActive="active">
+            <i class="fas fa-user-graduate"></i>
+            <span>Estudiantes</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/grados" routerLinkActive="active">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Grados</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/profesores" routerLinkActive="active">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span>Profesores</span>
+          </a>
+        </li>
+        <!-- Separador visual antes del logout -->
+        <li class="divider"></li>
+        <!-- Opción de logout al final -->
+        <li class="logout-item">
+          <a (click)="logout()" class="logout-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
