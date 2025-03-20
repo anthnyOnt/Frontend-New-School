@@ -13,7 +13,6 @@ export class CursoFormComponent {
   nombre: string = '';
   descripcion: string = '';
   fechaCreacion: Date = new Date();
-  grado: string = '';
 
   registrar() {
 

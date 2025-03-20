@@ -1,9 +1,26 @@
-<div class="cursos-container">
-    <div *ngFor="let curso of cursos" class="curso-card">
-      <app-curso [curso]="curso"></app-curso>
-    </div>
-    <div class="curso-card add-curso">
-      (+)
-    </div>
-  </div>
-  
+<div class="curso-container">
+  <h2>Lista de Cursos</h2>
+  <button class="registrar-button" routerLink="/registrarestudiantes">Registrar Curso</button>
+  <hr>
+  <table class="cursos-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Inicio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curso of cursos; trackBy: trackById">
+        <td>{{ curso.nombre }}</td>
+        <td>{{ curso.descripcion }}</td>
+        <td>{{ curso.fechaCreacion }}</td>
+        <td class="curso-actions">
+          <button class ="edit-btn" (click)="editarCurso(curso)">✏️</button>
+          <button class="delete-btn" (click)="eliminarCurso(curso)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
