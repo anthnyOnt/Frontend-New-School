@@ -1,40 +1,55 @@
 @import '../../../../styles.scss';
-/* Estilos mejorados para el componente Grado */
 
+/* Colores */
+$verde: #47663B;
+$verde-oscuro: darken($verde, 10%);
+$fondo-claro: #E8ECD7;
+$gris-texto: #555;
+$rojo-eliminar: #f44336;
+$primaria: #A6C36F;
+$secundaria: #6B8E23;
+body
+{
+  height: auto;
+}
+/* Estilos mejorados para la tarjeta de grado */
 .grado-card {
-  border: 1px solid #e0e0e0;
+  height: auto;
+  border: 2px solid $verde;
   border-radius: 12px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-  background-color: #ffffff;
+  background-color: white;
   overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .grado-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Estilos para la cabecera de la tarjeta */
 .grado-card .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  border-bottom: 1px solid #f0f0f0;
-  background: linear-gradient(to right, #f8f9fa, #ffffff);
+  background-color: $fondo-claro;
+  border-bottom: 2px solid $verde;
 }
 
 .grado-card .card-header h4 {
   margin: 0;
   font-size: 18px;
-  font-weight: 600;
-  color: #333;
+  font-weight: bold;
+  color: $verde;
 }
 
+/* Cuerpo de la tarjeta */
 .grado-card .card-body {
   padding: 16px 20px;
-  color: #555;
+  color: $gris-texto;
 }
 
 .grado-card .card-body p {
@@ -51,24 +66,24 @@
 /* Estilo para el tipo de grado */
 .grado-card .tipo-badge {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .grado-card .tipo-primaria {
-  background-color: #e1f5fe;
-  color: #0288d1;
+  background-color: lighten($primaria, 20%);
+  color: darken($primaria, 15%);
 }
 
 .grado-card .tipo-secundaria {
-  background-color: #f3e5f5;
-  color: #7b1fa2;
+  background-color: lighten($secundaria, 20%);
+  color: darken($secundaria, 15%);
 }
 
-/* Estilos para el dropdown */
+/* Estilos para el menú desplegable (dropdown) */
 .grado-card .dropdown {
   position: relative;
 }
@@ -79,12 +94,13 @@
   color: #777;
   padding: 5px 8px;
   border-radius: 50%;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .grado-card .btn-link:hover {
-  background-color: #f0f0f0;
+  background-color: #d6d6d6;
   color: #444;
+  transform: scale(1.1);
 }
 
 .grado-card .fa-ellipsis-v {
@@ -92,6 +108,7 @@
   vertical-align: middle;
 }
 
+/* Estilo del dropdown cuando está visible */
 .grado-card .dropdown-menu {
   position: absolute;
   right: 0;
@@ -118,6 +135,7 @@
   }
 }
 
+/* Estilos para los botones del dropdown */
 .grado-card .dropdown-item {
   padding: 10px 16px;
   font-size: 14px;
@@ -127,7 +145,7 @@
   width: 100%;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .grado-card .dropdown-item:hover {
@@ -139,12 +157,16 @@
   outline: none;
 }
 
-/* Estilo para el botón de editar */
+/* Botón de editar */
 .grado-card .dropdown-item:first-child {
   color: $verde;
 }
 
-/* Estilo para el botón de eliminar */
+/* Botón de eliminar */
 .grado-card .dropdown-item:last-child {
-  color: #f44336;
+  color: $rojo-eliminar;
+}
+
+.grado-card .dropdown-item:last-child:hover {
+  background-color: lighten($rojo-eliminar, 40%);
 }
