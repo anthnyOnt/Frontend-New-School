@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./profesores-page.component.scss']
 })
 export class ProfesoresPageComponent implements OnInit {
-
+  
   // Lista original de profesores
   profesores: Profesor[] = [];
 

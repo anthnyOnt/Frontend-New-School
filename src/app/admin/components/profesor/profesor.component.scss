@@ -1,11 +1,10 @@
-.estudiante-container {
+.profesor-container {
   display: flex;
   flex-direction: column;
-  align-items: center;;
+  align-items: center;
 }
 
-
-.estudiantes-table {
+.profesor-table {
   width: 90%;
   margin: 0 auto;
   border-collapse: collapse;
@@ -13,12 +12,12 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  table-layout: fixed; 
+  table-layout: fixed;
 }
 
 th, td {
   padding: 12px 15px;
-  text-align: center; 
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
@@ -36,56 +35,56 @@ tr:hover {
 td {
   font-size: 14px;
   color: #333;
-  word-wrap: break-word; 
+  word-wrap: break-word;
 }
 
 th:last-child, td:last-child {
-  width: 150px; /* Fixed width for action buttons */
+  width: 150px;
 }
 
-.estudiante-actions {
+.profesor-actions {
   display: flex;
   gap: 10px;
   justify-content: center;
 
   button {
-      border: none;
-      padding: 6px 10px;
-      border-radius: 5px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      min-width: 40px;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    min-width: 40px;
 
-      &:hover {
-          transform: scale(1.1);
-      }
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .edit-btn {
-      background: #FFD700;
-      color: #333;
+    background: #FFD700;
+    color: #333;
   }
 
   .delete-btn {
-      background: #E53935;
-      color: white;
+    background: #E53935;
+    color: white;
   }
 }
 
 @media (max-width: 768px) {
-  .estudiantes-table {
-      width: 100%;
-      font-size: 12px;
+  .profesor-table {
+    width: 100%;
+    font-size: 12px;
   }
 
   th, td {
-      padding: 10px;
+    padding: 10px;
   }
 
-  .estudiante-actions {
-      flex-direction: row;
-      gap: 5px;
+  .profesor-actions {
+    flex-direction: row;
+    gap: 5px;
   }
 }
 
@@ -100,7 +99,6 @@ th:last-child, td:last-child {
   transition: background 0.3s;
 
   &:hover {
-      background-color: #36502A;
+    background-color: #36502A;
   }
 }
-  
