@@ -9,7 +9,7 @@
       (input)="filtrarGrados()"
       class="search-input">
   </div>
-  
+  <button class="btn-add-grade" (click)="abrirFormulario()">Agregar Grado</button>
   <!-- Contenedor que centra los grados -->
   <div class="grados-container">
     <div *ngFor="let grado of gradosFiltrados; trackBy: trackById" class="grado-card">
@@ -27,7 +27,7 @@
   </div>
 
   <!-- Botón para abrir el formulario de agregar grado -->
-  <button class="btn-add-grade" (click)="abrirFormulario()">Agregar Grado</button>
+
   <button class="btn-add-grade" routerLink="/main">Volver</button>
   <!-- Formulario emergente para añadir grados -->
   <app-grados-add *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [gradoEditar]="gradoEditar" (gradoAgregado)="agregarNuevoGrado($event)"></app-grados-add>

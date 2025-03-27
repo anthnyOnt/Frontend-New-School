@@ -28,24 +28,26 @@
   }
   
   /* Estilos para el contenedor de grados */
+  
   .profesores-container {
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Espaciado entre los grados */
     justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: flex-start; /* Alinea los elementos hacia arriba */
     margin-top: 20px;
+    height: auto;
   }
   
+  
   /* Estilo para cada tarjeta de profesor */
-  .profesor-card {
-    width: 100%;
     //height: 100%;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
+    justify-content: center; /* Centra los elementos horizontalmente */
   }
   
   .profesor-card:hover {
@@ -70,11 +72,13 @@
   .search-input {
     width: 80%;
     max-width: 500px;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px 15px;
+    border: 2px solid $verde;
+    border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: white;
+    color: #333;
   }
   
   .search-input:focus {
