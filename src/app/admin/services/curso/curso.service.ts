@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Curso } from '../../core/interfaces/curso';
+import { Curso } from '../../../core/interfaces/curso';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, delay, throwError } from 'rxjs';
 
