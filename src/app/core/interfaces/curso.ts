@@ -4,5 +4,5 @@ export interface Curso {
     descripcion: string;
     fechaCreacion: Date;
     profesorId?: number;
-    gradoId: number
+    gradoId?: number;
 }
