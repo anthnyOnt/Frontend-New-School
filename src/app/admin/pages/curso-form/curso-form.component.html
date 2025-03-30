@@ -11,7 +11,12 @@
 
         <label>Fecha de Inicio:</label>
         <input type="date" [(ngModel)]="curso.fechaCreacion" name="fecha" required>
-  
+
+        <label>Grado:</label>
+        <select name="grado" id="grado" [(ngModel)]="curso.gradoId">
+          <option *ngFor="let grado of grados" [ngValue]="grado.id">{{ grado.descripcion }}</option>
+        </select>
+
         <div class="buttons">
           <button type="button" (click)="cerrar.emit()">Cancelar</button>
           <button class ="submit-button" type="submit">{{ cursoEditar ? 'Actualizar' : 'Guardar' }}</button>
