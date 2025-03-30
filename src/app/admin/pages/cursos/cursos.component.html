@@ -4,7 +4,7 @@
   </header>
 
   <section class="cursos-list">
-      <div *ngFor="let curso of cursosFiltrados; trackBy: trackById" class="curso-card">
+      <div *ngFor="let curso of cursos; trackBy: trackById" class="curso-card">
         <app-curso 
           [curso]="curso" 
           (cursoEliminado)="manejarCursoEliminado($event)" 
@@ -14,8 +14,8 @@
   </section>
 
   <!-- Si no hay grados -->
-  <div *ngIf="cursosFiltrados.length === 0" class="no-grados">
-    <p>No existen grados</p>
+  <div *ngIf="cursos.length === 0" class="no-grados">
+    <p>No existen cursos</p>
   </div>
 
   <!-- Botón para abrir el formulario de agregar grado -->
