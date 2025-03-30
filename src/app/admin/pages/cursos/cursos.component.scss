@@ -59,13 +59,13 @@ h1 {
   }
 }
 
-.no-grados {
+.no-cursos {
   margin-top: 20px;
   font-size: 18px;
   color: #777;
 }
 
-.btn-add-grade {
+.btn-add-curso {
   margin-top: 10px;
   background-color: $verde;
   color: white;
@@ -78,6 +78,6 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.btn-add-grade:hover {
+.btn-add-curso:hover {
   background-color: $verde-oscuro;
 }
