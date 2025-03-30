@@ -1,6 +1,12 @@
-.profesor-table {
-  width: 100%;
+.profesor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.profesor-table {
+  width: 90%;
+  margin: 0 auto;
   border-collapse: collapse;
   background: #fff;
 
@@ -9,8 +15,8 @@
   table-layout: fixed;
 }
 
-.profesor-table td {
-  padding: 15px 15px;
+th, td {
+  padding: 12px 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
   font-size: 14px;
@@ -33,26 +39,42 @@
   padding: 6px 10px;
   border-radius: 5px;
   font-size: 14px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  min-width: 40px;
+  color: #333;
+  word-wrap: break-word;
 }
 
-.profesor-table .acciones button:hover {
-  transform: scale(1.1);
+th:last-child, td:last-child {
+  width: 150px;
 }
 
-.profesor-table .btn-link {
-  text-decoration: none;
-  font-weight: bold;
-}
+.profesor-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 
-.profesor-table .btn-link .fa-edit {
-  color: #FFD700;
-}
+  button {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    min-width: 40px;
 
-.profesor-table .btn-link .fa-trash {
-  color: #E53935;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .edit-btn {
+    background: #FFD700;
+    color: #333;
+  }
+
+  .delete-btn {
+    background: #E53935;
+    color: white;
+  }
 }
 
 /* Responsividad */
@@ -62,12 +84,16 @@
     font-size: 12px;
   }
 
-  .profesor-table td {
+  th, td {
     padding: 10px;
   }
 
-  .acciones {
+  .profesor-actions {
     flex-direction: row;
     gap: 5px;
+  }
+  
+  &:hover {
+    background-color: #36502A;
   }
 }

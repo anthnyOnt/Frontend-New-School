@@ -1,66 +1,47 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, inject, Input, Output, EventEmitter } from '@angular/core';
+
 import { Profesor } from '../../../core/interfaces/profesor';
 import { CommonModule } from '@angular/common';
 import { ProfesorService } from '../../services/profesor/profesor.service';
-import { ClickOutsideDirective } from '../../../shared/directives/click-outside.directive';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profesor',
   standalone: true,
-  imports: [CommonModule,ClickOutsideDirective],
+  imports: [CommonModule,RouterLink],
   templateUrl: './profesor.component.html',
   styleUrl: './profesor.component.scss'
 })
-export class ProfesorComponent {
-  @Input() profesor!: Profesor;  
-  @Output() profesorEliminado = new EventEmitter<number>();  
+export class ProfesorComponent implements OnInit {
+  profesores: Profesor[] = [];
+  profesorService = inject(ProfesorService);
+  @Input() profesor!: Profesor; // Asegúrate de que esto está definido
+  @Output() profesorEliminado = new EventEmitter<number>();
   @Output() profesorEditar = new EventEmitter<Profesor>();
-  isDropdownVisible = false;
-
-  constructor(private profesorService: ProfesorService) {}
-
-  toggleDropdown() {
-    this.isDropdownVisible = !this.isDropdownVisible;
+  
+  ngOnInit() {
+    this.cargarProfesores();
   }
 
-  getNombre(): string{
-    return this.profesor.nombre;
+  cargarProfesores() {
+    this.profesorService.getProfesores().subscribe(data => {
+      this.profesores = data;
+    });
   }
 
-  getCi(): string{
-    return this.profesor.ci;
-  }
-
-  getCorreo(): string{
-    return this.profesor.correo;
-  }
-
-  getTelefono(): string{
-    return this.profesor.telefono;
-  }
-
-  onEdit(): void {
-    console.log('Editar profesor', this.profesor.id);
-    console.log("profesor: ",this.profesor);
-    this.isDropdownVisible = false;
-    console.log(this.profesorEditar.emit(this.profesor)); 
-  }
-
-  onDelete(): void {
-    if (confirm(`¿Estás seguro de que quieres eliminar el profesor ${this.profesor.nombre}?`)) {
-      this.profesorService.deleteProfesor(this.profesor.id).subscribe({
-        next: () => {
-          console.log('Profesor eliminado correctamente');
-          this.profesorEliminado.emit(this.profesor.id); 
-        },
-        error: (error) => {
-          console.error('Error al eliminar profesor:', error);
-        }
+  eliminarProfesor(profesor: Profesor) {
+    if (confirm(`¿Seguro que quieres eliminar a ${profesor.nombre}?`)) {
+      this.profesorService.deleteProfesor(profesor.id).subscribe(() => {
+        this.profesores = this.profesores.filter(p => p.id !== profesor.id);
       });
     }
   }
 
-  eliminarProfesor(): void {
-    this.profesorEliminado.emit(this.profesor.id);
+  trackById(index: number, prof: Profesor): number {
+    return prof.id;
+  }
+
+  editarProfesor(profesor: Profesor) {
+    console.log('Editar profesor:', profesor);
   }
 }

@@ -10,12 +10,12 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-profesores-page',
   standalone: true,
-  imports: [ProfesorComponent, CommonModule, ProfesorAddComponent, FormsModule,RouterLink],
+  imports: [ CommonModule, ProfesorAddComponent, FormsModule,RouterLink],
   templateUrl: './profesores-page.component.html',
   styleUrls: ['./profesores-page.component.scss']
 })
 export class ProfesoresPageComponent implements OnInit {
-
+  
   // Lista original de profesores
   profesores: Profesor[] = [];
 
