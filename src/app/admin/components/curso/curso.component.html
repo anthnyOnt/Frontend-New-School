@@ -1,6 +1,6 @@
 <article class="curso-card">
     <div class="upper">
-        <h3 class="curso-title">{{ curso.nombre }}</h3>
+        <h3 class="curso-title">{{ this.cursoCompleto.nombre }}</h3>
         <div class="dropdown" clickOutside (clickOutside)="isDropdownVisible = false">
             <button class="btn btn-link" type="button" (click)="toggleDropdown()">
               <i class="fa fa-ellipsis-v"></i>
@@ -15,6 +15,7 @@
             </div>
         </div>
     </div>
-    <p class="curso-descripcion">{{ curso.descripcion }}</p>
-    <p class="curso-fecha">Fecha de Inicio 📅<br> {{ curso.fechaCreacion | date:'dd/MM/yyyy' }}</p>
+    <p class="curso-descripcion">{{ this.cursoCompleto.descripcion }}</p>
+    <p class="curso-grado"> {{ this.cursoCompleto.grado?.descripcion }}</p>
+    <p class="curso-fecha">Fecha de Inicio 📅<br> {{ this.cursoCompleto.fechaCreacion | date:'dd/MM/yyyy' }}</p>
   </article>
