@@ -1,13 +1,25 @@
 <div class="curso-container">
-  <h2>Lista de Cursos</h2>
-  <div class="cursos-list">
-    <div class="curso card" *ngFor="let curso of cursos">
-      <h2>{{ curso.nombre }}</h2> <br>
-      <p>{{ curso.descripcion }}</p> <br>
-      <p>{{ curso.fechaCreacion }}</p>
-    </div>
-    <div class="registrar card">
-      <button class="registrar-button" routerLink="/registrarcurso">Registrar Curso</button>
-    </div>
+  <header>
+    <h1>Cursos</h1>
+  </header>
+
+  <button class="btn-add-curso" (click)="abrirFormulario()">Agregar Curso</button>
+
+  <section class="cursos-list">
+      <div *ngFor="let curso of cursos; trackBy: trackById" class="curso-card">
+        <app-curso 
+          [curso]="curso" 
+          (cursoEliminado)="manejarCursoEliminado($event)" 
+          (cursoEditar)="editarCurso(curso)">
+        </app-curso>
+      </div>
+  </section>
+
+  <div *ngIf="cursos.length === 0" class="no-cursos">
+    <p>No existen cursos</p>
   </div>
+
+  <button class="btn-add-curso" routerLink="/main">Volver</button>
+
+  <app-curso-form *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [cursoEditar]="cursoEditar" (cursoAgregado)="agregarNuevoCurso($event)"></app-curso-form>
 </div>

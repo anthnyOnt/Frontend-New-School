@@ -7,6 +7,8 @@ import { ProfesoresPageComponent } from './admin/pages/profesores/profesores-pag
 import { MainComponent } from './admin/pages/main/main.component';
 import { authGuard } from './guards/auth.guard';
 import { RegisterComponent } from './auth/register/register/register.component';
+import { CursosComponent } from './admin/pages/cursos/cursos.component';
+import { CursoFormComponent } from './admin/pages/curso-form/curso-form.component';
 
 export const routes: Routes = [
   // Ruta por defecto que carga el LoginComponent
@@ -18,6 +20,7 @@ export const routes: Routes = [
   { path: 'estudiantes', component: VerEstudiantesComponent, canActivate: [authGuard] },
   { path: 'grados', component: GradosPageComponent, canActivate: [authGuard] },
   { path: 'profesores', component: ProfesoresPageComponent, canActivate: [authGuard] },
+  { path: 'cursos', component: CursosComponent, canActivate: [authGuard]},
 
   // Ruta de registro para usuarios nuevos
   { path: 'register', component: RegisterComponent },

@@ -1,0 +1,23 @@
+<article class="curso-card">
+    <div class="upper">
+        <h3 class="curso-title">{{ this.cursoCompleto.nombre }}</h3>
+        <div class="dropdown" clickOutside (clickOutside)="isDropdownVisible = false">
+            <button class="btn btn-link" type="button" (click)="toggleDropdown()">
+              <i class="fa fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu" *ngIf="isDropdownVisible">
+              <button class="dropdown-item" (click)="onEdit()">
+                <i class="fa fa-edit mr-2"></i> Editar
+              </button>
+              <button class="dropdown-item" (click)="eliminarCurso()">
+                <i class="fa fa-trash mr-2"></i> Eliminar
+              </button>
+            </div>
+        </div>
+    </div>
+    <div class="detail-box">
+      <p class="curso-descripcion detail">{{ this.cursoCompleto.descripcion }}</p>
+      <p class="curso-grado detail"> {{ this.cursoCompleto.grado?.descripcion }}</p>
+      <p class="curso-fecha detail">Fecha de Inicio 🗓️<br> {{ this.cursoCompleto.fechaCreacion | date:'dd/MM/yyyy' }}</p>
+    </div>
+  </article>

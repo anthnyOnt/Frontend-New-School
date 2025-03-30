@@ -1,27 +1,91 @@
 <div class="page-container">
     <h1>Registrar Estudiante</h1>
-    
-    <form (submit)="registrar()" class="registro-form">
-        <div class="form-group">
-            <label>Nombre:</label>
-            <input [(ngModel)]="nombre" required />
+    <form [formGroup]="registroForm" (ngSubmit)="registrar()" class="registro-form">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input 
+          id="nombre"
+          formControlName="nombre"
+          class="form-control"
+          [class.is-invalid]="nombre?.invalid && (nombre?.dirty || nombre?.touched)"
+        />
+        <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)" class="invalid-feedback">
+          <small *ngIf="nombre?.errors?.['required']">El nombre es requerido.</small>
+          <small *ngIf="nombre?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres.</small>
+          <small *ngIf="nombre?.errors?.['maxlength']">El nombre no puede exceder 50 caracteres.</small>
+          <small *ngIf="nombre?.errors?.['pattern']">El nombre solo puede contener letras.</small>
         </div>
-
-        <div class="form-group">
-            <label>Apellido:</label>
-            <input [(ngModel)]="apellido" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input 
+          id="apellido"
+          formControlName="apellido"
+          class="form-control"
+          [class.is-invalid]="apellido?.invalid && (apellido?.dirty || apellido?.touched)"
+        />
+        <div *ngIf="apellido?.invalid && (apellido?.dirty || apellido?.touched)" class="invalid-feedback">
+          <small *ngIf="apellido?.errors?.['required']">El apellido es requerido.</small>
+          <small *ngIf="apellido?.errors?.['minlength']">El apellido debe tener al menos 2 caracteres.</small>
+          <small *ngIf="apellido?.errors?.['maxlength']">El apellido no puede exceder 50 caracteres.</small>
+          <small *ngIf="apellido?.errors?.['pattern']">El apellido solo puede contener letras.</small>
         </div>
-
-        <div class="form-group">
-            <label>CI:</label>
-            <input [(ngModel)]="carnet" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="carnet">CI:</label>
+        <input 
+          id="carnet"
+          formControlName="carnet"
+          class="form-control"
+          [class.is-invalid]="carnet?.invalid && (carnet?.dirty || carnet?.touched)"
+        />
+        <div *ngIf="carnet?.invalid && (carnet?.dirty || carnet?.touched)" class="invalid-feedback">
+          <small *ngIf="carnet?.errors?.['required']">El número de CI es requerido.</small>
+          <small *ngIf="carnet?.errors?.['pattern']">El número de CI debe tener entre 6 y 10 dígitos.</small>
         </div>
-
-        <div class="form-group">
-            <label>Email:</label>
-            <input [(ngModel)]="email" type="email" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input 
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)"
+        />
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="invalid-feedback">
+          <small *ngIf="email?.errors?.['required']">El email es requerido.</small>
+          <small *ngIf="email?.errors?.['email']">Por favor ingrese un email válido.</small>
+          <small *ngIf="email?.errors?.['maxlength']">El email no puede exceder 100 caracteres.</small>
         </div>
-
-        <button type="submit" class="btn-registrar">Registrar</button>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input 
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)"
+        />
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="invalid-feedback">
+          <small *ngIf="password?.errors?.['required']">La contraseña es requerida.</small>
+          <small *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</small>
+          <small *ngIf="password?.errors?.['maxlength']">La contraseña no puede exceder 30 caracteres.</small>
+          <small *ngIf="password?.errors?.['pattern']">La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial.</small>
+        </div>
+      </div>
+  
+      <button 
+        type="submit" 
+        class="btn-registrar" 
+        [disabled]="registroForm.invalid"
+      >
+        Registrar
+      </button>
     </form>
-</div>
+  </div>

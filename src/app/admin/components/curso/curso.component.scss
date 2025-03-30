@@ -1,0 +1,124 @@
+.curso-card {
+    width: 280px;
+    min-height: 200px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+.upper{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    border-bottom: 4px solid #f0f0f0;
+}
+
+.grado-card {
+  position: relative;
+}
+
+.detail-box {
+  margin-left: 20px;
+}
+
+.btn-link {
+  background: transparent;
+  border: none;
+  color: #777;
+  padding: 5px 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.btn-link:hover {
+  background-color: #f0f0f0;
+  color: #444;
+}
+
+.fa-ellipsis-v {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  min-width: 160px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  z-index: 1000;
+  border: 1px solid #eaeaea;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #444;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #222;
+}
+
+.dropdown-item:focus {
+  outline: none;
+}
+
+.curso-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    margin: 20px 20px;
+}
+  
+.curso-descripcion {
+    font-size: 20px;
+    color: #555;
+}
+  
+.curso-grado{
+  font-size: 20px;
+  color: #555;
+}
+
+.curso-fecha {
+    font-size: 20px;
+    color: #888;
+    font-style: italic;
+}
+
+.detail{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

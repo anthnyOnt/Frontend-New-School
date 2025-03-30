@@ -1,4 +1,11 @@
 @import '../../../../../styles.scss';
+
+/* Colores */
+$verde: #47663B;
+$verde-oscuro: darken($verde, 10%);
+$fondo-claro: #E8ECD7;
+$gris-texto: #555;
+
 /* Estilos para el contenedor principal */
 .page-container {
     display: flex;
@@ -6,82 +13,95 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-  }
-  
-  /* Estilo para el botón de agregar grado */
-  .btn-add-grade {
+    background-color: $fondo-claro;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el botón de agregar grado */
+.btn-add-grade {
     margin-top: 20px;
     background-color: $verde;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 16px;
+    font-weight: bold;
     margin-bottom: 20px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-add-grade:hover {
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add-grade:hover {
     background-color: $verde-oscuro;
-  }
-  
-  /* Estilos para el contenedor de grados */
-  .grados-container {
+    transform: translateY(-2px);
+}
+
+/* Estilos para el contenedor de grados */
+.grados-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Espaciado entre los grados */
-    justify-content: center; /* Centra los elementos horizontalmente */
+    gap: 20px;
+    justify-content: center;
     margin-top: 20px;
-  }
-  
-  /* Estilo para cada tarjeta de grado */
-  .grado-card {
-    width: 200px;
-    height: 250px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
+}
+
+/* Estilo para cada tarjeta de grado */
+.grado-card {
+    width: 220px;
+    height: auto;
+    border: 1px solid $verde;
+    border-radius: 10px;
+    padding: 15px;
     text-align: center;
+    background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .grado-card:hover {
+    transition: box-shadow 0.3s ease, transform 0.2s;
+}
+
+.grado-card:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Estilo cuando no hay grados */
-  .no-grados {
+    transform: translateY(-5px);
+}
+
+/* Estilo cuando no hay grados */
+.no-grados {
     margin-top: 20px;
     font-size: 18px;
-    color: #777;
-  }
-  
+    color: $gris-texto;
+    font-weight: bold;
+}
 
-  .search-container {
+/* Contenedor del buscador */
+.search-container {
     margin-bottom: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
-  }
-  
-  .search-input {
+}
+
+/* Input de búsqueda */
+.search-input {
     width: 80%;
     max-width: 500px;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px 15px;
+    border: 2px solid $verde;
+    border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .search-input:focus {
+    background-color: white;
+    color: $gris-texto;
+}
+
+.search-input:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-  }
-  
-  .search-input::placeholder {
-    color: #aaa;
-  }
+    border-color: $verde-oscuro;
+    box-shadow: 0 0 8px rgba(71, 102, 59, 0.4);
+}
+
+.search-input::placeholder {
+    color: #888;
+}
