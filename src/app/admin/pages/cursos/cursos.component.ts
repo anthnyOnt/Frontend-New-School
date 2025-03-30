@@ -5,7 +5,7 @@ import { CommonModule } from "@angular/common";
 import { CursoFormComponent } from "../curso-form/curso-form.component";
 import { FormsModule } from "@angular/forms";
 import { CursoService } from "../../services/curso/curso.service";
-import { Router, RouterLink } from "@angular/router";
+import { RouterLink } from "@angular/router";
 
 
 

@@ -4,7 +4,7 @@
     background: white;
     border-radius: 10px;
     padding: 20px;
-    text-align: center;
+    text-align: left;
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
   
@@ -16,13 +16,17 @@
   
 .upper{
     display: flex;
-    justify-content: space-around;
+    justify-content:space-between;
     align-items: center;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 4px solid #f0f0f0;
 }
 
-.grado-card .dropdown {
+.grado-card {
   position: relative;
+}
+
+.detail-box {
+  margin-left: 20px;
 }
 
 .btn-link {
@@ -95,16 +99,26 @@
     font-size: 28px;
     font-weight: bold;
     color: black;
+    margin: 20px 20px;
 }
   
 .curso-descripcion {
     font-size: 20px;
     color: #555;
-    margin-bottom: 10px;
 }
   
+.curso-grado{
+  font-size: 20px;
+  color: #555;
+}
+
 .curso-fecha {
     font-size: 20px;
     color: #888;
     font-style: italic;
+}
+
+.detail{
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

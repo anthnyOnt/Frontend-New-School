@@ -2,12 +2,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Curso } from '../../../core/interfaces/curso';
 import { CursoService } from '../../services/curso/curso.service';
-import { RouterLink } from '@angular/router';
+import { GradoService } from '../../services/grado/grado.service';
+import { NgFor } from '@angular/common';
+import { Grado } from '../../../core/interfaces/grado';
 
 @Component({
   selector: 'app-curso-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgFor],
   templateUrl: './curso-form.component.html',
   styleUrl: './curso-form.component.scss'
 })
@@ -21,13 +23,31 @@ export class CursoFormComponent {
     id: 0,
     nombre: '',
     descripcion: '',
-    fechaCreacion: new Date()
+    fechaCreacion: new Date(),
+    gradoId: 0,
   };
+  grados: Grado[] = []
 
-  constructor(private cursoService: CursoService) {}
+  constructor(private cursoService: CursoService, private gradoService: GradoService) {}
 
   ngOnInit(): void {
     this.resetForm();
+    this.cargarGrados();
+  }
+
+  error: string | null = null;
+  cargarGrados(): void {
+    this.error = null;
+    
+    this.gradoService.getGrados().subscribe({
+      next: (grados) => {
+        this.grados = grados;
+      },
+      error: (err) => {
+        console.error('Error al cargar los grados:', err);
+        this.error = 'No se pudieron cargar los grados. Por favor, intente nuevamente.';
+      }
+    });
   }
 
   ngOnChanges(): void {
@@ -39,13 +59,19 @@ export class CursoFormComponent {
       this.curso = { ...this.cursoEditar };
     } else {
       this.curso = {
-        id: 0,
+        id: 4,
         nombre: '',
         descripcion: '',
-        fechaCreacion: new Date()
+        fechaCreacion: new Date(),
+        gradoId: 0
       };
     }
   }
+
+  trackById(index: number, curso: Curso) {
+    return curso.id;
+  }
+  
 
   guardarCurso(): void {
     if (this.cursoEditar) {
@@ -57,6 +83,7 @@ export class CursoFormComponent {
       this.cursoService.addCurso(this.curso).subscribe((nuevoCurso) => {
         this.cursoAgregado.emit(nuevoCurso);
         this.cerrar.emit();
+        console.log('nuevo curso: ', this.curso)
       });
     }
   }

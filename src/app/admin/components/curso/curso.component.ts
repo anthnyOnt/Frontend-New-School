@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit , OnChanges, SimpleChanges} from '@angular/core';
 import { CursoService } from '../../services/curso/curso.service';
-import { Curso } from '../../../core/interfaces/curso';
 import { CommonModule } from '@angular/common';
+import { CursoCompleto } from '../../../core/interfaces/curso-completo';
+import { GradoService } from '../../services/grado/grado.service';
+import { Curso } from '../../../core/interfaces/curso';
 
 @Component({
   selector: 'app-curso',
@@ -10,28 +12,35 @@ import { CommonModule } from '@angular/common';
   templateUrl: './curso.component.html',
   styleUrl: './curso.component.scss'
 })
-export class CursoComponent {
+export class CursoComponent implements OnInit, OnChanges{
   @Input() curso!: Curso;  
   @Output() cursoEliminado = new EventEmitter<number>();  
-  @Output() cursoEditar = new EventEmitter<Curso>();
+  @Output() cursoEditar = new EventEmitter<CursoCompleto>();
   isDropdownVisible = false;
 
-  constructor(private CursoService: CursoService) {}
+  cursoCompleto!: CursoCompleto;
+
+  constructor(private CursoService: CursoService, private gradoService: GradoService) {}
+
+  ngOnInit(): void {
+    console.log("Curso component inicializado")
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("Cambio detectado en curso component: ", changes)
+    this.cursoCompleto = {...this.curso}
+    this.gradoService.getGradoById(this.cursoCompleto.gradoId).subscribe({
+      next: (grado) => {
+        this.cursoCompleto.grado = grado
+      },
+      error: (err) => {
+        console.error('Error al obtener grado: ', err)
+      }
+    })
+  }
 
   toggleDropdown() {
     this.isDropdownVisible = !this.isDropdownVisible;
-  }
-
-  getNombre(): string{
-    return this.curso.nombre;
-  }
-
-  getDescripcion(): string{
-    return this.curso.descripcion;
-  }
-
-  getfechaCreacion(): Date{
-    return this.curso.fechaCreacion;
   }
 
   onEdit(): void {

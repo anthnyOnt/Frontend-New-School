@@ -20,7 +20,7 @@ export const routes: Routes = [
   { path: 'estudiantes', component: VerEstudiantesComponent, canActivate: [authGuard] },
   { path: 'grados', component: GradosPageComponent, canActivate: [authGuard] },
   { path: 'profesores', component: ProfesoresPageComponent, canActivate: [authGuard] },
-  { path: 'cursos', component: CursosComponent},
+  { path: 'cursos', component: CursosComponent, canActivate: [authGuard]},
 
   // Ruta de registro para usuarios nuevos
   { path: 'register', component: RegisterComponent },
