@@ -95,4 +95,14 @@ export class CursoService {
     }
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  getCursoByProfesor(profesorId: number): Observable<Curso[]> {
+    if (this.useMockData) {
+      const cursosFiltrados = this.mockCursos.filter(curso => curso.profesorId === profesorId);
+      return of(cursosFiltrados).pipe(
+        delay(500)
+      );
+    }
+    return this.http.get<Curso[]>('${this.apiUrl}/profesor/${profesorId}')
+  }
+
 }
