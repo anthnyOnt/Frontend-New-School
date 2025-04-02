@@ -5,7 +5,10 @@ import { CommonModule } from "@angular/common";
 import { CursoFormComponent } from "../curso-form/curso-form.component";
 import { FormsModule } from "@angular/forms";
 import { CursoService } from "../../../services/curso/curso.service";
+import { GradoService } from "../../../services/grado/grado.service";
 import { RouterLink } from "@angular/router";
+import { Grado } from "../../../../core/interfaces/grado";
+import { GradosAddComponent } from "../../grados/grados-add/grados-add.component";
 
 @Component({
   selector: "app-cursos",
@@ -17,8 +20,8 @@ import { RouterLink } from "@angular/router";
 export class CursosComponent implements OnInit {
   
   cursos: Curso[] = [];
-
   cursosFiltrados: Curso[] = [];
+  gradosMap = new Map<number, string>();
   
   terminoBusqueda: string = '';
   
@@ -28,13 +31,13 @@ export class CursosComponent implements OnInit {
   cargando: boolean = false;
   error: string | null = null;
 
-  constructor(private cursoService: CursoService) { }
+  constructor(private cursoService: CursoService, private gradoService: GradoService) { }
 
   ngOnInit(): void {
-    this.cargarCursos();
+    this.cargarDatos();
   }
 
-  cargarCursos(): void {
+  cargarDatos(): void {
     this.cargando = true;
     this.error = null;
     
@@ -42,7 +45,7 @@ export class CursosComponent implements OnInit {
       next: (cursos) => {
         this.cursos = cursos;
         this.cursosFiltrados = [...this.cursos];
-        this.cargando = false;
+        this.cargarGrados()
       },
       error: (err) => {
         console.error('Error al cargar los cursos:', err);
@@ -50,6 +53,22 @@ export class CursosComponent implements OnInit {
         this.cargando = false;
       }
     });
+  }
+
+  cargarGrados(){
+    this.gradoService.getGrados().subscribe({
+      next: (grados) => {
+        grados.forEach(grado => {
+          this.gradosMap.set(grado.id, grado.descripcion)
+        })
+        this.cargando = false
+      },
+      error: (err) => {
+        console.error('Error al cargar los grados en cursos component: ', err)
+        this.error = "No se pudieron cargar los datos"
+        this.cargando = false
+      }
+    })
   }
 
   filtrarCursos(): void {
@@ -79,14 +98,14 @@ export class CursosComponent implements OnInit {
   }
 
   agregarNuevoCurso(nuevoCurso: Curso) {
-    this.cargarCursos();
+    this.cargarDatos();
     this.cerrarFormulario();
   }
 
   manejarCursoEliminado(id: number): void {
     this.cursoService.deleteCurso(id).subscribe({
       next: () => {
-        this.cargarCursos();
+        this.cargarDatos();
       },
       error: (err) => {
         console.error('Error al eliminar el grado:', err);

@@ -12,31 +12,19 @@ import { Curso } from '../../../core/interfaces/curso';
   templateUrl: './curso.component.html',
   styleUrl: './curso.component.scss'
 })
-export class CursoComponent implements OnInit, OnChanges{
+export class CursoComponent implements OnInit{
   @Input() curso!: Curso;  
+  @Input() gradoDescripcion!: string;
   @Output() cursoEliminado = new EventEmitter<number>();  
   @Output() cursoEditar = new EventEmitter<CursoCompleto>();
   isDropdownVisible = false;
 
   cursoCompleto!: CursoCompleto;
 
-  constructor(private CursoService: CursoService, private gradoService: GradoService) {}
+  constructor(private CursoService: CursoService) {}
 
   ngOnInit(): void {
     console.log("Curso component inicializado")
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log("Cambio detectado en curso component: ", changes)
-    this.cursoCompleto = {...this.curso}
-    this.gradoService.getGradoById(this.cursoCompleto.gradoId).subscribe({
-      next: (grado) => {
-        this.cursoCompleto.grado = grado
-      },
-      error: (err) => {
-        console.error('Error al obtener grado: ', err)
-      }
-    })
   }
 
   toggleDropdown() {
