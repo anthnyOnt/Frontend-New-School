@@ -2,13 +2,13 @@ import { Component, EventEmitter, Input, Output, OnInit , OnChanges, SimpleChang
 import { CursoService } from '../../services/curso/curso.service';
 import { CommonModule } from '@angular/common';
 import { CursoCompleto } from '../../../core/interfaces/curso-completo';
-import { GradoService } from '../../services/grado/grado.service';
 import { Curso } from '../../../core/interfaces/curso';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-curso',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './curso.component.html',
   styleUrl: './curso.component.scss'
 })
