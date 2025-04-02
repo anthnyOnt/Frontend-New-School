@@ -8,7 +8,6 @@ import { MainComponent } from './admin/pages/main/main.component';
 import { authGuard } from './guards/auth.guard';
 import { RegisterComponent } from './auth/register/register/register.component';
 import { CursosComponent } from './admin/pages/cursos/cursos.component';
-import { CursoFormComponent } from './admin/pages/curso-form/curso-form.component';
 
 export const routes: Routes = [
   // Ruta por defecto que carga el LoginComponent
