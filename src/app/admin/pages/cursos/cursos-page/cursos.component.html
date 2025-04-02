@@ -22,5 +22,5 @@
 
   <button class="btn-add-curso" routerLink="/main">Volver</button>
 
-  <app-curso-form *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [cursoEditar]="cursoEditar" (cursoAgregado)="agregarNuevoCurso($event)"></app-curso-form>
+  <app-curso-form *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [cursoEditar]="cursoEditar" [grados]="gradosMap" (cursoAgregado)="agregarNuevoCurso($event)"></app-curso-form>
 </div>
