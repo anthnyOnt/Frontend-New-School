@@ -1,15 +1,11 @@
 import { Component, OnInit} from "@angular/core";
-import { Curso } from "../../../core/interfaces/curso";
-import { CursoComponent } from "../../components/curso/curso.component";
+import { Curso } from "../../../../core/interfaces/curso";
+import { CursoComponent } from "../../../components/curso/curso.component";
 import { CommonModule } from "@angular/common";
 import { CursoFormComponent } from "../curso-form/curso-form.component";
 import { FormsModule } from "@angular/forms";
-import { CursoService } from "../../services/curso/curso.service";
+import { CursoService } from "../../../services/curso/curso.service";
 import { RouterLink } from "@angular/router";
-
-
-
-
 
 @Component({
   selector: "app-cursos",

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Curso } from '../../../core/interfaces/curso';
-import { CursoService } from '../../services/curso/curso.service';
-import { GradoService } from '../../services/grado/grado.service';
+import { Curso } from '../../../../core/interfaces/curso';
+import { CursoService } from '../../../services/curso/curso.service';
+import { GradoService } from '../../../services/grado/grado.service';
 import { NgFor } from '@angular/common';
-import { Grado } from '../../../core/interfaces/grado';
+import { Grado } from '../../../../core/interfaces/grado';
 
 @Component({
   selector: 'app-curso-form',

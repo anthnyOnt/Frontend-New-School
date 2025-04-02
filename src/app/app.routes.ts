@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
-import { RegistrarEstudianteComponent } from './admin/pages/registrar-estudiante/registrar-estudiante.component';
-import { VerEstudiantesComponent } from './admin/pages/ver-estudiantes/ver-estudiantes.component';
+import { RegistrarEstudianteComponent } from './admin/pages/estudiantes/registrar-estudiante/registrar-estudiante.component';
+import { VerEstudiantesComponent } from './admin/pages/estudiantes/ver-estudiantes/ver-estudiantes.component';
 import { GradosPageComponent } from './admin/pages/grados/grados-page/grados-page.component';
 import { ProfesoresPageComponent } from './admin/pages/profesores/profesores-page/profesores-page.component';
 import { MainComponent } from './admin/pages/main/main.component';
 import { authGuard } from './guards/auth.guard';
 import { RegisterComponent } from './auth/register/register/register.component';
-import { CursosComponent } from './admin/pages/cursos/cursos.component';
+import { CursosComponent } from './admin/pages/cursos/cursos-page/cursos.component';
 
 export const routes: Routes = [
   // Ruta por defecto que carga el LoginComponent
