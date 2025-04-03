@@ -1,14 +1,13 @@
-// profesor-add.component.ts
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Profesor } from '../../../../core/interfaces/profesor';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProfesorService } from '../../../services/profesor/profesor.service';
 
 @Component({
   selector: 'app-profesores-add',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule], 
   templateUrl: './profesores-add.component.html',
   styleUrl: './profesores-add.component.scss',
 })
