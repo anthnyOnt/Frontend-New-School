@@ -10,6 +10,12 @@
         <div class="contenidos-header">
         <h2>Contenidos del Curso</h2>
     </div>
-    <app-contenidos-page [cursoId]="curso.id"></app-contenidos-page>
+    <div *ngFor="let contenido of contenidos; trackBy: trackById" class="contenidos-list" >
+        <app-contenido 
+            [contenido]="contenido"
+            (contenidoEliminado)="manejarContenidoEliminado($event)">
+
+        </app-contenido>
+    </div>
   </div>
 </div>

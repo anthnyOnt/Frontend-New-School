@@ -15,7 +15,7 @@ export class ContenidoService {
     {
         id: 1,
         titulo: "Números Enteros y Operaciones",
-        descripcion: "Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.",
+        descripcion: "Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.",
         tipo: "video",
         url: "https://www.youtube.com/watch?v=numeros_enteros",
         fechaCreacion: new Date("2024-03-01"),

@@ -1,17 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Contenido } from '../../../../core/interfaces/contenido';
 import { Curso } from '../../../../core/interfaces/curso';
-import { ContenidosPageComponent } from '../../contenidos/contenidos-page/contenidos-page.component';
 import { ActivatedRoute } from '@angular/router';
 import { CursoService } from '../../../services/curso/curso.service';
 import { ContenidoService } from '../../../services/contenido/contenido.service'; 
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ContenidoComponent } from "../../../components/contenido/contenido.component";
 
 @Component({
   selector: 'app-curso-details',
   standalone: true,
-  imports: [ContenidosPageComponent, DatePipe, RouterLink],
+  imports: [ContenidoComponent, DatePipe, RouterLink, ContenidoComponent, CommonModule],
   templateUrl: './curso-details.component.html',
   styleUrl: './curso-details.component.scss'
 })
@@ -42,5 +42,31 @@ export class CursoDetailsComponent implements OnInit{
       }
     })
   }
-}
 
+  // Lista de contenidos filtrados que se muestra
+  contenidosFiltrados: Contenido[] = [];
+  
+  // Término de búsqueda
+  terminoBusqueda: string = '';
+
+
+  // Método para manejar la eliminación de un contenido
+  manejarContenidoEliminado(id: number): void {
+    this.contenidoService.deleteContenido(id).subscribe({
+      next: () => {
+        // Actualizar la lista después de eliminar
+        this.cargarContenidos();
+      },
+      error: (err) => {
+        console.error('Error al eliminar el contenido:', err);
+        // Opcional: Mostrar mensaje de error
+      }
+    });
+  }
+
+  // Función trackBy para mejorar el rendimiento
+  trackById(index: number, contenido: Contenido): number {
+    return contenido.id; // Devolver el id como identificador único para cada contenido
+  }
+
+}

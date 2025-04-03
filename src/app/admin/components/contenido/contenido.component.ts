@@ -13,9 +13,7 @@ import { Curso } from '../../../core/interfaces/curso';
 })
 export class ContenidoComponent {
   @Input() contenido!: Contenido;  // Recibimos el objeto contenido como un input
-  @Input() curso!: Curso;
   @Output() contenidoEliminado = new EventEmitter<number>();  // Emitimos el id del contenido cuando se elimina
-  @Output() contenidoEditar = new EventEmitter<Contenido>();
   isDropdownVisible = false;
 
   constructor(private contenidoService: ContenidoService) {}
@@ -29,7 +27,6 @@ export class ContenidoComponent {
     console.log('Editar contenido', this.contenido.id);
     console.log("contenido: ",this.contenido);
     this.isDropdownVisible = false;
-    console.log(this.contenidoEditar.emit(this.contenido)); // Emitimos el contenido para que el padre lo maneje
   }
 
   onDelete(): void {
@@ -46,7 +43,7 @@ export class ContenidoComponent {
     }
   }
 
-  eliminarcontenido(): void {
+  eliminarContenido(): void {
     // Emitimos el id del contenido para que el padre lo maneje
     this.contenidoEliminado.emit(this.contenido.id);
   }
