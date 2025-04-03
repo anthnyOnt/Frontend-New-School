@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm, ReactiveFormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EstudianteService } from '../../services/estudiante/estudiante.service';
-import { Estudiante } from '../../../core/interfaces/estudiante';
+import { EstudianteService } from '../../../services/estudiante/estudiante.service';
+import { Estudiante } from '../../../../core/interfaces/estudiante';
 
 @Component({
   selector: 'app-registrar-estudiante',

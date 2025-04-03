@@ -1,3 +1,6 @@
+$verde: #47663B;
+$verde-oscuro: darken($verde, 10%);
+
 .curso-card {
     width: 280px;
     min-height: 200px;
@@ -21,26 +24,22 @@
     border-bottom: 4px solid #f0f0f0;
 }
 
-.grado-card {
-  position: relative;
-}
-
 .detail-box {
   margin-left: 20px;
 }
 
-.btn-link {
-  background: transparent;
-  border: none;
-  color: #777;
-  padding: 5px 8px;
-  border-radius: 50%;
-  transition: background-color 0.2s;
-}
 
-.btn-link:hover {
-  background-color: #f0f0f0;
-  color: #444;
+.ver-curso-button{
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: $verde;
+
+  &:hover{
+    background-color: $verde-oscuro;
+    transform: scale(1.05);
+  }
 }
 
 .fa-ellipsis-v {

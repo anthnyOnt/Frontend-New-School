@@ -1,21 +1,21 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Curso } from '../../../core/interfaces/curso';
-import { CursoService } from '../../services/curso/curso.service';
-import { GradoService } from '../../services/grado/grado.service';
+import { Curso } from '../../../../core/interfaces/curso';
+import { CursoService } from '../../../services/curso/curso.service';
 import { NgFor } from '@angular/common';
-import { Grado } from '../../../core/interfaces/grado';
+import { KeyValuePipe } from '@angular/common';
 
 @Component({
   selector: 'app-curso-form',
   standalone: true,
-  imports: [FormsModule, NgFor],
+  imports: [FormsModule, NgFor, KeyValuePipe],
   templateUrl: './curso-form.component.html',
   styleUrl: './curso-form.component.scss'
 })
 
 export class CursoFormComponent {
   @Input() cursoEditar: Curso | null = null;
+  @Input() grados!: Map<number, string>
   @Output() cursoAgregado = new EventEmitter<Curso>();
   @Output() cerrar = new EventEmitter<void>();
 
@@ -26,28 +26,11 @@ export class CursoFormComponent {
     fechaCreacion: new Date(),
     gradoId: 0,
   };
-  grados: Grado[] = []
 
-  constructor(private cursoService: CursoService, private gradoService: GradoService) {}
+  constructor(private cursoService: CursoService) {}
 
   ngOnInit(): void {
     this.resetForm();
-    this.cargarGrados();
-  }
-
-  error: string | null = null;
-  cargarGrados(): void {
-    this.error = null;
-    
-    this.gradoService.getGrados().subscribe({
-      next: (grados) => {
-        this.grados = grados;
-      },
-      error: (err) => {
-        console.error('Error al cargar los grados:', err);
-        this.error = 'No se pudieron cargar los grados. Por favor, intente nuevamente.';
-      }
-    });
   }
 
   ngOnChanges(): void {
