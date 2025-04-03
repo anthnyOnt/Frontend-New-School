@@ -1,0 +1,40 @@
+.curso-card {
+    width: 280px;
+    min-height: 200px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+.upper{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.curso-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+}
+  
+.curso-descripcion {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 10px;
+}
+  
+.curso-fecha {
+    font-size: 20px;
+    color: #888;
+    font-style: italic;
+}

@@ -326,5 +326,12 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-  
+  getProfesorId(): number | null {
+    const currentUser = this.currentUserValue;
+    if (!currentUser || typeof currentUser.id !== 'number') {
+      console.error('El usuario actual no tiene un ID válido.');
+      return null;
+    }
+    return currentUser.id;
+  }
 }
