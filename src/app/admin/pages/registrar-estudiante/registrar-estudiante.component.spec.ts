@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { RegistrarEstudianteComponent } from './registrar-estudiante.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Estudiante } from '../../../core/interfaces/estudiante';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { EstudianteService } from '../../services/estudiante/estudiante.service';
 import { of } from 'rxjs';
@@ -65,4 +66,49 @@ describe('RegistrarEstudianteComponent', () => {
     component.registroForm.controls['password'].setValue('Passw0rd@');
     expect(component.registroForm.valid).toBeTrue();
   }); 
+
+  it('debería llamar a addEstudiante y navegar al registrar un estudiante válido', fakeAsync(() => {
+    // Simulación de un estudiante registrado exitosamente
+    const mockEstudiante: Estudiante = {
+      id: 1, // Simulamos un ID asignado por la API
+      nombre: 'Juan',
+      apellido: 'Pérez',
+      ci: 12345678, // Cambiado a número si el modelo lo requiere
+      email: 'juan@example.com',
+      rol: 'estudiante',
+      password: 'Passw0rd@'
+    };
+  
+    // Simulación de respuesta exitosa del servicio
+    estudianteService.addEstudiante.and.returnValue(of(mockEstudiante));
+  
+    // Llenar el formulario con datos válidos
+    component.registroForm.controls['nombre'].setValue('Juan');
+    component.registroForm.controls['apellido'].setValue('Pérez');
+    component.registroForm.controls['carnet'].setValue('12345678'); // Se mantiene string porque viene de un input
+    component.registroForm.controls['email'].setValue('juan@example.com');
+    component.registroForm.controls['password'].setValue('Passw0rd@');
+  
+    // Ejecutar el método registrar
+    component.registrar();
+    
+    // Avanzar el tiempo simulado para la suscripción
+    tick();
+  
+    // Verificar que el servicio fue llamado con los datos correctos
+    expect(estudianteService.addEstudiante).toHaveBeenCalledWith({
+      id: 0, // Se envía 0 porque el backend asignará un ID
+      nombre: 'Juan',
+      apellido: 'Pérez',
+      ci: 12345678, // Convertido a número si el modelo lo requiere
+      email: 'juan@example.com',
+      rol: 'estudiante',
+      password: 'Passw0rd@'
+    });
+  
+    // Verificar que se llamó a la navegación
+    expect(router.navigate).toHaveBeenCalledWith(['/admin/estudiantes']);
+  }));
+  
 });
+
