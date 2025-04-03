@@ -56,11 +56,6 @@ $verde-oscuro: darken($verde, 10%);
     display: flex;
     justify-content: space-between;
   }
-
-  .add-contenido:hover{
-    transform: scale(1.05);
-    background-color: #5c7951;
-  }
   
   .contenidos-section h2 {
     font-size: 1.5rem;
