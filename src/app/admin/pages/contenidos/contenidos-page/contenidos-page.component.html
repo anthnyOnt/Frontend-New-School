@@ -1,8 +1,0 @@
-<h1 class="contenidos-title">Contenidos</h1>
-<div *ngFor="let contenido of contenidos">
-    <app-contenido
-        [contenido]="contenido" 
-        (contenidoEliminado)="manejarContenidoEliminado($event)" 
-        (contenidoEditar)="editarContenido(contenido)">
-    </app-contenido>
-</div>
