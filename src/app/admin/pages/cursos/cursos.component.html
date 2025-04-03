@@ -3,8 +3,10 @@
     <h1>Cursos</h1>
   </header>
 
+  <button class="btn-add-curso" (click)="abrirFormulario()">Agregar Curso</button>
+
   <section class="cursos-list">
-      <div *ngFor="let curso of cursosFiltrados; trackBy: trackById" class="curso-card">
+      <div *ngFor="let curso of cursos; trackBy: trackById" class="curso-card">
         <app-curso 
           [curso]="curso" 
           (cursoEliminado)="manejarCursoEliminado($event)" 
@@ -13,16 +15,11 @@
       </div>
   </section>
 
-  <!-- Si no hay grados -->
-  <div *ngIf="cursosFiltrados.length === 0" class="no-grados">
-    <p>No existen grados</p>
+  <div *ngIf="cursos.length === 0" class="no-cursos">
+    <p>No existen cursos</p>
   </div>
 
-  <!-- Botón para abrir el formulario de agregar grado -->
-  
-  <button class="btn-add-grade" (click)="abrirFormulario()">Agregar Curso</button>
-  <button class="btn-add-grade" routerLink="/main">Volver</button>
+  <button class="btn-add-curso" routerLink="/main">Volver</button>
 
-  <!-- Formulario emergente para añadir grados -->
   <app-curso-form *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [cursoEditar]="cursoEditar" (cursoAgregado)="agregarNuevoCurso($event)"></app-curso-form>
 </div>

@@ -9,19 +9,35 @@
   </div>
   <button class="btn-add-profesor" (click)="abrirFormulario()">Agregar Profesor</button>
   <div class="profesores-container">
-    <div *ngFor="let profesor of profesoresFiltrados; trackBy: trackById" class="profesor-card">
-      <app-profesor 
-        [profesor]="profesor" 
-        (profesorEliminado)="manejarProfesorEliminado($event)" 
-        (profesorEditar)="editarProfesor(profesor)">
-      </app-profesor>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>CI</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let profesor of profesoresFiltrados; trackBy: trackById">
+          <td>{{ profesor.nombre }}</td>
+          <td>{{ profesor.correo }}</td>
+          <td>{{ profesor.telefono }}</td>
+          <td>{{ profesor.ci }}</td>
+          <td>
+            <button (click)="editarProfesor(profesor)">📝</button>
+            <button (click)="manejarProfesorEliminado(profesor.id)">❌</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  
 
   <div *ngIf="profesoresFiltrados.length === 0" class="no-profesores">
     <p>No existen profesores</p>
   </div>
-
 
   <button class="btn-add-profesor" routerLink="/main">Volver</button>
 
