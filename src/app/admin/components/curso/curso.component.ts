@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, Output, OnInit , OnChanges, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import { CursoService } from '../../services/curso/curso.service';
 import { CommonModule } from '@angular/common';
 import { CursoCompleto } from '../../../core/interfaces/curso-completo';
 import { Curso } from '../../../core/interfaces/curso';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-curso',

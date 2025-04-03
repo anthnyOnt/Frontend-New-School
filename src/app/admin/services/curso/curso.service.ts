@@ -29,6 +29,27 @@ export class CursoService {
     return this.http.get<Curso[]>(this.apiUrl);
   }
 
+  getCursoById(id: number): Observable<Curso> {
+    if (this.useMockData) {
+      console.log('Obteniendo curso simulado con ID:', id);
+      // Buscar el curso por ID
+      const curso = this.mockCursos.find(c => c.id === id);
+      
+      // Si no existe, retornar error
+      if (!curso) {
+        return throwError(() => new Error(`Curso con ID ${id} no encontrado`)).pipe(
+          delay(500)
+        );
+      }
+      
+      // Retornar observable con el grado encontrado
+      return of({...curso}).pipe(
+        delay(500)
+      );
+    }
+    return this.http.get<Curso>(`${this.apiUrl}/${id}`);
+  }
+
   addCurso(curso: Curso): Observable<Curso> {
     if (this.useMockData) {
       console.log('Creando Curso simulado:', curso);

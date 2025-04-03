@@ -19,6 +19,9 @@
       <p class="curso-descripcion detail">{{ this.curso.descripcion }}</p>
       <p class="curso-grado detail"> {{ this.gradoDescripcion}}</p>
       <p class="curso-fecha detail">Fecha de Inicio 🗓️<br> {{ this.curso.fechaCreacion | date:'dd/MM/yyyy' }}</p>
-      <button class="curso-details-btn" [routerLink]="['/cursos', curso.id]">Ver curso</button>
+      <div class="ver-button">
+        <button class="ver-curso-button" [routerLink]="['/cursos', curso.id]" [state]="{curso: curso}">Ver curso</button>
+      </div>
+      
     </div>
   </article>

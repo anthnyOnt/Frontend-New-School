@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
+import { delay, filter, tap } from 'rxjs/operators';
 import { Contenido } from '../../../core/interfaces/contenido';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class ContenidoService {
         tipo: "video",
         url: "https://www.youtube.com/watch?v=numeros_enteros",
         fechaCreacion: new Date("2024-03-01"),
-        cursoId: 3 // Matemáticas
+        cursoId: 1 // Matemáticas
     },
     {
         id: 2,
@@ -28,7 +28,7 @@ export class ContenidoService {
         tipo: "documento",
         url: "https://example.com/matematicas/fracciones.pdf",
         fechaCreacion: new Date("2024-03-05"),
-        cursoId: 3
+        cursoId: 2
     },
     {
         id: 3,
@@ -39,6 +39,15 @@ export class ContenidoService {
         fechaCreacion: new Date("2024-03-07"),
         cursoId: 3
     },
+    {
+      id: 4,
+      titulo: "Geometría analítica",
+      descripcion: "Video explicativo sobre geometría analítica y sus aplicaciones.",
+      tipo: "video",
+      url: "https://example.com/matematicas/geometria",
+      fechaCreacion: new Date("2024-03-07"),
+      cursoId: 3
+  },
   ];
 
 
@@ -57,6 +66,17 @@ export class ContenidoService {
       );
     }
     return this.http.get<Contenido[]>(this.apiUrl);
+  }
+
+  getContenidosByCursoId(cursoId: number) {
+    if(this.useMockData){
+      console.log('Obteniendo contenidos simulados por curso id', cursoId)
+      const contenidosFiltrados = this.mockContenidos.filter(c => c.cursoId === cursoId)
+      return of(contenidosFiltrados).pipe(
+        delay(500)
+      )
+    }
+    return this.http.get<Contenido[]>(`${this.apiUrl}?cursoId=${cursoId}`)
   }
 
   // Crear un nuevo contenido
