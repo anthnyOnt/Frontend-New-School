@@ -17,7 +17,7 @@ export class EstudianteService {
     { id: 4, nombre: 'Ana', apellido: 'García', email: 'ana@email.com', ci: 4 , fecha_nacimiento: '1990-01-01', password: '123456', rol: 'estudiante' },  
   ]
 
-  private useMockData = false;
+  private useMockData = true;
 
   getEstudiantes(): Observable<Estudiante[]> {
     if (this.useMockData) {
