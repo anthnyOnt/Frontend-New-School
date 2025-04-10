@@ -7,10 +7,6 @@ import { FormsModule } from "@angular/forms";
 import { CursoService } from "../../services/curso/curso.service";
 import { RouterLink } from "@angular/router";
 
-
-
-
-
 @Component({
   selector: "app-cursos",
   standalone: true,
