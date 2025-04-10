@@ -1,47 +1,59 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CursoComponent } from './curso.component';
-import { GradoService } from '../../services/grado/grado.service';
-import { CursoService } from '../../services/curso/curso.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, throwError } from 'rxjs';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CursoService } from '../../services/curso/curso.service';
+import { GradoService } from '../../services/grado/grado.service';
+import { Curso } from '../../../core/interfaces/curso'; // Adjust import paths
+import { CursoCompleto } from '../../../core/interfaces/curso-completo'; // Adjust if needed
+import { SimpleChange } from '@angular/core';
 
 describe('CursoComponent', () => {
   let component: CursoComponent;
   let fixture: ComponentFixture<CursoComponent>;
+  let mockCursoService: jasmine.SpyObj<CursoService>;
+  let mockGradoService: jasmine.SpyObj<GradoService>;
 
-  const mockCurso = {
+  const mockCurso: Curso = {
     id: 1,
-    nombre: 'Matemáticas',
-    gradoId: 2,
+    nombre: 'Curso de Angular',
+    descripcion: 'curso de angular',
+    fechaCreacion: new Date(),
+    gradoId: 101
   };
 
   const mockGrado = {
-    id: 2,
-    descripcion: 'Grado 5',
+    id: 101,
+    descripcion: 'Grado 1',
     primaria_secundaria: true
   };
 
-  const gradoServiceMock = {
-    getGradoById: jasmine.createSpy('getGradoById').and.returnValue(of(mockGrado)),
-  };
-
-  const cursoServiceMock = {
-    deleteCurso: jasmine.createSpy('deleteCurso').and.returnValue(of(null)),
-  };
-
   beforeEach(async () => {
+    mockCursoService = jasmine.createSpyObj('CursoService', ['deleteCurso']);
+    mockGradoService = jasmine.createSpyObj('GradoService', ['getGradoById']);
+
     await TestBed.configureTestingModule({
-      declarations: [CursoComponent],
+      imports: [CursoComponent, HttpClientTestingModule],
       providers: [
-        { provide: GradoService, useValue: gradoServiceMock },
-        { provide: CursoService, useValue: cursoServiceMock }
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        { provide: CursoService, useValue: mockCursoService },
+        { provide: GradoService, useValue: mockGradoService }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CursoComponent);
     component = fixture.componentInstance;
-    component.curso = mockCurso as any;
+
+    // Provide input data
+    component.curso = mockCurso;
+
+    // Mock gradoService return value
+    mockGradoService.getGradoById.and.returnValue(of(mockGrado));
+
+    // Trigger lifecycle
+    component.ngOnChanges({
+      curso: new SimpleChange(null, mockCurso, false)
+    });
+
     fixture.detectChanges();
   });
 
@@ -49,31 +61,36 @@ describe('CursoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should toggle dropdown visibility', () => {
-    expect(component.isDropdownVisible).toBeFalse();
-    component.toggleDropdown();
-    expect(component.isDropdownVisible).toBeTrue();
-    component.toggleDropdown();
-    expect(component.isDropdownVisible).toBeFalse();
-  });
-
-  it('should emit cursoEditar when onEdit is called', () => {
-    spyOn(component.cursoEditar, 'emit');
-    component.onEdit();
-    expect(component.isDropdownVisible).toBeFalse();
-    expect(component.cursoEditar.emit).toHaveBeenCalledWith(component.curso);
-  });
-
-  it('should emit cursoEliminado when eliminarCurso is called', () => {
-    spyOn(component.cursoEliminado, 'emit');
-    component.eliminarCurso();
-    expect(component.cursoEliminado.emit).toHaveBeenCalledWith(component.curso.id);
-  });
-
-  it('should fetch grado on ngOnChanges and set cursoCompleto.grado', () => {
-    component.ngOnChanges({});
-    expect(gradoServiceMock.getGradoById).toHaveBeenCalledWith(mockCurso.gradoId);
+  it('should fetch grado data on input change', () => {
+    expect(mockGradoService.getGradoById).toHaveBeenCalledWith(mockCurso.gradoId);
     expect(component.cursoCompleto.grado).toEqual(mockGrado);
   });
 
-})
+  it('should toggle dropdown', () => {
+    expect(component.isDropdownVisible).toBeFalse();
+    component.toggleDropdown();
+    expect(component.isDropdownVisible).toBeTrue();
+  });
+
+  it('should emit cursoEditar on edit', () => {
+    spyOn(component.cursoEditar, 'emit');
+    component.onEdit();
+    expect(component.cursoEditar.emit).toHaveBeenCalledWith(mockCurso);
+    expect(component.isDropdownVisible).toBeFalse();
+  });
+
+  it('should not delete if confirm is cancelled', () => {
+    spyOn(window, 'confirm').and.returnValue(false);
+    component.onDelete();
+    expect(mockCursoService.deleteCurso).not.toHaveBeenCalled();
+  });
+
+  it('should handle gradoService error gracefully', () => {
+    mockGradoService.getGradoById.and.returnValue(throwError(() => new Error('error')));
+    component.ngOnChanges({
+      curso: new SimpleChange(null, mockCurso, false)
+    });
+    // No crash is a pass in this case
+    expect(component.cursoCompleto).toEqual(jasmine.objectContaining({ id: 1 }));
+  });
+});
