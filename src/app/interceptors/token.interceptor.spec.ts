@@ -1,17 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn, HttpRequest, HttpHandler } from '@angular/common/http';
 
-import { tokenInterceptor } from './token.interceptor';
+import { TokenInterceptor } from './token.interceptor';
 
 describe('tokenInterceptor', () => {
-  const interceptor: HttpInterceptorFn = (req, next) => 
-    TestBed.runInInjectionContext(() => tokenInterceptor(req, next));
-
+  let interceptor: TokenInterceptor;
   beforeEach(() => {
     TestBed.configureTestingModule({});
+    interceptor = new TokenInterceptor;
   });
 
-  it('should be created', () => {
-    expect(interceptor).toBeTruthy();
+ 
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    expect(interceptor).toBeDefined();
+
+    it('should be created', () => {
+      expect(interceptor).toBeTruthy();
+    });
   });
-});
+})
