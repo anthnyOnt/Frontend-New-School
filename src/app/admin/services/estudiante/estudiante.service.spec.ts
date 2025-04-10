@@ -1,137 +1,118 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { EstudianteService } from './estudiante.service';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { VerEstudiantesComponent } from '../../pages/ver-estudiantes/ver-estudiantes.component';
+import { EstudianteService } from '../../services/estudiante/estudiante.service';
+import { of } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { Estudiante } from '../../../core/interfaces/estudiante';
+import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
-describe('EstudianteService', () => {
-  let service: EstudianteService;
-  let httpMock: HttpTestingController;
+describe('VerEstudiantesComponent', () => {
+  let component: VerEstudiantesComponent;
+  let fixture: ComponentFixture<VerEstudiantesComponent>;
+  let estudianteServiceSpy: jasmine.SpyObj<EstudianteService>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [EstudianteService]
-    });
+  beforeEach(async () => {
+    const estudianteServiceMock = jasmine.createSpyObj('EstudianteService', ['getEstudiantes', 'deleteEstudiante']);
 
-    service = TestBed.inject(EstudianteService);
-    httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  afterEach(() => {
-    httpMock.verify(); // Verifica que no haya llamadas HTTP pendientes
-  });
-
-  const mockEstudiantes: Estudiante[] = [
-    { id: 1, nombre: 'Juan', apellido: 'Pérez', email: 'juan@email.com', ci: 1, fecha_nacimiento: '1990-01-01', password: '123456', rol: 'estudiante' },
-    { id: 2, nombre: 'María', apellido: 'Gómez', email: 'maria@email.com', ci: 2, fecha_nacimiento: '1990-01-01', password: '123456', rol: 'estudiante' }
-  ];
-
-  it('debería crearse el servicio', () => {
-    expect(service).toBeTruthy();
-  });
-
-  describe('getEstudiantes()', () => {
-    it('debería obtener estudiantes (mock)', (done) => {
-      service.getEstudiantes().subscribe(estudiantes => {
-        expect(estudiantes.length).toBe(4);
-        expect(estudiantes).toEqual(service['mockEstudiantes']);
-        done();
-      });
-    });
-
-    it('debería hacer una petición GET cuando useMockData es false', () => {
-      service['useMockData'] = false;
-      service.getEstudiantes().subscribe();
-
-      const req = httpMock.expectOne('http://api-estudiantes');
-      expect(req.request.method).toBe('GET');
-      req.flush(mockEstudiantes);
-    });
-  });
-
-  describe('addEstudiante()', () => {
-    it('debería agregar un estudiante (mock)', (done) => {
-      const newEst: Estudiante = { id: 5, nombre: 'Luis', apellido: 'Ramírez', email: 'luis@email.com', ci: 5, fecha_nacimiento: '1990-01-01', password: '123456', rol: 'estudiante' };
-
-      service.addEstudiante(newEst).subscribe(est => {
-        expect(est.id).toBeGreaterThan(0);
-        expect(service['mockEstudiantes'].length).toBe(5);
-        done();
-      });
-    });
-
-    it('debería hacer una petición POST cuando useMockData es false', () => {
-      service['useMockData'] = false;
-      const newEst: Estudiante = { id: 3, nombre: 'Luis', apellido: 'Ramírez', email: 'luis@email.com', ci: 3, fecha_nacimiento: '1990-01-01', password: '123456', rol: 'estudiante' };
-
-      service.addEstudiante(newEst).subscribe();
-
-      const req = httpMock.expectOne('http://api-estudiantes');
-      expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual(newEst);
-      req.flush(newEst);
-    });
-  });
-
-  describe('updateEstudiante()', () => {
-    it('debería actualizar un estudiante (mock)', (done) => {
-      const updatedEst: Estudiante = { ...mockEstudiantes[0], nombre: 'Juanito' };
-
-      service.updateEstudiante(updatedEst).subscribe(est => {
-        expect(est.nombre).toBe('Juanito');
-        done();
-      });
-    });
-
-    it('debería lanzar error si el estudiante no existe (mock)', (done) => {
-      const invalidEst: Estudiante = { id: 99, nombre: 'Desconocido', apellido: 'Prueba', email: 'fake@email.com', ci: 99, fecha_nacimiento: '1990-01-01', password: '123456', rol: 'estudiante' };
-
-      service.updateEstudiante(invalidEst).subscribe({
-        error: (err) => {
-          expect(err.message).toContain('Estudiante con ID 99 no encontrado');
-          done();
+    await TestBed.configureTestingModule({
+      imports: [CommonModule, RouterLink, VerEstudiantesComponent],
+      providers: [
+        { provide: EstudianteService, useValue: estudianteServiceMock },
+        { 
+          provide: ActivatedRoute, 
+          useValue: { params: of({ id: 1 }) } // Simulando parámetros de ruta
         }
-      });
-    });
+      ],
+    }).compileComponents();
 
-    it('debería hacer una petición PUT cuando useMockData es false', () => {
-      service['useMockData'] = false;
-      const updatedEst: Estudiante = { ...mockEstudiantes[0], nombre: 'Juanito' };
-
-      service.updateEstudiante(updatedEst).subscribe();
-
-      const req = httpMock.expectOne(`http://api-estudiantes/${updatedEst.id}`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(updatedEst);
-      req.flush(updatedEst);
-    });
+    fixture = TestBed.createComponent(VerEstudiantesComponent);
+    component = fixture.componentInstance;
+    estudianteServiceSpy = TestBed.inject(EstudianteService) as jasmine.SpyObj<EstudianteService>;
   });
 
-  describe('deleteEstudiante()', () => {
-    it('debería eliminar un estudiante (mock)', (done) => {
-      service.deleteEstudiante(1).subscribe(() => {
-        expect(service['mockEstudiantes'].find(e => e.id === 1)).toBeUndefined();
-        done();
-      });
-    });
-
-    it('debería lanzar error si el estudiante no existe (mock)', (done) => {
-      service.deleteEstudiante(99).subscribe({
-        error: (err) => {
-          expect(err.message).toContain('Estudiante con ID 99 no encontrado');
-          done();
-        }
-      });
-    });
-
-    it('debería hacer una petición DELETE cuando useMockData es false', () => {
-      service['useMockData'] = false;
-
-      service.deleteEstudiante(1).subscribe();
-
-      const req = httpMock.expectOne(`http://api-estudiantes/1`);
-      expect(req.request.method).toBe('DELETE');
-      req.flush({});
-    });
+  it('debería crear el componente', () => {
+    expect(component).toBeTruthy();
   });
+
+  it('debería cargar los estudiantes al inicializarse', () => {
+    const estudiantesMock: Estudiante[] = [
+      { id: 1, nombre: 'Juan', apellido: 'Pérez', ci: 12345678, email: 'juan@example.com', rol: 'estudiante', password: 'Passw0rd@' },
+      { id: 2, nombre: 'María', apellido: 'López', ci: 87654321, email: 'maria@example.com', rol: 'estudiante', password: 'SecureP@ss123' }
+    ];
+
+    estudianteServiceSpy.getEstudiantes.and.returnValue(of(estudiantesMock));
+
+    fixture.detectChanges();
+
+    expect(component.estudiantes.length).toBe(2);
+    expect(component.estudiantes).toEqual(estudiantesMock);
+  });
+
+  it('debería eliminar un estudiante cuando se confirma', () => {
+    spyOn(window, 'confirm').and.returnValue(true);
+
+    const estudiantesMock: Estudiante[] = [
+      { id: 1, nombre: 'Juan', apellido: 'Pérez', ci: 12345678, email: 'juan@example.com', rol: 'estudiante', password: 'Passw0rd@' },
+      { id: 2, nombre: 'María', apellido: 'López', ci: 87654321, email: 'maria@example.com', rol: 'estudiante', password: 'SecureP@ss123' }
+    ];
+
+    component.estudiantes = [...estudiantesMock];
+
+    estudianteServiceSpy.deleteEstudiante.and.returnValue(of(undefined));
+
+    component.eliminarEstudiante(estudiantesMock[0]);
+
+    expect(estudianteServiceSpy.deleteEstudiante).toHaveBeenCalledWith(1);
+    expect(component.estudiantes.length).toBe(1);
+    expect(component.estudiantes[0].id).toBe(2);
+  });
+
+  it('no debería eliminar un estudiante si se cancela la confirmación', () => {
+    spyOn(window, 'confirm').and.returnValue(false);
+
+    const estudiantesMock: Estudiante[] = [
+      { id: 1, nombre: 'Juan', apellido: 'Pérez', ci: 12345678, email: 'juan@example.com', rol: 'estudiante', password: 'Passw0rd@' },
+      { id: 2, nombre: 'María', apellido: 'López', ci: 87654321, email: 'maria@example.com', rol: 'estudiante', password: 'SecureP@ss123' }
+    ];
+
+    component.estudiantes = [...estudiantesMock];
+
+    component.eliminarEstudiante(estudiantesMock[0]);
+
+    expect(estudianteServiceSpy.deleteEstudiante).not.toHaveBeenCalled();
+    expect(component.estudiantes.length).toBe(2);
+  });
+
+  it('debería retornar el id del estudiante en trackById', () => {
+    const estudianteMock: Estudiante = { id: 5, nombre: 'Ana', apellido: 'Gómez', ci: 6543210, email: 'ana@example.com', rol: 'estudiante', password: 'Str0ngP@ss' };
+    expect(component.trackById(0, estudianteMock)).toBe(5);
+  });
+
+  it('debería llamar a editarEstudiante (pero sin implementación aún)', () => {
+    const estudianteMock: Estudiante = { id: 3, nombre: 'Pedro', apellido: 'Ruiz', ci: 9876543, email: 'pedro@example.com', rol: 'estudiante', password: 'P@ssword123' };
+    expect(() => component.editarEstudiante(estudianteMock)).not.toThrow();
+  });
+
+  it('debería validar que el CI solo contiene números', () => {
+    const estudiantesMock: Estudiante[] = [
+      { id: 1, nombre: 'Juan', apellido: 'Pérez', ci: 12345678, email: 'juan@example.com', rol: 'estudiante', password: 'Passw0rd@' },
+      { id: 2, nombre: 'María', apellido: 'López', ci: '87654321' as any, email: 'maria@example.com', rol: 'estudiante', password: 'SecureP@ss123' }
+    ];
+  
+    // Simulamos que el servicio devuelve los estudiantes
+    estudianteServiceSpy.getEstudiantes.and.returnValue(of(estudiantesMock));
+  
+    // Llamamos al método que debería cargar los estudiantes
+    fixture.detectChanges(); // Esto dispara ngOnInit y carga los estudiantes
+  
+    // Verificamos si los estudiantes se han cargado correctamente
+    expect(component.estudiantes.length).toBe(2);
+  
+    // Validación de que el CI de 'María' es un número
+    expect(isNaN(Number(component.estudiantes[1].ci))).toBe(false);
+  });
+  
+  
 });

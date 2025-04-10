@@ -47,7 +47,7 @@ export class ProfesorService {
 
   updateProfesor(profesor: Profesor): Observable<Profesor> {
     if (this.useMockData) {
-      console.log('Actualizando profesor simulao', profesor)
+      console.log('Actualizando profesor simulado', profesor)
       const index = this.mockProfesores.findIndex(p => p.id === profesor.id);
       if (index === -1) {
         return throwError(() => new Error(`Profesor con ID ${profesor.id} no encontrado`)).pipe(
