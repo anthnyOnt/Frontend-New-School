@@ -3,6 +3,7 @@ export interface Curso {
     nombre: string;
     descripcion: string;
     fechaCreacion: Date;
+
     profesorId?: number;
     gradoId: number;
 }

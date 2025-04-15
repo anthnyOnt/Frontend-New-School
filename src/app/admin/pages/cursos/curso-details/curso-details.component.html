@@ -1,0 +1,20 @@
+<div class="curso-page">
+    <a routerLink="/cursos">Volver</a>
+    <div class="curso-header">
+        <h1 class="curso-name">{{ curso.nombre }}</h1>
+        <p class="curso-descripcion">{{ curso.descripcion }}</p>
+        <span class="curso-fecha">Fecha de inicio: {{ curso.fechaCreacion | date: 'dd/MM/yyyy'}}</span>
+    </div>
+
+    <div class="contenidos-section">
+        <div class="contenidos-header">
+        <h2>Contenidos del Curso</h2>
+    </div>
+    <div *ngFor="let contenido of contenidos; trackBy: trackById" class="contenidos-list" >
+        <app-contenido 
+            [contenido]="contenido"
+            (contenidoEliminado)="manejarContenidoEliminado($event)">
+        </app-contenido>
+    </div>
+  </div>
+</div>
