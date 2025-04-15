@@ -46,8 +46,9 @@
             placeholder="Ingrese su número de cédula"
           />
           <div *ngIf="submitted && f['ci'].errors" class="error-message">
-            <span *ngIf="f['ci'].errors?.['required']">La cédula es requerida</span>
-            <span *ngIf="f['ci'].errors?.['pattern']">La cédula debe contener solo números</span>
+            <span *ngIf="f['ci'].errors?.['pattern']">
+              La cédula debe contener solo números
+            </span>
           </div>
         </div>
   
