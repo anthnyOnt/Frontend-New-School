@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VerEstudiantesComponent } from './ver-estudiantes.component';
-import { EstudianteService } from '../../services/estudiante/estudiante.service';
+import { EstudianteService } from '../../../services/estudiante/estudiante.service';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Estudiante } from '../../../core/interfaces/estudiante';
+import { Estudiante } from '../../../../core/interfaces/estudiante';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 

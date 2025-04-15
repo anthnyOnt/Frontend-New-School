@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { RegistrarEstudianteComponent } from './registrar-estudiante.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Estudiante } from '../../../core/interfaces/estudiante';
+import { Estudiante } from '../../../../core/interfaces/estudiante';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { EstudianteService } from '../../services/estudiante/estudiante.service';
+import { EstudianteService } from '../../../services/estudiante/estudiante.service';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 

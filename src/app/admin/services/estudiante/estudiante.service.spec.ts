@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { VerEstudiantesComponent } from '../../pages/ver-estudiantes/ver-estudiantes.component';
+import { VerEstudiantesComponent } from '../../pages/estudiantes/ver-estudiantes/ver-estudiantes.component';
+
 import { EstudianteService } from '../../services/estudiante/estudiante.service';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
