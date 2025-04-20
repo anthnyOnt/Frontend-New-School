@@ -15,6 +15,13 @@ export class AppComponent implements OnInit {
   title = 'FRONTEND-NEW-SCHOOL';
   isAuthenticated = false;
 
+  adminNavElements = [
+    {name: 'Estudiantes', icon: "fas fa-user-graduate", route: '/admin/estudiantes'},
+    {name: 'Grados', icon: "fas fa-graduation-cap", route: '/admin/grados'},
+    {name: 'Profesores', icon: "fas fa-chalkboard-teacher", route:'/admin/profesores'},
+    {name: 'Cursos', icon: "fas fa-book", route:'/admin/cursos'}
+  ]
+
   constructor(private authService: AuthService) {}
 
   ngOnInit() {

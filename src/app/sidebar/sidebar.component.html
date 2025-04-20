@@ -6,34 +6,18 @@
       </a>
     </div>
     <nav>
+      <ul *ngFor="let el of elements">
+        <li>
+          <a [routerLink]="el.route" routerLinkActive="active">
+            <i class="{{ el.icon }}"></i>
+            <span>{{ el.name }}</span>
+          </a>
+        </li>
+      </ul>
       <ul>
-        <li>
-          <a routerLink="/estudiantes" routerLinkActive="active">
-            <i class="fas fa-user-graduate"></i>
-            <span>Estudiantes</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/grados" routerLinkActive="active">
-            <i class="fas fa-graduation-cap"></i>
-            <span>Grados</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/profesores" routerLinkActive="active">
-            <i class="fas fa-chalkboard-teacher"></i>
-            <span>Profesores</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/cursos" routerLinkActive="active">
-            <i class="fas fa-book"></i>
-            <span>Cursos</span>
-          </a>
-        </li>
         <!-- Separador visual antes del logout -->
         <li class="divider"></li>
-        <!-- Opción de logout al final -->
+        
         <li class="logout-item">
           <a (click)="logout()" class="logout-link">
             <i class="fas fa-sign-out-alt"></i>
