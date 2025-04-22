@@ -1,0 +1,13 @@
+<div class="tarea-card">
+    <div class="tarea-main">
+      <h3 class="tarea-titulo">{{ tarea?.titulo }}</h3>
+      <p class="tarea-descripcion">{{ tarea?.descripcion }}</p>
+    </div>
+  
+    <div class="tarea-meta">
+      <span class="tarea-puntaje">Puntaje máximo: {{ tarea?.puntaje_max }}</span>
+      <span class="tarea-fecha">Entrega: {{ tarea?.fecha_entrega | date }}</span>
+      <button class="ver-btn">Ver tarea</button>
+    </div>
+  </div>
+  
