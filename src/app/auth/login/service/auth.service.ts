@@ -32,16 +32,25 @@ export class AuthService {
       apellido: 'Sistema',
       email: 'admin@example.com',
       password: 'admin123', 
-      rol: 'ADMIN'
+      rol: 'admin'
     },
     { 
       id: 2,
       ci: 87654321,
       nombre: 'Usuario', 
-      apellido: 'Común',
-      email: 'usuario@example.com',
-      password: 'user123', 
-      rol: 'USER'
+      apellido: 'Estudiante',
+      email: 'estudiante@example.com',
+      password: 'estudiante123', 
+      rol: 'estudiante'
+    },
+    { 
+      id: 3,
+      ci: 24681012,
+      nombre: 'Usuario', 
+      apellido: 'Profesor',
+      email: 'profesor@example.com',
+      password: 'profesor123', 
+      rol: 'profesor'
     }
   ];
   
@@ -324,6 +333,19 @@ export class AuthService {
   private httpRegister(user: usuario): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user)
       .pipe(catchError(this.handleError));
+  }
+
+  getRolUsuario(): string | null {
+    const user = this.currentUserSubject.value;
+    if (user) {
+      try {
+        return user.rol;
+      } catch (error) {
+        console.error('Error al obtener rol de usuario', error);
+        return null;
+      }
+    }
+    return null;
   }
 
   getProfesorId(): number | null {
