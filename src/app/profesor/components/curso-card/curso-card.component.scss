@@ -1,6 +1,7 @@
 .curso-card {
     width: 280px;
-    min-height: 200px;
+    min-height: 250px; /* Set a consistent minimum height */
+    height: 100%; /* Allow cards to stretch to the same height */
     background: white;
     border-radius: 10px;
     padding: 20px;
@@ -8,6 +9,11 @@
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     color: black; /* Ensure text is visible */
+
+    display: flex; /* Use Flexbox for internal alignment */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Distribute content evenly */
+    align-items: center; /* Center align content horizontally */
 
     &:hover {
       transform: translateY(-5px);
@@ -32,6 +38,7 @@
     font-size: 20px;
     color: #555;
     margin-bottom: 10px;
+    text-align: center; /* Center align text */
 }
 
 .curso-fecha {
