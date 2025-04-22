@@ -9,6 +9,7 @@ import { authGuard } from './guards/auth.guard';
 import { RegisterComponent } from './auth/register/register/register.component';
 import { CursosComponent } from './admin/pages/cursos/cursos-page/cursos.component';
 import { CursoDetailsComponent } from './admin/pages/cursos/curso-details/curso-details.component';
+import { MainProfesorComponent } from './profesor/paginas/main/main.component';
 
 export const routes: Routes = [
   // Ruta por defecto que carga el LoginComponent
@@ -26,6 +27,9 @@ export const routes: Routes = [
   // Ruta de registro para usuarios nuevos
   { path: 'register', component: RegisterComponent },
 
+  {path: 'profesorcursos', component: MainProfesorComponent},
+
   // Ruta comodín para redirigir a la página de login si no se encuentra ninguna coincidencia
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+
 ];

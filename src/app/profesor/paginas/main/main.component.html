@@ -1,13 +1,11 @@
 <div class="curso-container">
-    <header>
-      <h1>Bienvenido Profesor</h1>
-    </header>
-  
-    <section class="cursos-list">
-        <div *ngFor="let curso of cursos; trackBy: trackById" class="curso-card">
-          <app-curso-card>
-            [curso]="curso" 
-          </app-curso-card>
-        </div>
-    </section>
+  <header>
+    <h1>Bienvenido Profesor</h1>
+  </header>
+
+  <section class="cursos-list">
+      <div *ngFor="let curso of cursos; trackBy: trackById" class="curso-card">
+        <app-curso-card [curso]="curso"></app-curso-card>
+      </div>
+  </section>
 </div>
