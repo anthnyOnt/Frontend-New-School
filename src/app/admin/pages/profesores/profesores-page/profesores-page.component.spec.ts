@@ -43,7 +43,7 @@ describe('ProfesoresPageComponent', () => {
     profesorServiceSpy = TestBed.inject(ProfesorService) as jasmine.SpyObj<ProfesorService>;
   });
 
-  it('should create', () => {
+  it('Debe crearse el componente', () => {
     expect(component).toBeTruthy();
   });
 

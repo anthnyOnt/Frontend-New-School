@@ -65,7 +65,7 @@ export class RegistrarEstudianteComponent {
       id: 0, 
       nombre: this.registroForm.get('nombre')?.value,
       apellido: this.registroForm.get('apellido')?.value,
-      ci: this.registroForm.get('carnet')?.value,
+      ci: Number(this.registroForm.get('carnet')?.value),
       email: this.registroForm.get('email')?.value,
       rol: 'estudiante',
       password: this.registroForm.get('password')?.value,

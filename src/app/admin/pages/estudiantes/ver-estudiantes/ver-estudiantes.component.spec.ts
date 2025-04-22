@@ -35,10 +35,10 @@ describe('VerEstudiantesComponent', () => {
 
     fixture = TestBed.createComponent(VerEstudiantesComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockEstudianteService = TestBed.inject(EstudianteService) as jasmine.SpyObj<EstudianteService>;
   });
 
-  it('should create', () => {
+  it('debería crear el componente', () => {
     expect(component).toBeTruthy();
   });
 
