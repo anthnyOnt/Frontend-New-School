@@ -1,4 +1,4 @@
-<app-sidebar [elements]="adminNavElements" *ngIf="isAuthenticated"></app-sidebar>
+<app-sidebar [elements]="navElements" *ngIf="isAuthenticated"></app-sidebar>
 <div class="content" [ngClass]="{'full-width': !isAuthenticated}">
   <router-outlet></router-outlet>
 </div>

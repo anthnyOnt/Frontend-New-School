@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent implements OnInit{
+export class ProfesorMainComponent implements OnInit{
   cursos: Curso[] = []
   cargando: boolean = false;
   error: string | null = null;
