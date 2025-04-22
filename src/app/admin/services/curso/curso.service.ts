@@ -11,9 +11,9 @@ export class CursoService {
   private http = inject(HttpClient)
 
   private mockCursos: Array<Curso> = [
-    {id: 1, nombre: 'Fisica', descripcion: 'Curso de fisica', fechaCreacion: new Date(2024, 2, 14), gradoId: 1},
-    {id: 2, nombre: 'Quimica', descripcion: 'Curso de quimica', fechaCreacion: new Date(2024, 2, 14),  gradoId: 2},
-    {id: 3, nombre: 'Matematica', descripcion: 'Curso de matematica', fechaCreacion: new Date(2024, 2, 14),  gradoId: 3},
+    {id: 1, nombre: 'Fisica', descripcion: 'Curso de fisica', fechaCreacion: new Date(2024, 2, 14), profesorId: 1, gradoId: 1},
+    {id: 2, nombre: 'Quimica', descripcion: 'Curso de quimica', fechaCreacion: new Date(2024, 2, 14), profesorId: 1, gradoId: 2},
+    {id: 3, nombre: 'Matematica', descripcion: 'Curso de matematica', fechaCreacion: new Date(2024, 2, 14), profesorId: 2, gradoId: 3},
     ]
   
   private useMockData = true;

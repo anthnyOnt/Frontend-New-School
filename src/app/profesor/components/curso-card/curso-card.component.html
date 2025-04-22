@@ -1,7 +1,7 @@
-<article class="curso-card">
+<article class="curso-card" [routerLink]="['/profesor/cursos', curso.id]">
     <div class="upper">
         <h3 class="curso-title">{{ curso.nombre }}</h3>
     </div>
     <p class="curso-descripcion">{{ curso.descripcion }}</p>
     <p class="curso-fecha">Fecha de Inicio 📅<br> {{ curso.fechaCreacion | date:'dd/MM/yyyy' }}</p>
-  </article>
+</article>

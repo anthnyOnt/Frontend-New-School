@@ -9,6 +9,8 @@
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     color: black; /* Ensure text is visible */
+    cursor: pointer; /* Show pointer cursor on hover */
+    border-top: 4px solid #47663B; /* Add a green border at the top using $verde */
 
     display: flex; /* Use Flexbox for internal alignment */
     flex-direction: column; /* Stack content vertically */
@@ -18,6 +20,7 @@
     &:hover {
       transform: translateY(-5px);
       box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.2);
+      border-top: 4px solid #1F4529; /* Change to darker green on hover using $verde-oscuro */
     }
 }
 
@@ -26,17 +29,20 @@
     justify-content: space-around;
     align-items: center;
     border-bottom: 1px solid #f0f0f0;
+    width: 100%;
+    padding-bottom: 10px;
 }
 
 .curso-title {
     font-size: 28px;
     font-weight: bold;
-    color: #333; /* Darker color for better visibility */
+    color: #1F4529; /* Changed to $verde-oscuro for better consistency */
+    margin-bottom: 10px;
 }
 
 .curso-descripcion {
     font-size: 20px;
-    color: #555;
+    color: #47663B; /* Changed to $verde for better consistency */
     margin-bottom: 10px;
     text-align: center; /* Center align text */
 }
