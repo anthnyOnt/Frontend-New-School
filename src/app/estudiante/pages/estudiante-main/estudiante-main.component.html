@@ -1,0 +1,14 @@
+<div class="main-container">
+    <h1>Cursos</h1>
+    <div class="cursos-carousel" >
+        <div *ngFor="let curso of cursos">
+            <app-curso [curso]="curso"></app-curso>
+        </div>
+    </div>
+    <h1>Tareas</h1>
+    <!-- <div class="tareas-carousel">
+        <div *ngFor="let tarea of tareas">
+            <app-tarea [tarea]="tarea"></app-tarea>
+        </div>
+    </div> -->
+</div>
