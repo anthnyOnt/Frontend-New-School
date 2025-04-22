@@ -12,6 +12,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
+import { ContenidoFormComponent } from '../../components/contenido-form/contenido-form.component';
 
 @Component({
   selector: 'app-curso-detalle',
@@ -22,7 +23,8 @@ import { ButtonModule } from 'primeng/button';
     TabViewModule, 
     CardModule,
     DividerModule,
-    ButtonModule
+    ButtonModule,
+    ContenidoFormComponent
   ],
   templateUrl: './curso-detalle.component.html',
   styleUrls: ['./curso-detalle.component.scss']
@@ -34,6 +36,10 @@ export class CursoDetalleComponent implements OnInit {
   cargando: boolean = true;
   error: string | null = null;
   activeTab: number = 0;
+  
+  // Control del formulario de contenido
+  mostrarFormularioContenido: boolean = false;
+  contenidoEditar: Contenido | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -98,6 +104,45 @@ export class CursoDetalleComponent implements OnInit {
         this.cargando = false;
       }
     });
+  }
+
+  // Métodos para gestionar el formulario de contenido
+  abrirFormularioContenido(): void {
+    this.contenidoEditar = null;
+    this.mostrarFormularioContenido = true;
+  }
+
+  cerrarFormularioContenido(): void {
+    this.mostrarFormularioContenido = false;
+    this.contenidoEditar = null;
+  }
+
+  manejarContenidoAgregado(contenido: Contenido): void {
+    // Recargar los contenidos después de agregar/actualizar
+    if (this.curso) {
+      this.cargarContenidos(this.curso.id);
+    }
+  }
+
+  editarContenido(contenido: Contenido): void {
+    this.contenidoEditar = { ...contenido };
+    this.mostrarFormularioContenido = true;
+  }
+
+  eliminarContenido(id: number): void {
+    if (confirm('¿Está seguro de que desea eliminar este contenido?')) {
+      this.contenidoService.deleteContenido(id).subscribe({
+        next: () => {
+          if (this.curso) {
+            this.cargarContenidos(this.curso.id);
+          }
+        },
+        error: (err) => {
+          console.error('Error al eliminar el contenido:', err);
+          alert('No se pudo eliminar el contenido. Por favor, intente nuevamente.');
+        }
+      });
+    }
   }
 
   getTipoIcono(tipo: string): string {

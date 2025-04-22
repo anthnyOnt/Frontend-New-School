@@ -1,0 +1,77 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>{{ contenidoEditar ? 'Editar Contenido' : 'Agregar Nuevo Contenido' }}</h3>
+
+    <form (ngSubmit)="guardarContenido()">
+      <!-- Campo para el título del contenido -->
+      <div class="form-group">
+        <label for="titulo">Título:</label>
+        <input 
+          type="text" 
+          id="titulo" 
+          [(ngModel)]="contenido.titulo" 
+          name="titulo" 
+          class="form-control"
+          required
+          placeholder="Ej: Introducción a las Ecuaciones Diferenciales">
+      </div>
+
+      <!-- Campo para el tipo de contenido -->
+      <div class="form-group">
+        <label for="tipo">Tipo de Contenido:</label>
+        <select 
+          id="tipo" 
+          [(ngModel)]="contenido.tipo" 
+          name="tipo" 
+          class="form-control"
+          required>
+          <option *ngFor="let tipo of tiposContenido" [value]="tipo.value">{{ tipo.label }}</option>
+        </select>
+      </div>
+
+      <!-- Campo para la descripción del contenido -->
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea 
+          id="descripcion" 
+          [(ngModel)]="contenido.descripcion" 
+          name="descripcion" 
+          class="form-control"
+          rows="4"
+          required
+          placeholder="Breve descripción del contenido"></textarea>
+      </div>
+
+      <!-- Campo para la URL del contenido -->
+      <div class="form-group">
+        <label for="url">URL del Contenido:</label>
+        <input 
+          type="url" 
+          id="url" 
+          [(ngModel)]="contenido.url" 
+          name="url" 
+          class="form-control"
+          required
+          placeholder="https://ejemplo.com/contenido">
+        <small class="url-help">Enlace directo al contenido (documento, video, etc.)</small>
+      </div>
+
+      <!-- Campo para la fecha de creación -->
+      <div class="form-group">
+        <label for="creacion">Fecha de Creación:</label>
+        <input 
+          type="date" 
+          id="creacion" 
+          [(ngModel)]="contenido.creacion" 
+          name="creacion" 
+          class="form-control"
+          required>
+      </div>
+
+      <div class="buttons">
+        <button type="button" (click)="cerrar.emit()" class="btn-cancelar">Cancelar</button>
+        <button type="submit" class="btn-guardar">{{ contenidoEditar ? 'Actualizar' : 'Guardar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>
