@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CursosComponent } from './cursos.component';
-import { CursoService } from '../../services/curso/curso.service';
+import { CursoService } from '../../../services/curso/curso.service';
 import { of, throwError } from 'rxjs';
-import { Curso } from '../../../core/interfaces/curso';
+import { Curso } from '../../../../core/interfaces/curso';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CursoComponent } from '../../components/curso/curso.component';
+import { CursoComponent } from '../../../components/curso/curso.component';
 import { CursoFormComponent } from '../curso-form/curso-form.component';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
