@@ -18,6 +18,9 @@ describe('CursoComponent', () => {
   };
 
   beforeEach(async () => {
+    mockCursoService = jasmine.createSpyObj('CursoService', ['deleteCurso']);
+    mockGradoService = jasmine.createSpyObj('GradoService', ['getGradoById']);
+
     await TestBed.configureTestingModule({
       imports: [CursoComponent, RouterTestingModule, HttpClientTestingModule]
     }).compileComponents();

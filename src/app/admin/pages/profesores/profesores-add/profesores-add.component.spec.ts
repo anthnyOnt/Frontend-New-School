@@ -1,13 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+<<<<<<< HEAD
+
+import { ProfesorAddComponent } from './profesores-add.component';
+=======
 import { ProfesorAddComponent } from './profesores-add.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ProfesorService } from '../../../services/profesor/profesor.service';
 import { of } from 'rxjs';
 import { Profesor } from '../../../../core/interfaces/profesor';
+>>>>>>> main
 
 describe('ProfesoresAddComponent', () => {
   let component: ProfesorAddComponent;
   let fixture: ComponentFixture<ProfesorAddComponent>;
+<<<<<<< HEAD
+=======
   let profesorServiceSpy: jasmine.SpyObj<ProfesorService>;
 
   const mockProfesor: Profesor = {
@@ -21,17 +28,25 @@ describe('ProfesoresAddComponent', () => {
     rol: 'Profesor',
     ci: '1234567'
   };
+>>>>>>> main
 
   beforeEach(async () => {
     const spy = jasmine.createSpyObj('ProfesorService', ['addProfesor', 'updateProfesor']);
 
     await TestBed.configureTestingModule({
+<<<<<<< HEAD
+      imports: [ProfesorAddComponent]
+    })
+    .compileComponents();
+    
+=======
       imports: [ProfesorAddComponent, HttpClientTestingModule],
       providers: [
         { provide: ProfesorService, useValue: spy }
       ]
     }).compileComponents();
 
+>>>>>>> main
     fixture = TestBed.createComponent(ProfesorAddComponent);
     component = fixture.componentInstance;
     profesorServiceSpy = TestBed.inject(ProfesorService) as jasmine.SpyObj<ProfesorService>;
