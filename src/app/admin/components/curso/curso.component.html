@@ -1,6 +1,6 @@
 <article class="curso-card">
     <div class="upper">
-        <h3 class="curso-title">{{ this.cursoCompleto.nombre }}</h3>
+        <h3 class="curso-title">{{ this.curso.nombre }}</h3>
         <div class="dropdown" clickOutside (clickOutside)="isDropdownVisible = false">
             <button class="btn btn-link" type="button" (click)="toggleDropdown()">
               <i class="fa fa-ellipsis-v"></i>
@@ -16,8 +16,12 @@
         </div>
     </div>
     <div class="detail-box">
-      <p class="curso-descripcion detail">{{ this.cursoCompleto.descripcion }}</p>
-      <p class="curso-grado detail"> {{ this.cursoCompleto.grado?.descripcion }}</p>
-      <p class="curso-fecha detail">Fecha de Inicio 🗓️<br> {{ this.cursoCompleto.fechaCreacion | date:'dd/MM/yyyy' }}</p>
+      <p class="curso-descripcion detail">{{ this.curso.descripcion }}</p>
+      <p class="curso-grado detail"> {{ this.gradoDescripcion}}</p>
+      <p class="curso-fecha detail">Fecha de Inicio 🗓️<br> {{ this.curso.fechaCreacion | date:'dd/MM/yyyy' }}</p>
+      <div class="ver-button">
+        <button class="ver-curso-button" [routerLink]="['/cursos', curso.id]" [state]="{curso: curso}">Ver curso</button>
+      </div>
+      
     </div>
   </article>

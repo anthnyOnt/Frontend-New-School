@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm, ReactiveFormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EstudianteService } from '../../services/estudiante/estudiante.service';
-import { Estudiante } from '../../../core/interfaces/estudiante';
+import { EstudianteService } from '../../../services/estudiante/estudiante.service';
+import { Estudiante } from '../../../../core/interfaces/estudiante';
 
 @Component({
   selector: 'app-registrar-estudiante',
@@ -65,7 +65,7 @@ export class RegistrarEstudianteComponent {
       id: 0, 
       nombre: this.registroForm.get('nombre')?.value,
       apellido: this.registroForm.get('apellido')?.value,
-      ci: this.registroForm.get('carnet')?.value,
+      ci: Number(this.registroForm.get('carnet')?.value),
       email: this.registroForm.get('email')?.value,
       rol: 'estudiante',
       password: this.registroForm.get('password')?.value,

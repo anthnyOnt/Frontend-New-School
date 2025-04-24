@@ -1,0 +1,19 @@
+<div class="contenido-container">
+    <div class="contenido-info">
+        <div class="contenido-header">
+            <h3 class="contenido-title">{{ contenido.titulo }}</h3>
+            <span class="contenido-tipo">{{ contenido.tipo }}</span>
+        </div>
+        <p class="contenido-description">{{ contenido.descripcion }}</p>
+        <div class="contenido-meta">
+            <span class="contenido-fechaCreacion">
+                📅 {{ contenido.fechaCreacion | date: 'dd/MM/yyyy' }}
+            </span>
+            <a class="contenido-url" [href]="contenido.url" target="_blank">
+                🔗 Ver contenido
+            </a>
+        </div>
+    </div>
+    <button class="eliminar-button" (click)="eliminarContenido()">Borrar</button>
+
+</div>

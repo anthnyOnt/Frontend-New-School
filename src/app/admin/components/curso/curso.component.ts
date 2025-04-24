@@ -1,42 +1,30 @@
-import { Component, EventEmitter, Input, Output, OnInit , OnChanges, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import { CursoService } from '../../services/curso/curso.service';
 import { CommonModule } from '@angular/common';
 import { CursoCompleto } from '../../../core/interfaces/curso-completo';
-import { GradoService } from '../../services/grado/grado.service';
 import { Curso } from '../../../core/interfaces/curso';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-curso',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './curso.component.html',
   styleUrl: './curso.component.scss'
 })
-export class CursoComponent implements OnInit, OnChanges{
+export class CursoComponent implements OnInit{
   @Input() curso!: Curso;  
+  @Input() gradoDescripcion!: string;
   @Output() cursoEliminado = new EventEmitter<number>();  
   @Output() cursoEditar = new EventEmitter<CursoCompleto>();
   isDropdownVisible = false;
 
   cursoCompleto!: CursoCompleto;
 
-  constructor(private CursoService: CursoService, private gradoService: GradoService) {}
+  constructor(private CursoService: CursoService) {}
 
   ngOnInit(): void {
     console.log("Curso component inicializado")
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log("Cambio detectado en curso component: ", changes)
-    this.cursoCompleto = {...this.curso}
-    this.gradoService.getGradoById(this.cursoCompleto.gradoId).subscribe({
-      next: (grado) => {
-        this.cursoCompleto.grado = grado
-      },
-      error: (err) => {
-        console.error('Error al obtener grado: ', err)
-      }
-    })
   }
 
   toggleDropdown() {
