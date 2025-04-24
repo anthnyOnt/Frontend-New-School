@@ -22,6 +22,7 @@ export const routes: Routes = [
   { path: 'profesores', component: ProfesoresPageComponent, canActivate: [authGuard] },
   { path: 'cursos', component: CursosComponent, canActivate: [authGuard]},
   { path: 'cursos/:id', component: CursoDetailsComponent},
+  
 
   // Ruta de registro para usuarios nuevos
   { path: 'register', component: RegisterComponent },

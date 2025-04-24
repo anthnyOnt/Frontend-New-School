@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, NgModel, ReactiveFormsModule, Validators } from
 import { Router } from '@angular/router';
 import { AuthService } from '../../login/service/auth.service';
 import { CommonModule } from '@angular/common';
+import 	{ RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
-      ci: ['', [Validators.pattern(/^\d+$/)]],
+      ci: ['', [Validators.required, Validators.pattern('^[0-9]{1,8}$')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
