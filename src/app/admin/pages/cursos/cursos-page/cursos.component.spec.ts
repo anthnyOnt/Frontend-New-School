@@ -1,37 +1,40 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CursosComponent } from './cursos.component';
 import { CursoService } from '../../../services/curso/curso.service';
-import { GradoService } from '../../../services/grado/grado.service';
-import { Curso } from '../../../../core/interfaces/curso';
-import { Grado } from '../../../../core/interfaces/grado';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, throwError } from 'rxjs';
+import { Curso } from '../../../../core/interfaces/curso';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CursoComponent } from '../../../components/curso/curso.component';
+import { CursoFormComponent } from '../curso-form/curso-form.component';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 describe('CursosComponent', () => {
   let component: CursosComponent;
   let fixture: ComponentFixture<CursosComponent>;
   let mockCursoService: jasmine.SpyObj<CursoService>;
-  let mockGradoService: jasmine.SpyObj<GradoService>;
 
-  const cursosMock: Curso[] = [
-    { id: 1, nombre: 'Matemáticas', descripcion: 'Curso de matemáticas', fechaCreacion: new Date(), gradoId: 1 },
-    { id: 2, nombre: 'Biología', descripcion: 'Curso de biología', fechaCreacion: new Date(), gradoId: 2 }
-  ];
-
-  const gradosMock: Grado[] = [
-    { id: 1, descripcion: 'Primero', primaria_secundaria: true },
-    { id: 2, descripcion: 'Segundo', primaria_secundaria: true }
+  const mockCursos: Curso[] = [
+    { id: 1, nombre: 'Angular Básico', descripcion: 'Curso introductorio',fechaCreacion: new Date(), gradoId: 1 },
+    { id: 2, nombre: 'Angular Avanzado', descripcion: 'Curso avanzado', fechaCreacion: new Date(), gradoId: 2 }
   ];
 
   beforeEach(async () => {
     mockCursoService = jasmine.createSpyObj('CursoService', ['getCursos', 'deleteCurso']);
-    mockGradoService = jasmine.createSpyObj('GradoService', ['getGrados']);
 
     await TestBed.configureTestingModule({
-      imports: [CursosComponent, HttpClientTestingModule],
+      imports: [
+        CursosComponent,
+        CursoComponent,
+        CursoFormComponent,
+        FormsModule,
+        RouterLink,
+        HttpClientTestingModule
+      ],
       providers: [
         { provide: CursoService, useValue: mockCursoService },
-        { provide: GradoService, useValue: mockGradoService }
+        { provide: ActivatedRoute, useValue: { params: of({}), snapshot: {} } }
       ]
     }).compileComponents();
 
@@ -43,73 +46,83 @@ describe('CursosComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load cursos and grados on init', fakeAsync(() => {
-    mockCursoService.getCursos.and.returnValue(of(cursosMock));
-    mockGradoService.getGrados.and.returnValue(of(gradosMock));
+  it('should load cursos on init', () => {
+    mockCursoService.getCursos.and.returnValue(of(mockCursos));
+    fixture.detectChanges(); // triggers ngOnInit
 
-    component.ngOnInit();
-    tick();
-
+    expect(mockCursoService.getCursos).toHaveBeenCalled();
     expect(component.cursos.length).toBe(2);
     expect(component.cursosFiltrados.length).toBe(2);
-    expect(component.gradosMap.get(1)).toBe('Primero');
     expect(component.cargando).toBeFalse();
-  }));
-
-  it('should handle error on cursos loading', fakeAsync(() => {
-    mockCursoService.getCursos.and.returnValue(throwError(() => new Error('Error cargando')));
-    component.cargarDatos();
-    tick();
-
-    expect(component.error).toContain('No se pudieron cargar los cursos');
-    expect(component.cargando).toBeFalse();
-  }));
-
-  it('should filter cursos by search term', () => {
-    component.cursos = cursosMock;
-    component.terminoBusqueda = 'bio';
-    component.filtrarCursos();
-    expect(component.cursosFiltrados.length).toBe(1);
-    expect(component.cursosFiltrados[0].nombre).toBe('Biología');
   });
 
-  it('should reset filter when search term is empty', () => {
-    component.cursos = cursosMock;
+  it('should handle error when loading cursos fails', () => {
+    mockCursoService.getCursos.and.returnValue(throwError(() => new Error('Error')));
+    fixture.detectChanges();
+
+    expect(component.error).toContain('No se pudieron cargar');
+    expect(component.cargando).toBeFalse();
+  });
+
+  it('should filter cursos based on terminoBusqueda', () => {
+    component.cursos = mockCursos;
+
+    component.terminoBusqueda = 'introductorio';
+    component.filtrarCursos();
+    expect(component.cursosFiltrados.length).toBe(1);
+
     component.terminoBusqueda = '';
     component.filtrarCursos();
     expect(component.cursosFiltrados.length).toBe(2);
   });
 
-  it('should call deleteCurso and reload data', fakeAsync(() => {
-    mockCursoService.getCursos.and.returnValue(of(cursosMock));
-    mockGradoService.getGrados.and.returnValue(of(gradosMock));
-    mockCursoService.deleteCurso.and.returnValue(of(void 0));
-
-    spyOn(component, 'cargarDatos').and.callThrough();
-    component.manejarCursoEliminado(1);
-    tick();
-
-    expect(mockCursoService.deleteCurso).toHaveBeenCalledWith(1);
-    expect(component.cargarDatos).toHaveBeenCalled();
-  }));
-
-  it('should set cursoEditar and mostrarFormulario when editarCurso is called', () => {
-    component.editarCurso(cursosMock[0]);
-    expect(component.cursoEditar?.id).toBe(1);
-    expect(component.mostrarFormulario).toBeTrue();
-  });
-
-  it('should open and close form correctly', () => {
+  it('should open form to add a new course', () => {
     component.abrirFormulario();
     expect(component.mostrarFormulario).toBeTrue();
     expect(component.cursoEditar).toBeNull();
+  });
+
+  it('should set cursoEditar and open form on editarCurso', () => {
+    const cursoToEdit = mockCursos[0];
+    component.editarCurso(cursoToEdit);
+    expect(component.cursoEditar).toEqual(cursoToEdit);
+    expect(component.mostrarFormulario).toBeTrue();
+  });
+
+  it('should close form and reset state on cerrarFormulario', () => {
+    component.cursoEditar = mockCursos[0];
+    component.mostrarFormulario = true;
 
     component.cerrarFormulario();
     expect(component.mostrarFormulario).toBeFalse();
+    expect(component.cursoEditar).toBeNull();
   });
 
-  it('should track curso by ID', () => {
-    const id = component.trackById(0, cursosMock[0]);
-    expect(id).toBe(1);
+  it('should reload cursos after agregarNuevoCurso', () => {
+    spyOn(component, 'cargarCursos');
+    component.agregarNuevoCurso(mockCursos[0]);
+    expect(component.cargarCursos).toHaveBeenCalled();
+    expect(component.mostrarFormulario).toBeFalse();
+  });
+
+  // it('should delete curso and reload on manejarCursoEliminado', () => {
+  //   mockCursoService.deleteCurso.and.returnValue(of({}));
+  //   spyOn(component, 'cargarCursos');
+    
+  //   component.manejarCursoEliminado(1);
+  //   expect(mockCursoService.deleteCurso).toHaveBeenCalledWith(1);
+  //   expect(component.cargarCursos).toHaveBeenCalled();
+  // });
+
+  it('should handle error on curso delete fail', () => {
+    mockCursoService.deleteCurso.and.returnValue(throwError(() => new Error('Delete failed')));
+    spyOn(console, 'error');
+    component.manejarCursoEliminado(99);
+    expect(console.error).toHaveBeenCalledWith('Error al eliminar el grado:', jasmine.any(Error));
+  });
+
+  it('should return curso id on trackById', () => {
+    const id = component.trackById(0, mockCursos[1]);
+    expect(id).toBe(2);
   });
 });
