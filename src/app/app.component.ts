@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   title = 'FRONTEND-NEW-SCHOOL';
   isAuthenticated = false;
   navElements: any[] = []
+  currentRole: any;
 
   adminNavElements = [
     {name: 'Estudiantes', icon: "fas fa-user-graduate", route: '/admin/estudiantes'},
@@ -36,16 +37,25 @@ export class AppComponent implements OnInit {
     
     // Suscribirse al observable de autenticación para detectar cambios
     this.authService.isAuthenticated.subscribe(
-      auth => this.isAuthenticated = auth
+      auth => {
+        this.isAuthenticated = auth
+        if(auth) {
+          this.currentRole = this.authService.getRolUsuario();
+          this.getRole();
+        }
+      }
     );
-    let currentRole = this.authService.getRolUsuario();
-    
-    if(currentRole === 'admin') {
+  }
+
+  getRole() {
+    if(this.currentRole === 'admin') {
       this.navElements = this.adminNavElements;
-    } else if(currentRole === 'profesor') {
+    } else if(this.currentRole === 'profesor') {
       this.navElements = this.profesorNavElements;
-    } else if(currentRole === 'estudiante') {
+    } else if(this.currentRole === 'estudiante') {
       this.navElements = this.estudianteNavElements;
     }
   }
+
+
 }
