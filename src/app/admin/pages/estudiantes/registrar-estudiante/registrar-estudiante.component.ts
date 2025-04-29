@@ -61,24 +61,26 @@ export class RegistrarEstudianteComponent {
       return;
     }
 
-    // const estudiante: Estudiante = {
-    //   id: 0, 
-    //   nombre: this.registroForm.get('nombre')?.value,
-    //   apellido: this.registroForm.get('apellido')?.value,
-    //   ci: Number(this.registroForm.get('carnet')?.value),
-    //   email: this.registroForm.get('email')?.value,
-    //   rol: 'estudiante',
-    //   password: this.registroForm.get('password')?.value,
-    // };
+    const estudiante: Estudiante = {
+      id: 0, 
+      usuario: {
+        ci: Number(this.registroForm.get('carnet')?.value),
+        nombre: this.registroForm.get('nombre')?.value,
+        apellido: this.registroForm.get('apellido')?.value,
+        email: this.registroForm.get('email')?.value,
+        rol: 'ESTUDIANTE',
+        password: this.registroForm.get('password')?.value
+      }
+    };
 
-    // this.estudianteService.addEstudiante(estudiante).subscribe({
-    //   next: () => {
-    //     this.router.navigate(['/admin/estudiantes']);
-    //   },
-    //   error: (error) => {
-    //     console.error('Error registrando estudiante', error);
-    //   }
-    // });
+    this.estudianteService.addEstudiante(estudiante).subscribe({
+      next: () => {
+        this.router.navigate(['/admin/estudiantes']);
+      },
+      error: (error) => {
+        console.error('Error registrando estudiante', error);
+      }
+    });
   }
 
   get nombre() { return this.registroForm.get('nombre'); }
