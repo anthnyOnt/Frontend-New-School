@@ -24,7 +24,7 @@ export class GradoComponent {
   }
   // Método para formatear el tipo de grado
   getTipoGrado(): string {
-    return this.grado.primaria_secundaria ? 'Secundaria' : 'Primaria';
+    return this.grado.primariaSencundaria ? 'Secundaria' : 'Primaria';
   }
 
   // Métodos de acción (editar, eliminar)
