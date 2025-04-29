@@ -15,10 +15,8 @@ export class AppComponent implements OnInit {
   title = 'FRONTEND-NEW-SCHOOL';
   isAuthenticated = false;
   navElements: any[] = []
-<<<<<<< HEAD
   currentRole: any;
-=======
->>>>>>> main
+
 
   adminNavElements = [
     {name: 'Estudiantes', icon: "fas fa-user-graduate", route: '/admin/estudiantes'},
