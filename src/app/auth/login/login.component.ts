@@ -85,11 +85,11 @@ export class LoginComponent implements OnInit {
     .subscribe({
       next: (data) => {
         // Navegar a la ruta 'main' en lugar de returnUrl
-        if(this.authService.getRolUsuario() === 'admin') {
+        if(this.authService.getRolUsuario() === 'ADMIN') {
           this.router.navigate(['/admin']);
-        } else if(this.authService.getRolUsuario() === 'profesor') { 
+        } else if(this.authService.getRolUsuario() === 'PROFESOR') { 
           this.router.navigate(['/profesor']);
-        } else if(this.authService.getRolUsuario() === 'estudiante') {
+        } else if(this.authService.getRolUsuario() === 'ESTUDIANTE') {
           this.router.navigate(['/estudiante']);
         } else {
           this.router.navigate(['/']);
