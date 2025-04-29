@@ -35,14 +35,7 @@ export class TokenInterceptor implements HttpInterceptor {
   private handleAuthError(error: any): Observable<never> {
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401) {
-        this.authService.logout().subscribe(() => {
-          this.router.navigate(['/login'], {
-            queryParams: {
-              returnUrl: this.router.url,
-              message: 'Su sesión ha expirado. Por favor, inicie sesión nuevamente.'
-            }
-          });
-        });
+        this.authService.logout();
       } else if (error.status === 403) {
         this.router.navigate(['/access-denied']);
       }

@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 describe('VerEstudiantesComponent', () => {
   let component: VerEstudiantesComponent;
   let fixture: ComponentFixture<VerEstudiantesComponent>;
+  
   let estudianteServiceSpy: jasmine.SpyObj<EstudianteService>;
   
   const mockEstudiantes: Estudiante[] = [

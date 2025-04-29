@@ -145,3 +145,4 @@ describe('RegistrarEstudianteComponent', () => {
     expect(component.registroForm.valid).toBeTruthy();
   });
 });
+

@@ -15,11 +15,11 @@ export class ContenidoService {
     {
         id: 1,
         titulo: "Números Enteros y Operaciones",
-        descripcion: "Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.",
+        descripcion: "Video explicativo sobre sumas, restas, multiplicaciones y divisiones con números enteros.",
         tipo: "video",
         url: "https://www.youtube.com/watch?v=numeros_enteros",
-        fechaCreacion: new Date("2024-03-01"),
-        cursoId: 1 // Matemáticas
+        creacion: new Date("2024-03-01"),
+        curso_id: 1 // Matemáticas
     },
     {
         id: 2,
@@ -27,8 +27,8 @@ export class ContenidoService {
         descripcion: "Documento PDF con ejercicios de suma, resta y multiplicación de fracciones.",
         tipo: "documento",
         url: "https://example.com/matematicas/fracciones.pdf",
-        fechaCreacion: new Date("2024-03-05"),
-        cursoId: 2
+        creacion: new Date("2024-03-05"),
+        curso_id: 2
     },
     {
         id: 3,
@@ -36,8 +36,8 @@ export class ContenidoService {
         descripcion: "Artículo explicativo sobre figuras geométricas y sus propiedades.",
         tipo: "articulo",
         url: "https://example.com/matematicas/geometria",
-        fechaCreacion: new Date("2024-03-07"),
-        cursoId: 3
+        creacion: new Date("2024-03-07"),
+        curso_id: 3
     },
     {
       id: 4,
@@ -45,8 +45,8 @@ export class ContenidoService {
       descripcion: "Video explicativo sobre geometría analítica y sus aplicaciones.",
       tipo: "video",
       url: "https://example.com/matematicas/geometria",
-      fechaCreacion: new Date("2024-03-07"),
-      cursoId: 3
+      creacion: new Date("2024-03-07"),
+      curso_id: 3
   },
   ];
 
@@ -71,7 +71,7 @@ export class ContenidoService {
   getContenidosByCursoId(cursoId: number) {
     if(this.useMockData){
       console.log('Obteniendo contenidos simulados por curso id', cursoId)
-      const contenidosFiltrados = this.mockContenidos.filter(c => c.cursoId === cursoId)
+      const contenidosFiltrados = this.mockContenidos.filter(c => c.curso_id === cursoId)
       return of(contenidosFiltrados).pipe(
         delay(500)
       )

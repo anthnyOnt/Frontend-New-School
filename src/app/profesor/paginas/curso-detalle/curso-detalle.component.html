@@ -1,0 +1,111 @@
+<div class="curso-detalle-container">
+  <!-- Header with back button -->
+  <div class="curso-header">
+    <button [routerLink]="['/profesorcursos']" class="back-btn">
+      ← Volver a Cursos
+    </button>
+    <h1 *ngIf="curso">{{ curso.nombre }}</h1>
+  </div>
+
+  <div *ngIf="cargando" class="loading-container">
+    <span>Cargando información...</span>
+  </div>
+
+  <div *ngIf="error" class="error-container">
+    <span>{{ error }}</span>
+    <button (click)="cargarDatosCurso()">Reintentar</button>
+  </div>
+
+  <div *ngIf="!cargando && !error" class="curso-content">
+    <div class="curso-info" *ngIf="curso">
+      <div class="curso-descripcion">
+        <h2>Descripción del Curso</h2>
+        <p>{{ curso.descripcion }}</p>
+      </div>
+      <div class="curso-meta">
+        <p><strong>Fecha de creación:</strong> {{ curso.fechaCreacion | date:'dd/MM/yyyy' }}</p>
+      </div>
+    </div>
+
+    <!-- Tab View -->
+    <div class="tabs-container">
+      <div class="tabs-header">
+        <div class="tab-btn" 
+             [class.active]="activeTab === 0" 
+             (click)="cambiarTab(0)">
+          Contenidos
+        </div>
+        <div class="tab-btn" 
+             [class.active]="activeTab === 1" 
+             (click)="cambiarTab(1)">
+          Tareas
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <!-- Contenidos Tab -->
+        <div class="tab-pane" *ngIf="activeTab === 0">
+          <!-- Add Content button -->
+          <div class="actions-bar">
+            <button class="btn-add-content" (click)="abrirFormularioContenido()">
+              + Agregar Contenido
+            </button>
+          </div>
+          
+          <div *ngIf="contenidos.length === 0" class="empty-message">
+            <p>No hay contenidos disponibles para este curso.</p>
+          </div>
+
+          <div class="contenidos-list">
+            <div *ngFor="let contenido of contenidos" class="contenido-card">
+              <div class="contenido-header">
+                <h3>{{ contenido.titulo }}</h3>
+                <span class="tipo-badge">{{ contenido.tipo }}</span>
+              </div>
+              <p class="contenido-descripcion">{{ contenido.descripcion }}</p>
+              <div class="contenido-footer">
+                <span class="fecha">Fecha: {{ contenido.creacion | date:'dd/MM/yyyy' }}</span>
+                <div class="contenido-actions">
+                  <button class="edit-btn" (click)="editarContenido(contenido)">✏️</button>
+                  <button class="delete-btn" (click)="eliminarContenido(contenido.id)">🗑️</button>
+                  <button class="ver-btn" (click)="abrirContenido(contenido.url)">Ver contenido</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tareas Tab -->
+        <div class="tab-pane" *ngIf="activeTab === 1">
+          <div *ngIf="tareas.length === 0" class="empty-message">
+            <p>No hay tareas disponibles para este curso.</p>
+          </div>
+
+          <div class="tareas-list">
+            <div *ngFor="let tarea of tareas" class="tarea-card">
+              <div class="tarea-header">
+                <h3>{{ tarea.titulo }}</h3>
+                <span class="puntaje-badge">{{ tarea.puntaje_max }} pts</span>
+              </div>
+              <p class="tarea-descripcion">{{ tarea.descripcion }}</p>
+              <div class="tarea-footer">
+                <span class="fecha-entrega">
+                  <strong>Fecha de entrega:</strong> {{ tarea.fecha_entrega | date:'dd/MM/yyyy' }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Form overlay for adding/editing content -->
+  <app-contenido-form 
+    *ngIf="mostrarFormularioContenido && curso" 
+    [cursoId]="curso.id" 
+    [contenidoEditar]="contenidoEditar"
+    (cerrar)="cerrarFormularioContenido()" 
+    (contenidoAgregado)="manejarContenidoAgregado($event)">
+  </app-contenido-form>
+</div>

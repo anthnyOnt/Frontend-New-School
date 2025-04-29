@@ -18,6 +18,7 @@ export class VerEstudiantesComponent implements OnInit {
 
   ngOnInit() {
     this.cargarEstudiantes();
+    console.log(this.estudiantes);
   }
 
   cargarEstudiantes() {

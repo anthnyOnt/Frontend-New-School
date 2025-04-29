@@ -1,0 +1,19 @@
+<div class="main-container">
+    <section class="section">
+      <h1 class="section-title">Cursos</h1>
+      <div class="carousel cursos-carousel">
+        <div *ngFor="let curso of cursos" class="carousel-item">
+          <app-curso [curso]="curso"></app-curso>
+        </div>
+      </div>
+    </section>
+  
+    <section class="section">
+      <h1 class="section-title">Tareas</h1>
+      <div class="carousel tareas-carousel">
+        <div *ngFor="let tarea of tareas" class="carousel-item">
+          <app-tarea [tarea]="tarea"></app-tarea>
+        </div>
+      </div>
+    </section>
+  </div>
