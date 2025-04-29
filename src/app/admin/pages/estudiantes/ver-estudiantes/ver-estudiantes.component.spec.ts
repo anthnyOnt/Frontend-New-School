@@ -1,62 +1,90 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VerEstudiantesComponent } from './ver-estudiantes.component';
 import { EstudianteService } from '../../../services/estudiante/estudiante.service';
 import { of } from 'rxjs';
-import { CommonModule } from '@angular/common';
-import { RouterTestingModule } from '@angular/router/testing'; // ✅ cambio aquí
 import { Estudiante } from '../../../../core/interfaces/estudiante';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 describe('VerEstudiantesComponent', () => {
   let component: VerEstudiantesComponent;
   let fixture: ComponentFixture<VerEstudiantesComponent>;
-  let mockEstudianteService: any;
-
+  
+  let estudianteServiceSpy: jasmine.SpyObj<EstudianteService>;
+  
   const mockEstudiantes: Estudiante[] = [
-    { id: 1, nombre: 'Ana', apellido: 'López', ci: 123456, email: 'ana@test.com', rol: 'estudiante', password: '' },
-    { id: 2, nombre: 'Luis', apellido: 'Martínez', ci: 654321, email: 'luis@test.com', rol: 'estudiante', password: '' }
+    { id: 1, nombre: 'Juan', apellido: 'Pérez', ci: 123456, email: 'juan@example.com', rol: 'estudiante', password: '' },
+    { id: 2, nombre: 'María', apellido: 'López', ci: 654321, email: 'maria@example.com', rol: 'estudiante', password: '' }
   ];
 
   beforeEach(async () => {
-    mockEstudianteService = {
-      getEstudiantes: jasmine.createSpy('getEstudiantes').and.returnValue(of(mockEstudiantes)),
-      deleteEstudiante: jasmine.createSpy('deleteEstudiante').and.returnValue(of(void 0))
-    };
 
+    const spy = jasmine.createSpyObj('EstudianteService', ['getEstudiantes', 'deleteEstudiante']);
+    const activatedRouteMock = {
+      snapshot: {
+        paramMap: {
+          get: () => '1' // Example ID, adjust as needed
+        }
+      }
+    };
     await TestBed.configureTestingModule({
       imports: [
-        VerEstudiantesComponent,
         CommonModule,
-        RouterTestingModule // ✅ reemplaza RouterLink
+        RouterLink,
+        VerEstudiantesComponent
       ],
       providers: [
-        { provide: EstudianteService, useValue: mockEstudianteService }
+        { provide: EstudianteService, useValue: spy },
+        { provide: ActivatedRoute, useValue: activatedRouteMock}
+        
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VerEstudiantesComponent);
-    component = fixture.componentInstance;
-    mockEstudianteService = TestBed.inject(EstudianteService) as jasmine.SpyObj<EstudianteService>;
+    estudianteServiceSpy = TestBed.inject(EstudianteService) as jasmine.SpyObj<EstudianteService>;
   });
 
-  it('debería crear el componente', () => {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(VerEstudiantesComponent);
+    component = fixture.componentInstance;
+    
+
+    estudianteServiceSpy.getEstudiantes.and.returnValue(of(mockEstudiantes));
+    
+    fixture.detectChanges();
+  });
+
+  it('Deberia crear el componente', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load estudiantes on init', () => {
-    expect(mockEstudianteService.getEstudiantes).toHaveBeenCalled();
+  it('Deberia cargar a los estudiantes', () => {
+    expect(estudianteServiceSpy.getEstudiantes).toHaveBeenCalled();
     expect(component.estudiantes.length).toBe(2);
+    expect(component.estudiantes).toEqual(mockEstudiantes);
   });
 
-  it('should delete an estudiante and update the list', fakeAsync(() => {
-    spyOn(window, 'confirm').and.returnValue(true);
-    component.eliminarEstudiante(mockEstudiantes[0]);
-    tick();
-    expect(mockEstudianteService.deleteEstudiante).toHaveBeenCalledWith(1);
-  }));
+  it('Deberia eliminar al estudiante tras confirmar', () => {
 
-  it('should not delete estudiante if confirm is cancelled', () => {
-    spyOn(window, 'confirm').and.returnValue(false);
+    estudianteServiceSpy.deleteEstudiante.and.returnValue(of(void 0));
+    
+
+    spyOn(window, 'confirm').and.returnValue(true);
+    
+
     component.eliminarEstudiante(mockEstudiantes[0]);
-    expect(mockEstudianteService.deleteEstudiante).not.toHaveBeenCalled();
+    
+
+    expect(estudianteServiceSpy.deleteEstudiante).toHaveBeenCalledWith(1);
+    
+
+    expect(component.estudiantes.length).toBe(1);
+    expect(component.estudiantes[0].id).toBe(2);
+  });
+
+  it('Deberia usar trackByID para devolver la id del estudiante', () => {
+    const estudiante = mockEstudiantes[0];
+    expect(component.trackById(0, estudiante)).toBe(estudiante.id);
   });
 });

@@ -6,7 +6,6 @@ import { TokenInterceptor } from './token.interceptor';
 describe('TokenInterceptor', () => {
   let interceptor: TokenInterceptor;
   
-
   beforeEach(() => {
     TestBed.configureTestingModule({});
     interceptor = new TokenInterceptor();
