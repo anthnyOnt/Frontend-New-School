@@ -14,13 +14,38 @@ import { CommonModule } from '@angular/common';
 export class AppComponent implements OnInit {
   title = 'FRONTEND-NEW-SCHOOL';
   isAuthenticated = false;
+  navElements: any[] = []
+
+  adminNavElements = [
+    {name: 'Estudiantes', icon: "fas fa-user-graduate", route: '/admin/estudiantes'},
+    {name: 'Grados', icon: "fas fa-graduation-cap", route: '/admin/grados'},
+    {name: 'Profesores', icon: "fas fa-chalkboard-teacher", route:'/admin/profesores'},
+    {name: 'Cursos', icon: "fas fa-book", route:'/admin/cursos'}
+  ]
+
+  profesorNavElements = [{name: 'Cursos', icon: "fas fa-book", route: '/profesor/cursos'}]
+
+  estudianteNavElements = [
+    {name: 'Cursos', icon: "fas fa-book", route: '/estudiante/cursos'},
+    {name: 'Tareas', icon: "fas fa-tasks", route: '/estudiante/tareas'},
+  ]
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    
     // Suscribirse al observable de autenticación para detectar cambios
     this.authService.isAuthenticated.subscribe(
       auth => this.isAuthenticated = auth
     );
+    let currentRole = this.authService.getRolUsuario();
+    
+    if(currentRole === 'admin') {
+      this.navElements = this.adminNavElements;
+    } else if(currentRole === 'profesor') {
+      this.navElements = this.profesorNavElements;
+    } else if(currentRole === 'estudiante') {
+      this.navElements = this.estudianteNavElements;
+    }
   }
 }

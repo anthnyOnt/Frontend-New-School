@@ -20,7 +20,7 @@
     <p>No existen cursos</p>
   </div>
 
-  <button class="btn-add-curso" routerLink="/main">Volver</button>
+  <button class="btn-add-curso" routerLink="/admin">Volver</button>
 
   <app-curso-form *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [cursoEditar]="cursoEditar" [grados]="gradosMap" (cursoAgregado)="agregarNuevoCurso($event)"></app-curso-form>
 </div>

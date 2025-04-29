@@ -7,6 +7,5 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent {
-
+export class AdminMainComponent {
 }
