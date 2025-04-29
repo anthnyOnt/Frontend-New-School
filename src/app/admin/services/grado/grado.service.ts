@@ -8,25 +8,25 @@ import { Grado } from '../../../core/interfaces/grado';
   providedIn: 'root'
 })
 export class GradoService {
-  private apiUrl = 'https://tu-api.com/grados'; // URL del backend
+  private apiUrl = 'http://localhost:8080/api/v1/grados'; // URL del backend
   
   // Datos simulados (mock data)
   private mockGrados: Grado[] = [
-    { id: 1, descripcion: 'Primer Grado', primaria_secundaria: true },
-    { id: 2, descripcion: 'Segundo Grado', primaria_secundaria: true },
-    { id: 3, descripcion: 'Tercer Grado', primaria_secundaria: true },
-    { id: 4, descripcion: 'Cuarto Grado', primaria_secundaria: true },
-    { id: 5, descripcion: 'Quinto Grado', primaria_secundaria: true },
-    { id: 6, descripcion: 'Sexto Grado', primaria_secundaria: true },
-    { id: 7, descripcion: 'Primer Año', primaria_secundaria: false },
-    { id: 8, descripcion: 'Segundo Año', primaria_secundaria: false },
-    { id: 9, descripcion: 'Tercer Año', primaria_secundaria: false },
-    { id: 10, descripcion: 'Cuarto Año', primaria_secundaria: false },
-    { id: 11, descripcion: 'Quinto Año', primaria_secundaria: false }
+    { id: 1, descripcion: 'Primer Grado', primariaSencundaria: true },
+    { id: 2, descripcion: 'Segundo Grado', primariaSencundaria: true },
+    { id: 3, descripcion: 'Tercer Grado', primariaSencundaria: true },
+    { id: 4, descripcion: 'Cuarto Grado', primariaSencundaria: true },
+    { id: 5, descripcion: 'Quinto Grado', primariaSencundaria: true },
+    { id: 6, descripcion: 'Sexto Grado', primariaSencundaria: true },
+    { id: 7, descripcion: 'Primer Año', primariaSencundaria: false },
+    { id: 8, descripcion: 'Segundo Año', primariaSencundaria: false },
+    { id: 9, descripcion: 'Tercer Año', primariaSencundaria: false },
+    { id: 10, descripcion: 'Cuarto Año', primariaSencundaria: false },
+    { id: 11, descripcion: 'Quinto Año', primariaSencundaria: false }
   ];
 
   // Flag para usar datos simulados
-  private useMockData = true;
+  private useMockData = false;
 
   constructor(private http: HttpClient) {}
 

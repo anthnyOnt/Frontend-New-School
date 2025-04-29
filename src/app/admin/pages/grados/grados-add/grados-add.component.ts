@@ -21,7 +21,7 @@ export class GradosAddComponent {
   grado: Grado = {
     id: 0, // Se generará en el backend
     descripcion: '',
-    primaria_secundaria: true,
+    primariaSencundaria: true,
   };
   
   constructor(private gradoService: GradoService) {}
@@ -45,20 +45,18 @@ export class GradosAddComponent {
       this.grado = {
         id: 0,
         descripcion: '',
-        primaria_secundaria: true,
+        primariaSencundaria: true,
       };
     }
   }
   
   guardarGrado(): void {
     if (this.gradoEditar) {
-      // Editar
       this.gradoService.updateGrado(this.grado).subscribe(() => {
         this.gradoAgregado.emit(this.grado);
         this.cerrar.emit();
       });
     } else {
-      // Crear
       this.gradoService.addGrado(this.grado).subscribe((nuevoGrado) => { // Cambiar a createGrado
         this.gradoAgregado.emit(nuevoGrado);
         this.cerrar.emit();
