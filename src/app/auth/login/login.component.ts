@@ -56,20 +56,11 @@ export class LoginComponent implements OnInit {
     
     // Redirigir solo si está autenticado y no viene de un registro
     if (this.isLoggedIn && !this.registered) {
-      if(this.authService.getRolUsuario() === 'admin') {
+      if(this.authService.getRolUsuario() === 'ADMIN') {
         this.router.navigate(['/admin']);
-      } else if(this.authService.getRolUsuario() === 'profesor') { 
+      } else if(this.authService.getRolUsuario() === 'DOCENTE') { 
         this.router.navigate(['/profesor']);
-      } else if(this.authService.getRolUsuario() === 'estudiante') {
-        this.router.navigate(['/estudiante']);
-      } else {
-        this.router.navigate(['/']);
-      }
-      if(this.authService.getRolUsuario() === 'admin') {
-        this.router.navigate(['/admin']);
-      } else if(this.authService.getRolUsuario() === 'profesor') { 
-        this.router.navigate(['/profesor']);
-      } else if(this.authService.getRolUsuario() === 'estudiante') {
+      } else if(this.authService.getRolUsuario() === 'ESTUDIANTE') {
         this.router.navigate(['/estudiante']);
       } else {
         this.router.navigate(['/']);
@@ -84,8 +75,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    
-    
+     
     this.loading = true;
     this.error = '';
     
@@ -95,10 +85,9 @@ export class LoginComponent implements OnInit {
     })
     .subscribe({
       next: (data) => {
-        // Navegar a la ruta 'main' en lugar de returnUrl
         if(this.authService.getRolUsuario() === 'ADMIN') {
           this.router.navigate(['/admin']);
-        } else if(this.authService.getRolUsuario() === 'PROFESOR') { 
+        } else if(this.authService.getRolUsuario() === 'DOCENTE') { 
           this.router.navigate(['/profesor']);
         } else if(this.authService.getRolUsuario() === 'ESTUDIANTE') {
           this.router.navigate(['/estudiante']);

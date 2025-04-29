@@ -48,11 +48,11 @@ export class AppComponent implements OnInit {
     );
     let currentRole = this.authService.getRolUsuario();
     
-    if(currentRole === 'admin') {
+    if(currentRole === 'ADMIN') {
       this.navElements = this.adminNavElements;
-    } else if(currentRole === 'profesor') {
+    } else if(currentRole === 'DOCENTE') {
       this.navElements = this.profesorNavElements;
-    } else if(currentRole === 'estudiante') {
+    } else if(currentRole === 'ESTUDIANTE') {
       this.navElements = this.estudianteNavElements;
     }
   }
@@ -60,9 +60,9 @@ export class AppComponent implements OnInit {
   getRole() {
     if(this.currentRole === 'ADMIN') {
       this.navElements = this.adminNavElements;
-    } else if(this.currentRole === 'profesor') {
+    } else if(this.currentRole === 'PROFESOR') {
       this.navElements = this.profesorNavElements;
-    } else if(this.currentRole === 'estudiante') {
+    } else if(this.currentRole === 'ESTUDIANTE') {
       this.navElements = this.estudianteNavElements;
     }
   }
