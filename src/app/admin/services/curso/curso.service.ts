@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Curso } from '../../../core/interfaces/curso';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, delay, throwError } from 'rxjs';
+import { Estudiante } from '../../../core/interfaces/estudiante';
 
 @Injectable({
   providedIn: 'root'
@@ -116,6 +117,7 @@ export class CursoService {
     }
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
   getCursoByProfesor(profesorId: number): Observable<Curso[]> {
     if (this.useMockData) {
       const cursosFiltrados = this.mockCursos.filter(curso => curso.profesorId === profesorId);
@@ -125,5 +127,4 @@ export class CursoService {
     }
     return this.http.get<Curso[]>('${this.apiUrl}/profesor/${profesorId}')
   }
-
 }

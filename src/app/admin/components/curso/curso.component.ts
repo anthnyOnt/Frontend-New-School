@@ -14,7 +14,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class CursoComponent implements OnInit{
   @Input() curso!: Curso;  
-  @Input() gradoDescripcion!: string;
+  @Input() gradoDescripcion?: string;
   @Output() cursoEliminado = new EventEmitter<number>();  
   @Output() cursoEditar = new EventEmitter<CursoCompleto>();
   isDropdownVisible = false;

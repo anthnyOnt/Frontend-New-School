@@ -69,7 +69,6 @@ export class TareaService {
     }
     return this.http.get<Tarea[]>(this.apiUrl);
   }
-
   // Obtener tareas por curso ID
   getTareasByCursoId(cursoId: number): Observable<Tarea[]> {
     if (this.useMockData) {
@@ -153,12 +152,12 @@ export class TareaService {
       }
       
       return of({...tarea}).pipe(
+
         delay(500)
       );
     }
     return this.http.get<Tarea>(`${this.apiUrl}/${id}`);
   }
-
   // Método para alternar entre datos simulados y reales
   toggleMockData(useMock: boolean): void {
     this.useMockData = useMock;
