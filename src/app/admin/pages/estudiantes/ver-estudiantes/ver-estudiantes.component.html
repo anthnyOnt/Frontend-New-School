@@ -15,9 +15,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let estudiante of estudiantes; trackBy: trackById">
-        <td>{{ estudiante.nombre }}</td>
-        <td>{{ estudiante.email }}</td>
-        <td>{{ estudiante.ci }}</td>
+        <td>{{ estudiante.usuario.nombre }}</td>
+        <td>{{ estudiante.usuario.email }}</td>
+        <td>{{ estudiante.usuario.ci }}</td>
         <td class="estudiante-actions">
           <button class ="edit-btn" (click)="editarEstudiante(estudiante)">✏️</button>
           <button class="delete-btn" (click)="eliminarEstudiante(estudiante)">🗑️</button>

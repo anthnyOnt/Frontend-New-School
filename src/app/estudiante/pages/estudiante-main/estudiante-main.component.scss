@@ -1,4 +1,47 @@
-.cursos-carousel{
+.main-container {
+    padding: 24px;
     display: flex;
-    gap: 30px;
-}
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+  }
+  
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 4px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background-color: #f2f2f2;
+    }
+  }
+  
+  .carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+

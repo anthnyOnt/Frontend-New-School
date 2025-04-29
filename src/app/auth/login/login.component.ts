@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
   
     // Obtener la URL de retorno o usar el home por defecto
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     
     // Comprobar si hay un mensaje en la URL
     this.message = this.route.snapshot.queryParams['message'];
@@ -55,6 +56,15 @@ export class LoginComponent implements OnInit {
     
     // Redirigir solo si está autenticado y no viene de un registro
     if (this.isLoggedIn && !this.registered) {
+      if(this.authService.getRolUsuario() === 'admin') {
+        this.router.navigate(['/admin']);
+      } else if(this.authService.getRolUsuario() === 'profesor') { 
+        this.router.navigate(['/profesor']);
+      } else if(this.authService.getRolUsuario() === 'estudiante') {
+        this.router.navigate(['/estudiante']);
+      } else {
+        this.router.navigate(['/']);
+      }
       if(this.authService.getRolUsuario() === 'admin') {
         this.router.navigate(['/admin']);
       } else if(this.authService.getRolUsuario() === 'profesor') { 
@@ -75,6 +85,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     
+    
     this.loading = true;
     this.error = '';
     
@@ -85,11 +96,11 @@ export class LoginComponent implements OnInit {
     .subscribe({
       next: (data) => {
         // Navegar a la ruta 'main' en lugar de returnUrl
-        if(this.authService.getRolUsuario() === 'admin') {
+        if(this.authService.getRolUsuario() === 'ADMIN') {
           this.router.navigate(['/admin']);
-        } else if(this.authService.getRolUsuario() === 'profesor') { 
+        } else if(this.authService.getRolUsuario() === 'PROFESOR') { 
           this.router.navigate(['/profesor']);
-        } else if(this.authService.getRolUsuario() === 'estudiante') {
+        } else if(this.authService.getRolUsuario() === 'ESTUDIANTE') {
           this.router.navigate(['/estudiante']);
         } else {
           this.router.navigate(['/']);

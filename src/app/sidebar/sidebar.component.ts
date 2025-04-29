@@ -21,17 +21,7 @@ export class SidebarComponent {
 
   logout(): void {
     // Mostrar indicador de carga o deshabilitar la interfaz si es necesario
-    
-    this.authService.logout().subscribe({
-      next: () => {
-        // Navegar a la página de login
-        this.router.navigate(['/login']);
-      },
-      error: (error) => {
-        console.error('Error al cerrar sesión:', error);
-        // Aún así, navegar a login (es lo más seguro)
-        this.router.navigate(['/login']);
-      }
-    });
+    this.authService.logout();
+    this.router.navigate(["/"])
   }
 }

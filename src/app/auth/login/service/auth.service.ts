@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap, delay } from 'rxjs/operators';
 import { usuario } from '../../../core/interfaces/usuario';
 import { LoginRequest, LoginResponse } from '../../../core/interfaces/auth';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.prod';
 
 
 
@@ -82,6 +82,7 @@ export class AuthService {
     if (this.useMockData) {
       return this.mockLogin(credentials);
     } else {
+      console.log(this.apiUrl);
       return this.httpLogin(credentials);
     }
   }
@@ -129,6 +130,7 @@ export class AuthService {
       .pipe(
         tap(response => {
           // Guardar en localStorage
+          console.log(response);
           localStorage.setItem('currentUser', JSON.stringify(response.usuario));
           localStorage.setItem('token', response.token);
           
@@ -138,15 +140,6 @@ export class AuthService {
         }),
         catchError(this.handleError)
       );
-  }
-
-  // Método de logout
-  logout(): Observable<any> {
-    if (this.useMockData) {
-      return this.mockLogout();
-    } else {
-      return this.httpLogout();
-    }
   }
 
   // Implementación del logout con mock data
@@ -163,30 +156,14 @@ export class AuthService {
   }
 
   // Implementación del logout con backend real
-  private httpLogout(): Observable<any> {
-    const token = localStorage.getItem('token');
-    
-    return this.http.post(`${this.apiUrl}/logout`, { token })
-      .pipe(
-        tap(() => {
-          // Limpiar localStorage
-          localStorage.removeItem('currentUser');
-          localStorage.removeItem('token');
-          
-          // Actualizar los BehaviorSubjects
-          this.currentUserSubject.next(null);
-          this.isAuthenticatedSubject.next(false);
-        }),
-        catchError(error => {
-          // Si hay error en el logout, seguimos limpiando los datos locales
-          localStorage.removeItem('currentUser');
-          localStorage.removeItem('token');
-          this.currentUserSubject.next(null);
-          this.isAuthenticatedSubject.next(false);
-          
-          return throwError(error);
-        })
-      );
+  logout(): void {
+    // Clear localStorage
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+  
+    // Update BehaviorSubjects
+    this.currentUserSubject.next(null);
+    this.isAuthenticatedSubject.next(false);
   }
 
   // Verificar si el token actual es válido (útil para guards)
