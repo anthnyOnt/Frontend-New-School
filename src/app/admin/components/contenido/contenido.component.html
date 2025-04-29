@@ -7,7 +7,7 @@
         <p class="contenido-description">{{ contenido.descripcion }}</p>
         <div class="contenido-meta">
             <span class="contenido-fechaCreacion">
-                📅 {{ contenido.fechaCreacion | date: 'dd/MM/yyyy' }}
+                📅 {{ contenido.creacion | date: 'dd/MM/yyyy' }}
             </span>
             <a class="contenido-url" [href]="contenido.url" target="_blank">
                 🔗 Ver contenido

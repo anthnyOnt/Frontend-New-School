@@ -1,20 +1,27 @@
 .curso-card {
     width: 280px;
-    min-height: 200px;
+    min-height: 250px; /* Set a consistent minimum height */
+    height: 100%; /* Allow cards to stretch to the same height */
     background: white;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
-  
+    color: black; /* Ensure text is visible */
+
+    display: flex; /* Use Flexbox for internal alignment */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Distribute content evenly */
+    align-items: center; /* Center align content horizontally */
+
     &:hover {
       transform: translateY(-5px);
       box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.2);
     }
-  }
-  
-.upper{
+}
+
+.upper {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -24,17 +31,26 @@
 .curso-title {
     font-size: 28px;
     font-weight: bold;
-    color: black;
+    color: #333; /* Darker color for better visibility */
 }
-  
+
 .curso-descripcion {
     font-size: 20px;
     color: #555;
     margin-bottom: 10px;
+    text-align: center; /* Center align text */
 }
-  
+
 .curso-fecha {
     font-size: 20px;
     color: #888;
     font-style: italic;
+}
+
+
+.cursos-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping if there are too many cards */
+    gap: 20px; /* Add spacing between cards */
+    justify-content: center; /* Center the cards horizontally */
 }

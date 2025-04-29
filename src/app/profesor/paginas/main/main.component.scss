@@ -1,0 +1,6 @@
+.cursos-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping if there are too many cards */
+    gap: 20px; /* Add spacing between cards */
+    justify-content: center; /* Center the cards horizontally */
+}

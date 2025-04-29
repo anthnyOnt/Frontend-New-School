@@ -2,12 +2,14 @@
 
 /* Colores */
 $verde: #47663B;
-$verde-oscuro: darken($verde, 10%);
+$verde-oscuro: #1F4529; /* Using the same verde-oscuro as in global styles */
 $fondo-claro: #E8ECD7;
 $gris-texto: #555;
 $rojo-eliminar: #f44336;
-$primaria: #A6C36F;
-$secundaria: #6B8E23;
+/* Updated colors for better consistency */
+$primaria: $verde;
+$secundaria: $verde-oscuro;
+
 body
 {
   height: auto;
@@ -74,13 +76,15 @@ body
 }
 
 .grado-card .tipo-primaria {
-  background-color: lighten($primaria, 20%);
-  color: darken($primaria, 15%);
+  background-color: rgba($verde, 0.2); /* Semi-transparent background based on $verde */
+  color: $verde;
+  border: 1px solid $verde;
 }
 
 .grado-card .tipo-secundaria {
-  background-color: lighten($secundaria, 20%);
-  color: darken($secundaria, 15%);
+  background-color: rgba($verde-oscuro, 0.2); /* Semi-transparent background based on $verde-oscuro */
+  color: $verde-oscuro;
+  border: 1px solid $verde-oscuro;
 }
 
 /* Estilos para el menú desplegable (dropdown) */
