@@ -15,6 +15,9 @@ Operaciones CRUD para:
 * Cursos
 ## Instalación
 ```
+# Instalar Angular
+npm install -g @angular/cli
+
 # Clonar el repositorio
 git clone https://github.com/anthnyOnt/Frontend-New-School.git
 
