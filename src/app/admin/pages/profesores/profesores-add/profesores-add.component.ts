@@ -19,14 +19,16 @@ export class ProfesorAddComponent {
 
   profesor: Profesor = {
     id: 0,
-    nombre: '',
-    fechaNacimiento: new Date(),
-    nacionalidad: '',
-    correo: '',
-    telefono: '',
-    direccion: '',
-    rol: '',
-    ci: '',
+    usuario: {
+      ci: 0,
+      nombre: '',
+      apellido: '',
+      email: '',
+      password: '',
+      rol: 'DOCENTE',
+    },
+    licenciatura: '',
+    titulo: '',
   };
 
   constructor(private profesorService: ProfesorService) {}
@@ -45,16 +47,33 @@ export class ProfesorAddComponent {
     } else {
       this.profesor = {
         id: 0,
-        nombre: '',
-        fechaNacimiento: new Date(),
-        nacionalidad: '',
-        correo: '',
-        telefono: '',
-        direccion: '',
-        rol: '',
-        ci: '',
+        usuario: {
+          ci: 0,
+          nombre: '',
+          apellido: '',
+          email: '',
+          password: '',
+          rol: 'DOCENTE',
+        },
+        licenciatura: '',
+        titulo: '',
       };
     }
+  }
+
+
+  formatProfesor(profesor: Profesor): any {
+    const profesorFormateado = {
+      ci: profesor.usuario.ci,
+      nombre: profesor.usuario.nombre,
+      apellido: profesor.usuario.apellido,
+      email: profesor.usuario.nombre + '.' + profesor.usuario.apellido + '@example.com',
+      password: 'contraseña123',
+      datosEspecificos: {
+        licenciatura: profesor.licenciatura
+      }
+    }
+    return profesorFormateado
   }
 
   guardarProfesor(): void {
@@ -64,7 +83,8 @@ export class ProfesorAddComponent {
         this.cerrar.emit();
       });
     } else {
-      this.profesorService.addProfesor(this.profesor).subscribe((nuevoProfesor) => {
+      let profesorFormateado = this.formatProfesor(this.profesor);
+      this.profesorService.addProfesor(profesorFormateado).subscribe((nuevoProfesor) => {
         this.profesorAgregado.emit(nuevoProfesor);
         this.cerrar.emit();
       });

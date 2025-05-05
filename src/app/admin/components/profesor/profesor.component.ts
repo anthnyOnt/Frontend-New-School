@@ -30,7 +30,7 @@ export class ProfesorComponent implements OnInit {
   }
 
   eliminarProfesor(profesor: Profesor) {
-    if (confirm(`¿Seguro que quieres eliminar a ${profesor.nombre}?`)) {
+    if (confirm(`¿Seguro que quieres eliminar a ${profesor.usuario.nombre}?`)) {
       this.profesorService.deleteProfesor(profesor.id).subscribe(() => {
         this.profesores = this.profesores.filter(p => p.id !== profesor.id);
       });

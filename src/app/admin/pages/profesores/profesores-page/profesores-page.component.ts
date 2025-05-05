@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-profesores-page',
   standalone: true,
-  imports: [ CommonModule, ProfesorAddComponent, FormsModule,RouterLink],
+  imports: [CommonModule, ProfesorAddComponent, FormsModule, RouterLink],
   templateUrl: './profesores-page.component.html',
   styleUrls: ['./profesores-page.component.scss']
 })
@@ -65,9 +65,8 @@ export class ProfesoresPageComponent implements OnInit {
     } else {
       const termino = this.terminoBusqueda.toLowerCase().trim();
       this.profesoresFiltrados = this.profesores.filter(profesor => 
-        profesor.nombre.toLowerCase().includes(termino) || 
-        profesor.nacionalidad.toLowerCase().includes(termino) ||
-        profesor.rol.toLowerCase().includes(termino)
+        profesor.usuario.nombre.toLowerCase().includes(termino) || 
+        profesor.usuario.rol.toLowerCase().includes(termino)
       );
     }
   }

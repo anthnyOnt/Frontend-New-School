@@ -8,17 +8,15 @@
       <tr>
         <th>Nombre</th>
         <th>Correo</th>
-        <th>Teléfono</th>
         <th>CI</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let profesor of profesores; trackBy: trackById">
-        <td>{{ profesor.nombre }}</td>
-        <td>{{ profesor.correo }}</td>
-        <td>{{ profesor.telefono }}</td>
-        <td>{{ profesor.ci }}</td>
+        <td>{{ profesor.usuario.nombre }} {{ profesor.usuario.apellido}}</td>
+        <td>{{ profesor.usuario.email }}</td>
+        <td>{{ profesor.usuario.ci }}</td>
         <td class="profesor-actions">
           <button class="edit-btn" (click)="editarProfesor(profesor)">✏️</button>
           <button class="delete-btn" (click)="eliminarProfesor(profesor)">🗑️</button>
