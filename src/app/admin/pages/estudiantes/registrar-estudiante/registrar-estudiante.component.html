@@ -32,6 +32,21 @@
           <small *ngIf="apellido?.errors?.['pattern']">El apellido solo puede contener letras.</small>
         </div>
       </div>
+      
+      <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input 
+          id="fechaNacimiento"
+          type="date"
+          formControlName="fechaNacimiento"
+          class="form-control"
+          [class.is-invalid]="fechaNacimiento?.invalid && (fechaNacimiento?.dirty || fechaNacimiento?.touched)"
+        />
+        <div *ngIf="fechaNacimiento?.invalid && (fechaNacimiento?.dirty || fechaNacimiento?.touched)" class="invalid-feedback">
+          <small *ngIf="fechaNacimiento?.errors?.['required']">La fecha de nacimiento es requerida.</small>
+          <small *ngIf="fechaNacimiento?.errors?.['pattern']">El formato debe ser YYYY-MM-DD.</small>
+        </div>
+      </div>
   
       <div class="form-group">
         <label for="carnet">CI:</label>
