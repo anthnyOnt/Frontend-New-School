@@ -32,6 +32,10 @@ export class RegistrarEstudianteComponent {
         Validators.maxLength(50),
         Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)
       ]],
+      fechaNacimiento: ['', [
+        Validators.required,
+        Validators.pattern(/^\d{4}-\d{2}-\d{2}$/) // YYYY-MM-DD format
+      ]],
       carnet: ['', [
         Validators.required, 
         Validators.pattern(/^\d{6,10}$/) 
@@ -48,6 +52,20 @@ export class RegistrarEstudianteComponent {
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)
       ]]
     });
+  }
+
+  formatearEstudiante(est: Estudiante): any{
+    const profesorFormateado = {
+      ci: est.usuario.ci,
+      nombre: est.usuario.nombre,
+      apellido: est.usuario.apellido,
+      email: est.usuario.email,
+      password: est.usuario.password,
+      datosEspecificos: {
+        fechaNacimiento: est.fecha_nacimiento
+      }
+    }
+    return profesorFormateado;
   }
 
   registrar() {
@@ -70,10 +88,11 @@ export class RegistrarEstudianteComponent {
         email: this.registroForm.get('email')?.value,
         rol: 'ESTUDIANTE',
         password: this.registroForm.get('password')?.value
-      }
+      },
+      fecha_nacimiento: this.registroForm.get('fechaNacimiento')?.value
     };
-
-    this.estudianteService.addEstudiante(estudiante).subscribe({
+    const estudianteFormateado = this.formatearEstudiante(estudiante);
+    this.estudianteService.addEstudiante(estudianteFormateado).subscribe({
       next: () => {
         this.router.navigate(['/admin/estudiantes']);
       },
@@ -85,6 +104,7 @@ export class RegistrarEstudianteComponent {
 
   get nombre() { return this.registroForm.get('nombre'); }
   get apellido() { return this.registroForm.get('apellido'); }
+  get fechaNacimiento() { return this.registroForm.get('fechaNacimiento'); }
   get carnet() { return this.registroForm.get('carnet'); }
   get email() { return this.registroForm.get('email'); }
   get password() { return this.registroForm.get('password'); }
