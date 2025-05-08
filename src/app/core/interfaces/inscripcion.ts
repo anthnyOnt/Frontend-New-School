@@ -1,6 +1,7 @@
 export interface Inscripcion {
     id: number,
-    fecha: Date,
-    estudiante_id: number,
-    grado_id: number
+    fechaInscripcion: Date,
+    estudianteId: number,
+    gradoId: number,
+    gestion: number
 }

@@ -17,7 +17,7 @@ export class CursoService {
     {id: 3, nombre: 'Matematica', descripcion: 'Curso de matematica', fechaCreacion: new Date(2024, 2, 14), profesorId: 2, gradoId: 3},
     ]
   
-  private useMockData = true;
+  private useMockData = false;
 
   getCursos(): Observable<Curso[]> {
     if (this.useMockData) {

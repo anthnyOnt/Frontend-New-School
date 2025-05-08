@@ -3,11 +3,12 @@ import { Grado } from '../../../core/interfaces/grado';
 import { CommonModule } from '@angular/common';
 import { GradoService } from '../../services/grado/grado.service';
 import { ClickOutsideDirective } from '../../../shared/directives/click-outside.directive';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-grado',
   standalone: true,
-  imports: [CommonModule,ClickOutsideDirective],
+  imports: [CommonModule, ClickOutsideDirective],
   templateUrl: './grado.component.html',
   styleUrl: './grado.component.scss'
 })
@@ -17,14 +18,22 @@ export class GradoComponent {
   @Output() gradoEditar = new EventEmitter<Grado>();
   isDropdownVisible = false;
 
-  constructor(private gradoService: GradoService) {}
+  constructor(
+    private gradoService: GradoService,
+    private router: Router
+  ) {}
 
   toggleDropdown() {
     this.isDropdownVisible = !this.isDropdownVisible;
   }
+  
   // Método para formatear el tipo de grado
   getTipoGrado(): string {
-    return this.grado.primariaSencundaria ? 'Secundaria' : 'Primaria';
+    return this.grado.primariaSencundaria ? 'Primaria' : 'Secundaria';
+  }
+
+  navigateToDetails(): void {
+    this.router.navigate(['/admin/grados', this.grado.id]);
   }
 
   // Métodos de acción (editar, eliminar)
