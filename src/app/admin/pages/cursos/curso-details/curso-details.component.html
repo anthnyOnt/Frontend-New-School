@@ -3,7 +3,7 @@
     <div class="curso-header">
         <h1 class="curso-name">{{ curso.nombre }}</h1>
         <p class="curso-descripcion">{{ curso.descripcion }}</p>
-        <span class="curso-fecha">Fecha de inicio: {{ curso.fechaCreacion | date: 'dd/MM/yyyy'}}</span>
+        <p> {{ profesor.usuario.nombre + ' ' + profesor.usuario.apellido }} </p>
     </div>
 
     <div class="contenidos-section">

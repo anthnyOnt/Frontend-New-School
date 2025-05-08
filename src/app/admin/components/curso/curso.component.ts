@@ -19,12 +19,15 @@ export class CursoComponent implements OnInit{
   @Output() cursoEditar = new EventEmitter<CursoCompleto>();
   isDropdownVisible = false;
 
+  isAdmin = localStorage.getItem('rol') === 'ADMIN' ? false : true;
+
   cursoCompleto!: CursoCompleto;
 
   constructor(private CursoService: CursoService) {}
 
   ngOnInit(): void {
     console.log("Curso component inicializado")
+    console.log(this.isAdmin)
   }
 
   toggleDropdown() {
