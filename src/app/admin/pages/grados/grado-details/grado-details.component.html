@@ -1,0 +1,127 @@
+<div class="grado-details-container">
+  <!-- Header with back button -->
+  <div class="grado-header">
+    <button routerLink="/admin/grados" class="back-btn">
+      ← Volver a Grados
+    </button>
+    <h1 *ngIf="grado">{{ grado.descripcion }}</h1>
+  </div>
+
+  <div *ngIf="loading" class="loading-container">
+    <span>Cargando información...</span>
+  </div>
+
+  <div *ngIf="error" class="error-container">
+    <span>{{ error }}</span>
+    <button (click)="loadGradoDetails()">Reintentar</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="grado-content">
+    <div class="grado-info" *ngIf="grado">
+      <div class="tipo-badge" [ngClass]="{'primaria': grado.primariaSencundaria, 'secundaria': !grado.primariaSencundaria}">
+        {{ grado.primariaSencundaria ? 'Primaria' : 'Secundaria' }}
+      </div>
+    </div>
+
+    <!-- Tab View -->
+    <div class="tabs-container">
+      <div class="tabs-header">
+        <div class="tab-btn" 
+             [class.active]="activeTab === 0" 
+             (click)="changeTab(0)">
+          Estudiantes
+        </div>
+        <div class="tab-btn" 
+             [class.active]="activeTab === 1" 
+             (click)="changeTab(1)">
+          Cursos
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <!-- Estudiantes Tab -->
+        <div class="tab-pane" *ngIf="activeTab === 0">
+          <div class="actions-bar">
+            <button class="btn-add" (click)="showAddStudentForm()">
+              + Agregar Estudiante al Grado
+            </button>
+          </div>
+          
+          <div class="students-list" *ngIf="inscripciones.length > 0">
+            <table class="students-table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>CI</th>
+                  <th>Email</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ins of inscripciones; trackBy: trackById">
+                  <td>{{ ins.estudiante.usuario?.nombre }}</td>
+                  <td>{{ ins.estudiante.usuario?.apellido }}</td>
+                  <td>{{ ins.estudiante.usuario?.ci }}</td>
+                  <td>{{ ins.estudiante.usuario?.email }}</td>
+                  <td class="actions-cell">
+                    <button class="btn-action view">👁️</button>
+                    <button class="btn-action remove">❌</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="empty-message" *ngIf="inscripciones.length === 0">
+            No hay estudiantes registrados en este grado.
+          </div>
+          
+          <!-- Add Student Form (modal) -->
+          <div class="modal-overlay" *ngIf="showingAddStudentForm">
+            <div class="modal-content">
+              <h3>Agregar Estudiante al Grado</h3>
+              <div class="form-container">
+                <div class="form-group">
+                  <label for="studentSelect">Seleccionar Estudiante:</label>
+                  <select id="studentSelect" [(ngModel)]="selectedStudentId" class="form-control">
+                    <option value="">-- Seleccione un estudiante --</option>
+                    <option *ngFor="let student of availableStudents" [value]="student.id">
+                      {{ student.usuario?.nombre }} {{ student.usuario?.apellido }} - {{ student.usuario?.ci }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-actions">
+                  <button class="btn-cancel" (click)="hideAddStudentForm()">Cancelar</button>
+                  <button class="btn-submit" (click)="addStudentToGrado()">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cursos Tab -->
+        <div class="tab-pane" *ngIf="activeTab === 1">
+          <div *ngIf="courses.length > 0" class="courses-grid">
+            <div *ngFor="let course of courses; trackBy: trackById" class="course-card">
+              <div class="course-header">
+                <h3>{{ course.nombre }}</h3>
+                <span class="course-date">{{ course.fechaCreacion | date:'dd/MM/yyyy' }}</span>
+              </div>
+              <p class="course-description">{{ course.descripcion }}</p>
+              <div class="course-actions">
+                <button class="btn-view-course" [routerLink]="['/admin/cursos', course.id]">
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="empty-message" *ngIf="courses.length === 0">
+            No hay cursos asociados a este grado.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

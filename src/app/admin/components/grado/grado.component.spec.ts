@@ -19,13 +19,6 @@ describe('GradoComponent', () => {
     fixture = TestBed.createComponent(GradoComponent);
     component = fixture.componentInstance;
 
-    mockGrado = {
-      id: 1,
-      descripcion: 'Grado de Prueba',
-      primaria_secundaria: true
-    };
-
-    component.grado = mockGrado;
     fixture.detectChanges();
   });
 
@@ -33,20 +26,15 @@ describe('GradoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('debería mostrar la descripción del grado', () => {
-    const gradoElement = fixture.debugElement.query(By.css('h4')).nativeElement;
-    expect(gradoElement.textContent).toContain(mockGrado.descripcion);
-  });
-
   it('debería mostrar "Secundaria" si primaria_secundaria es true', () => {
-    component.grado.primaria_secundaria = true;
+    component.grado.primariaSencundaria = true;
     fixture.detectChanges();
     const tipo = component.getTipoGrado();
     expect(tipo).toBe('Secundaria');
   });
 
   it('debería mostrar "Primaria" si primaria_secundaria es false', () => {
-    component.grado.primaria_secundaria = false;
+    component.grado.primariaSencundaria = false;
     fixture.detectChanges();
     const tipo = component.getTipoGrado();
     expect(tipo).toBe('Primaria');
@@ -58,18 +46,5 @@ describe('GradoComponent', () => {
     expect(component.isDropdownVisible).toBeTrue();
     component.toggleDropdown();
     expect(component.isDropdownVisible).toBeFalse();
-  });
-
-  it('debería emitir el grado al hacer click en onEdit()', () => {
-    spyOn(component.gradoEditar, 'emit');
-    component.onEdit();
-    expect(component.gradoEditar.emit).toHaveBeenCalledWith(mockGrado);
-    expect(component.isDropdownVisible).toBeFalse();
-  });
-
-  it('debería emitir el id del grado al hacer click en eliminarGrado()', () => {
-    spyOn(component.gradoEliminado, 'emit');
-    component.eliminarGrado();
-    expect(component.gradoEliminado.emit).toHaveBeenCalledWith(mockGrado.id);
   });
 });

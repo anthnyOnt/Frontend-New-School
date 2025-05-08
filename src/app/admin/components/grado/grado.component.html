@@ -18,12 +18,15 @@
     </div>
   </div>
       
-  <div class="card-body">
+  <div class="card-body" (click)="navigateToDetails()">
     <p>
       <strong>Tipo de Grado:</strong> 
       <span class="tipo-badge" [ngClass]="{'tipo-primaria': grado.primariaSencundaria, 'tipo-secundaria': !grado.primariaSencundaria}">
         {{ getTipoGrado() }}
       </span>
     </p>
+    <div class="view-details-hint">
+      <span>Click para ver detalles</span>
+    </div>
   </div>
 </div>

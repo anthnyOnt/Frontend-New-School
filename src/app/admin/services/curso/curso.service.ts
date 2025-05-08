@@ -11,7 +11,6 @@ import { environment } from '../../../../environments/environment.prod';
 export class CursoService {
   private apiUrl = environment.apiUrl + '/cursos'
   private http = inject(HttpClient)
-
   getCursos(): Observable<Curso[]> {
     return this.http.get<Curso[]>(this.apiUrl);
   }
@@ -36,5 +35,10 @@ export class CursoService {
 
   getCursoByProfesor(profesorId: number): Observable<Curso[]> {
     return this.http.get<Curso[]>('${this.apiUrl}/profesor/${profesorId}')
+  }
+
+  getCursoByGrado(gradoId: number): Observable<Curso[]> {
+
+    return this.http.get<Curso[]>('${this.apiUrl}/grado/${gradoId}')
   }
 }

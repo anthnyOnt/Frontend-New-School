@@ -52,6 +52,12 @@ body
 .grado-card .card-body {
   padding: 16px 20px;
   color: $gris-texto;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.grado-card .card-body:hover {
+  background-color: rgba($verde, 0.05);
 }
 
 .grado-card .card-body p {
@@ -63,6 +69,29 @@ body
 .grado-card .card-body strong {
   font-weight: 600;
   color: #444;
+}
+
+/* New styling for the view details hint */
+.view-details-hint {
+  margin-top: 15px;
+  text-align: center;
+  padding: 8px 0;
+  border-top: 1px dashed #ddd;
+  
+  span {
+    font-size: 14px;
+    color: $verde;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:before {
+      content: '👁️';
+      margin-right: 5px;
+      font-size: 16px;
+    }
+  }
 }
 
 /* Estilo para el tipo de grado */

@@ -7,12 +7,12 @@ import { Inscripcion } from '../../../core/interfaces/inscripcion';
   providedIn: 'root'
 })
 export class InscripcionService {
-  private apiUrl = 'http://api-inscripciones';
+  private apiUrl = 'http://localhost:8080/api/v1/inscripciones';
   private http = inject(HttpClient)
 
   private mockInscripciones: Array<Inscripcion> = []
   
-  private useMockData = true;
+  private useMockData = false;
 
   getInscripciones(): Observable<Inscripcion[]> {
     if (this.useMockData) {
@@ -114,24 +114,11 @@ export class InscripcionService {
   }
 
   getInscripcionByEstudianteId(estudianteId: number): Observable<Inscripcion> {
-    if (this.useMockData) {
-      console.log('Obteniendo inscripcion simulado con ID:', estudianteId);
-      // Buscar el inscripcion por ID
-      const inscripcion = this.mockInscripciones.find(i => i.estudiante_id === estudianteId);
-      
-      // Si no existe, retornar error
-      if (!inscripcion) {
-        return throwError(() => new Error(`inscripcion con ID ${estudianteId} no encontrado`)).pipe(
-          delay(500)
-        );
-      }
-      
-      // Retornar observable con el grado encontrado
-      return of({...inscripcion}).pipe(
-        delay(500)
-      );
-    }
     return this.http.get<Inscripcion>(`${this.apiUrl}/${estudianteId}`);
+  }
+  
+  getInscripcionesByGradoId(gradoId: number): Observable<Inscripcion[]> {
+    return this.http.get<Inscripcion[]>(`${this.apiUrl}/grado/${gradoId}`);
   }
 
 }

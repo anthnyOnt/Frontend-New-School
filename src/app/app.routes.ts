@@ -3,6 +3,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistrarEstudianteComponent } from './admin/pages/estudiantes/registrar-estudiante/registrar-estudiante.component';
 import { VerEstudiantesComponent } from './admin/pages/estudiantes/ver-estudiantes/ver-estudiantes.component';
 import { GradosPageComponent } from './admin/pages/grados/grados-page/grados-page.component';
+import { GradoDetailsComponent } from './admin/pages/grados/grado-details/grado-details.component';
 import { ProfesoresPageComponent } from './admin/pages/profesores/profesores-page/profesores-page.component';
 import { AdminMainComponent } from './admin/pages/main/main.component';
 import { authGuard } from './guards/auth.guard';
@@ -28,6 +29,7 @@ export const routes: Routes = [
       { path: 'registrarestudiantes', component: RegistrarEstudianteComponent },
       { path: 'estudiantes', component: VerEstudiantesComponent },
       { path: 'grados', component: GradosPageComponent },
+      { path: 'grados/:id', component: GradoDetailsComponent },
       { path: 'profesores', component: ProfesoresPageComponent },
       { path: 'cursos', component: CursosComponent },
       { path: 'cursos/:cursoId', component: CursoDetailsComponent },
