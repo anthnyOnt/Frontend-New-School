@@ -9,8 +9,10 @@
         <label>Descripcion:</label>
         <input type="text" [(ngModel)]="curso.descripcion" name="descripcion" required>
 
-        <label>Fecha de Inicio:</label>
-        <input type="date" [(ngModel)]="curso.fechaCreacion" name="fecha" required>
+        <label>Profesor:</label>
+        <select name="profesor" id="profesor" [(ngModel)]="curso.docenteId">
+          <option *ngFor="let profesor of profesores | keyvalue" [ngValue]="profesor.key">{{ profesor.value }}</option>
+        </select>
 
         <label>Grado:</label>
         <select name="grado" id="grado" [(ngModel)]="curso.gradoId">
