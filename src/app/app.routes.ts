@@ -52,7 +52,7 @@ export const routes: Routes = [
   // Student routes
   {
     path: 'estudiante',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     //data: { roles: ['student'] },
     children: [
       { path: '', component: EstudianteMainComponent },
