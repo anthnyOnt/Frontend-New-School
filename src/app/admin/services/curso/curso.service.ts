@@ -8,7 +8,7 @@ import { Estudiante } from '../../../core/interfaces/estudiante';
   providedIn: 'root'
 })
 export class CursoService {
-  private apiUrl = 'http://api-cursos';
+  private apiUrl = 'http://localhost:8080/api/v1/cursos';
   private http = inject(HttpClient)
 
   private mockCursos: Array<Curso> = [
@@ -126,5 +126,10 @@ export class CursoService {
       );
     }
     return this.http.get<Curso[]>('${this.apiUrl}/profesor/${profesorId}')
+  }
+
+  getCursoByGrado(gradoId: number): Observable<Curso[]> {
+
+    return this.http.get<Curso[]>('${this.apiUrl}/grado/${gradoId}')
   }
 }

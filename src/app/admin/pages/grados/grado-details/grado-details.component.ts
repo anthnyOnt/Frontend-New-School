@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { GradoService } from '../../../services/grado/grado.service';
 import { InscripcionService } from '../../../services/inscripcion/inscripcion.service';
 import { EstudianteService } from '../../../services/estudiante/estudiante.service';
+import { CursoService } from '../../../services/curso/curso.service';
 import { Inscripcion } from '../../../../core/interfaces/inscripcion';
 import { Grado } from '../../../../core/interfaces/grado';
 import { Curso } from '../../../../core/interfaces/curso';
@@ -36,7 +37,8 @@ export class GradoDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private gradoService: GradoService,
     private inscripcionService: InscripcionService,
-    private estudianteService: EstudianteService
+    private estudianteService: EstudianteService,
+    private cursoService: CursoService
   ) {}
 
   ngOnInit(): void {
@@ -93,32 +95,14 @@ export class GradoDetailsComponent implements OnInit {
   }
 
   loadCourses(): void {
-    this.courses = [
-      {
-        id: 1,
-        nombre: 'Matemáticas',
-        descripcion: 'Curso básico de matemáticas que cubre álgebra, geometría y estadística.',
-        fechaCreacion: new Date(),
-        gradoId: this.gradoId,
-        profesorId: 1
+    this.cursoService.getCursoByGrado(this.gradoId).subscribe({
+      next: (cursos) => {
+        this.courses = cursos;
       },
-      {
-        id: 2,
-        nombre: 'Lenguaje',
-        descripcion: 'Estudio del español, gramática, literatura y comunicación oral y escrita.',
-        fechaCreacion: new Date(),
-        gradoId: this.gradoId,
-        profesorId: 2
-      },
-      {
-        id: 3,
-        nombre: 'Ciencias Naturales',
-        descripcion: 'Introducción a la biología, física y química aplicadas al entorno natural.',
-        fechaCreacion: new Date(),
-        gradoId: this.gradoId,
-        profesorId: 3
+      error: (error) => {
+        console.error('Error loading courses:', error);
       }
-    ];
+    });
   }
 
   changeTab(index: number): void {
