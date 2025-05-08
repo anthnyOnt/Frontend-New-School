@@ -9,11 +9,30 @@
     </section>
   
     <section class="section">
-      <h1 class="section-title">Tareas</h1>
-      <div class="carousel tareas-carousel">
-        <div *ngFor="let tarea of tareas" class="carousel-item">
-          <app-tarea [tarea]="tarea"></app-tarea>
-        </div>
+  <h1 class="section-title">Tareas</h1>
+
+  <div class="carousel-container">
+    <img
+      *ngIf="mostrarFlechaIzquierda"
+      src="assets/flecha.png"
+      class="flecha izquierda"
+      (click)="scrollTareas('izquierda')"
+      alt="Flecha izquierda"
+    />
+  
+    <div class="carousel tareas-carousel" #tareasCarrusel (scroll)="verificarFlechas()">
+      <div *ngFor="let tarea of tareas" class="carousel-item">
+        <app-tarea [tarea]="tarea"></app-tarea>
       </div>
-    </section>
+    </div>
+  
+    <img
+      src="assets/flecha.png"
+      class="flecha derecha"
+      (click)="scrollTareas('derecha')"
+      alt="Flecha derecha"
+    />
+  </div>
+</section>
+
   </div>

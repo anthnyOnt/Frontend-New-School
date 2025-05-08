@@ -57,6 +57,39 @@
   }
 }
 
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tareas-carousel {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  gap: 16px;
+  padding: 10px;
+  //scrollbar-width: none; 
+}
+
+.flecha {
+  width:45 px;
+  height: 45px;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+  user-select: none;
+}
+
+.flecha.izquierda {
+  margin-right: 10px;
+  transform: rotate(180deg);
+}
+
+.flecha.derecha {
+  margin-left: 10px;
+}
+
 /* Responsividad */
 @media (max-width: 480px) {
   .section-title {
