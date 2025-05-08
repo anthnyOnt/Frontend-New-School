@@ -106,7 +106,6 @@
             <div *ngFor="let course of courses; trackBy: trackById" class="course-card">
               <div class="course-header">
                 <h3>{{ course.nombre }}</h3>
-                <span class="course-date">{{ course.fechaCreacion | date:'dd/MM/yyyy' }}</span>
               </div>
               <p class="course-description">{{ course.descripcion }}</p>
               <div class="course-actions">
