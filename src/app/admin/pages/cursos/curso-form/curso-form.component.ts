@@ -16,6 +16,7 @@ import { KeyValuePipe } from '@angular/common';
 export class CursoFormComponent {
   @Input() cursoEditar: Curso | null = null;
   @Input() grados!: Map<number, string>
+  @Input() profesores!: Map<number, string>
   @Output() cursoAgregado = new EventEmitter<Curso>();
   @Output() cerrar = new EventEmitter<void>();
 
@@ -23,8 +24,8 @@ export class CursoFormComponent {
     id: 0,
     nombre: '',
     descripcion: '',
-    fechaCreacion: new Date(),
     gradoId: 0,
+    docenteId: 0
   };
 
   constructor(private cursoService: CursoService) {}
@@ -45,8 +46,8 @@ export class CursoFormComponent {
         id: 4,
         nombre: '',
         descripcion: '',
-        fechaCreacion: new Date(),
-        gradoId: 0
+        gradoId: 0,
+        docenteId: 0
       };
     }
   }
@@ -63,6 +64,7 @@ export class CursoFormComponent {
         this.cerrar.emit();
       });
     } else {
+      console.log(this.curso);
       this.cursoService.addCurso(this.curso).subscribe((nuevoCurso) => {
         this.cursoAgregado.emit(nuevoCurso);
         this.cerrar.emit();

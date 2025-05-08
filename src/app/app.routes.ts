@@ -12,6 +12,7 @@ import { CursosComponent } from './admin/pages/cursos/cursos-page/cursos.compone
 import { CursoDetailsComponent } from './admin/pages/cursos/curso-details/curso-details.component';
 import { ProfesorMainComponent } from './profesor/paginas/main/main.component';
 import { EstudianteMainComponent } from './estudiante/pages/estudiante-main/estudiante-main.component';
+import { TareaPageComponent } from './estudiante/pages/tarea-page/tarea-page.component';
 
 export const routes: Routes = [
   // Public routes
@@ -31,7 +32,7 @@ export const routes: Routes = [
       { path: 'grados/:id', component: GradoDetailsComponent },
       { path: 'profesores', component: ProfesoresPageComponent },
       { path: 'cursos', component: CursosComponent },
-      { path: 'cursos/:id', component: CursoDetailsComponent },
+      { path: 'cursos/:cursoId', component: CursoDetailsComponent },
     ]
   },
 
@@ -43,7 +44,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: ProfesorMainComponent },
       { path: 'cursos', component: CursosComponent },
-      { path: 'cursos/:id', component: CursoDetailsComponent },
+      { path: 'cursos/:cursoId', component: CursoDetailsComponent },
       // Add more teacher-specific views here
     ]
   },
@@ -56,7 +57,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: EstudianteMainComponent },
       { path: 'cursos', component: CursosComponent },
-      { path: 'cursos/:id', component: CursoDetailsComponent },
+      { path: 'cursos/:cursoId', component: CursoDetailsComponent },
+      { path: 'tareas/:tareaId', component: TareaPageComponent}
       // Add more student-specific views here
     ]
   },
