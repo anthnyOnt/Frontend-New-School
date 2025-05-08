@@ -1,0 +1,38 @@
+.editor-container {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  background-color: #fff;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolbar {
+  background: #f3f3f3;
+  border-bottom: 1px solid #ccc;
+  padding: 6px;
+  display: flex;
+  gap: 8px;
+
+  button {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+.editor {
+  min-height: 200px;
+  padding: 12px;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.5;
+}
