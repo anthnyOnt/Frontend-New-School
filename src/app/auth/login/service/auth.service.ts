@@ -142,19 +142,6 @@ export class AuthService {
       );
   }
 
-  // Implementación del logout con mock data
-  private mockLogout(): Observable<any> {
-    // Limpiar localStorage
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('token');
-    
-    // Actualizar los BehaviorSubjects
-    this.currentUserSubject.next(null);
-    this.isAuthenticatedSubject.next(false);
-    
-    return of(true).pipe(delay(300));
-  }
-
   // Implementación del logout con backend real
   logout(): void {
     // Clear localStorage
@@ -261,53 +248,12 @@ export class AuthService {
 
 
   // auth.service.ts - Añadir este método
-  register(user: usuario): Observable<any> {
-    if (this.useMockData) {
-      return this.mockRegister(user);
-    } else {
+  register(user: any): Observable<any> {
       return this.httpRegister(user);
-    }
   }
 
-  private mockRegister(user: any): Observable<any> {
-    // Simulamos un delay para imitar la latencia de red
-    return new Observable(observer => {
-      setTimeout(() => {
-        try {
-          // Comprobar si el email ya está registrado
-          const existingUser = this.mockUsuarios.find(u => u.email === user.email);
-          if (existingUser) {
-            observer.error('El correo electrónico ya está registrado');
-            return; // No olvides el return aquí
-          }
-  
-          // Asignar un ID (simulando auto-incremento en DB)
-          const maxId = this.mockUsuarios.length > 0 
-            ? Math.max(...this.mockUsuarios.map(u => u.id)) 
-            : 0;
-          
-          const newId = maxId + 1;
-          
-          // Crear nuevo usuario
-          const newUser = {
-            ...user,
-            id: newId
-          };
-          
-          // Añadir a la lista de usuarios mock
-          this.mockUsuarios.push(newUser);
-          
-          observer.next({ success: true });
-          observer.complete(); // Asegurarse de completar la Observable
-        } catch (error) {
-          observer.error('Error al registrar el usuario');
-          observer.complete(); // Completar incluso en caso de error
-        }
-      }, 800);
-    });
-  }
 
-  private httpRegister(user: usuario): Observable<any> {
+  private httpRegister(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user)
       .pipe(catchError(this.handleError));
   }
