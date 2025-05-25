@@ -1,4 +1,53 @@
 /* register.component.scss */
+
+/* User Type Selector Styles */
+.user-type-selector {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-type-selector button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background-color: #f0f0f0;
+  color: #555;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  outline: none;
+}
+
+.user-type-selector button:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.user-type-selector button:hover {
+  background-color: #e4e4e4;
+}
+
+.user-type-selector button.active {
+  background-color: #3f51b5; /* Primary color, adjust to match your app theme */
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+  .user-type-selector {
+    flex-direction: column;
+  }
+  
+  .user-type-selector button:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+
 .register-container {
     display: flex;
     justify-content: center;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgModel, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../login/service/auth.service';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
+  selectedUserType: string = 'estudiante';
   registerForm!: FormGroup;
   loading = false;
   submitted = false;
@@ -30,10 +31,15 @@ export class RegisterComponent implements OnInit {
       ci: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      fechaNacimiento: [''],
+      cargo: [''],
+      especialidad: ['']
     }, {
       validator: this.mustMatch('password', 'confirmPassword')
     });
+    
+    this.updateValidatorsBasedOnUserType(this.selectedUserType);
   }
 
   // Validador personalizado para que las contraseñas coincidan
@@ -54,13 +60,38 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-  // Getter para acceder fácilmente a los campos del formulario
+  updateValidatorsBasedOnUserType(userType: string) {
+    const fechaNacimientoControl = this.registerForm.get('fechaNacimiento');
+    const cargoControl = this.registerForm.get('cargo');
+    const especialidadControl = this.registerForm.get('especialidad');
+    
+    fechaNacimientoControl?.clearValidators();
+    cargoControl?.clearValidators();
+    especialidadControl?.clearValidators();
+  
+    if (userType === 'estudiante') {
+      fechaNacimientoControl?.setValidators([Validators.required]);
+    } else if (userType === 'admin') {
+      cargoControl?.setValidators([Validators.required]);
+    } else if (userType === 'profesor') {
+      especialidadControl?.setValidators([Validators.required]);
+    }
+
+    fechaNacimientoControl?.updateValueAndValidity();
+    cargoControl?.updateValueAndValidity();
+    especialidadControl?.updateValueAndValidity();
+  }
+
+  onUserTypeChange(userType: string) {
+    this.selectedUserType = userType;
+    this.updateValidatorsBasedOnUserType(userType);
+  }
+  
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
     this.submitted = true;
   
-    // Detener si el formulario es inválido
     if (this.registerForm.invalid) {
       return;
     }
@@ -74,14 +105,29 @@ export class RegisterComponent implements OnInit {
       ci: this.f['ci'].value,
       email: this.f['email'].value,
       password: this.f['password'].value,
-      rol: 'USER' // Rol por defecto
-    } as any; // Usamos 'as any' para evitar el error de tipado con 'id'
+    } as any; 
+    
+    if (this.selectedUserType === 'estudiante') {
+      newUser.rol = 'ESTUDIANTE';
+      newUser.datosEspecificos = {
+        fechaNacimiento: this.f['fechaNacimiento'].value
+      };
+    } else if (this.selectedUserType === 'profesor') {
+      newUser.rol = 'DOCENTE';
+      newUser.datosEspecificos = {
+        licenciatura: this.f['especialidad'].value
+      };
+    } else if (this.selectedUserType === 'admin') {
+      newUser.rol = 'ADMIN';
+      newUser.datosEspecificos = {
+        cargo: this.f['cargo'].value
+      };
+    }
   
     this.authService.register(newUser)
       .subscribe({
         next: () => {
           this.loading = false; // Importante: resetear loading antes de navegar
-          // Registro exitoso, redirigir a login
           this.router.navigate(['/login'], { 
             queryParams: { registered: true } 
           });
@@ -91,7 +137,6 @@ export class RegisterComponent implements OnInit {
           this.loading = false;
         },
         complete: () => {
-          // Asegurarse de que loading sea false incluso si no hay next o error
           this.loading = false;
         }
       });

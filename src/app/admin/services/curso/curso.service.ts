@@ -34,7 +34,7 @@ export class CursoService {
   }
 
   getCursoByProfesor(profesorId: number): Observable<Curso[]> {
-    return this.http.get<Curso[]>('${this.apiUrl}/profesor/${profesorId}')
+    return this.http.get<Curso[]>(`${this.apiUrl}/profesor/${profesorId}`)
   }
 
   getCursoByGrado(gradoId: number): Observable<Curso[]> {
