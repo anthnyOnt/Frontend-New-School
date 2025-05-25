@@ -7,6 +7,7 @@ import { CursoService } from '../../../admin/services/curso/curso.service';
 import { TareaService } from '../../../admin/services/tarea/tarea.service';
 import { CursoComponent } from "../../../admin/components/curso/curso.component";
 import { TareaComponent } from '../../components/tarea/tarea.component';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-estudiante-main',
@@ -23,6 +24,9 @@ export class EstudianteMainComponent implements OnInit{
   error: string | null = null;
 
   constructor(private cursoService: CursoService, private tareaService: TareaService) { }
+
+  @ViewChild('tareasCarrusel', { static: false }) tareasCarrusel!: ElementRef;
+  mostrarFlechaIzquierda = false;
 
   ngOnInit(): void {
     this.cargarCursos();
@@ -59,5 +63,29 @@ export class EstudianteMainComponent implements OnInit{
         this.cargando = false;
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    // Esperar un momento para que las tareas se carguen
+    setTimeout(() => this.verificarFlechas(), 300);
+  }
+
+  scrollTareas(direccion: 'izquierda' | 'derecha') {
+    const scrollAmount = 300;
+    const container = this.tareasCarrusel.nativeElement;
+
+    if (direccion === 'izquierda') {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+
+    // Pequeño delay para permitir que el scroll se complete antes de verificar
+    setTimeout(() => this.verificarFlechas(), 350);
+  }
+
+  verificarFlechas(): void {
+    const container = this.tareasCarrusel.nativeElement;
+    this.mostrarFlechaIzquierda = container.scrollLeft > 0;
   }
 }
