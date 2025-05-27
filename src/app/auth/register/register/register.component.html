@@ -20,6 +20,7 @@
             type="text" 
             id="nombre" 
             formControlName="nombre" 
+
             [ngClass]="{ 'is-invalid': (submitted || f['nombre'].touched) && f['nombre'].errors }"
             placeholder="Ingrese su nombre"
           />
@@ -35,6 +36,7 @@
             type="text" 
             id="apellido" 
             formControlName="apellido" 
+
             [ngClass]="{ 'is-invalid': (submitted || f['apellido'].touched) && f['apellido'].errors }"
             placeholder="Ingrese su apellido"
           />
@@ -51,6 +53,7 @@
           type="text" 
           id="ci" 
           formControlName="ci" 
+
           [ngClass]="{ 'is-invalid': (submitted || f['ci'].touched) && f['ci'].errors }"
           placeholder="Ingrese su número de cédula"
         />
@@ -67,6 +70,7 @@
           type="date" 
           id="fechaNacimiento" 
           formControlName="fechaNacimiento" 
+
           [ngClass]="{ 'is-invalid': (submitted || f['fechaNacimiento'].touched) && f['fechaNacimiento'].errors }"
         />
         <div *ngIf="(submitted || f['fechaNacimiento'].touched) && f['fechaNacimiento']?.errors" class="error-message">
@@ -81,6 +85,7 @@
           type="text" 
           id="especialidad" 
           formControlName="especialidad" 
+
           [ngClass]="{ 'is-invalid': (submitted || f['especialidad'].touched) && f['especialidad'].errors }"
           placeholder="Ingrese su especialidad"
         />
@@ -96,6 +101,7 @@
           type="text" 
           id="cargo" 
           formControlName="cargo" 
+
           [ngClass]="{ 'is-invalid': (submitted || f['cargo'].touched) && f['cargo'].errors }"
           placeholder="Ingrese su cargo"
         />
@@ -110,6 +116,7 @@
           type="email" 
           id="email" 
           formControlName="email" 
+
           [ngClass]="{ 'is-invalid': (submitted || f['email'].touched) && f['email'].errors }"
           placeholder="Ingrese su correo electrónico"
         />
@@ -125,6 +132,7 @@
           type="password" 
           id="password" 
           formControlName="password" 
+
           [ngClass]="{ 'is-invalid': (submitted || f['password'].touched) && f['password'].errors }"
           placeholder="Ingrese su contraseña"
         />
@@ -140,6 +148,7 @@
           type="password" 
           id="confirmPassword" 
           formControlName="confirmPassword" 
+
           [ngClass]="{ 'is-invalid': (submitted || f['confirmPassword'].touched) && f['confirmPassword'].errors }"
           placeholder="Confirme su contraseña"
         />
