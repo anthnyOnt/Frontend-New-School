@@ -271,7 +271,7 @@ export class AuthService {
     return null;
   }
 
-  getProfesorId(): number | null {
+  getUserId(): number | null {
     const currentUser = this.currentUserValue;
     if (!currentUser || typeof currentUser.id !== 'number') {
       console.error('El usuario actual no tiene un ID válido.');
