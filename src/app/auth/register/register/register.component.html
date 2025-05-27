@@ -20,11 +20,13 @@
             type="text" 
             id="nombre" 
             formControlName="nombre" 
-            [ngClass]="{ 'is-invalid': submitted && f['nombre'].errors }"
+
+            [ngClass]="{ 'is-invalid': (submitted || f['nombre'].touched) && f['nombre'].errors }"
             placeholder="Ingrese su nombre"
           />
-          <div *ngIf="submitted && f['nombre'].errors" class="error-message">
+          <div *ngIf="(submitted || f['nombre'].touched) && f['nombre'].errors" class="error-message">
             <span *ngIf="f['nombre'].errors?.['required']">El nombre es requerido</span>
+            <span *ngIf="f['nombre'].errors?.['pattern']">El nombre debe contener solo letras</span>
           </div>
         </div>
 
@@ -34,11 +36,13 @@
             type="text" 
             id="apellido" 
             formControlName="apellido" 
-            [ngClass]="{ 'is-invalid': submitted && f['apellido'].errors }"
+
+            [ngClass]="{ 'is-invalid': (submitted || f['apellido'].touched) && f['apellido'].errors }"
             placeholder="Ingrese su apellido"
           />
-          <div *ngIf="submitted && f['apellido'].errors" class="error-message">
+          <div *ngIf="(submitted || f['apellido'].touched) && f['apellido'].errors" class="error-message">
             <span *ngIf="f['apellido'].errors?.['required']">El apellido es requerido</span>
+            <span *ngIf="f['apellido'].errors?.['pattern']">El apellido debe contener solo letras</span>
           </div>
         </div>
       </div>
@@ -49,10 +53,11 @@
           type="text" 
           id="ci" 
           formControlName="ci" 
-          [ngClass]="{ 'is-invalid': submitted && f['ci'].errors }"
+
+          [ngClass]="{ 'is-invalid': (submitted || f['ci'].touched) && f['ci'].errors }"
           placeholder="Ingrese su número de cédula"
         />
-        <div *ngIf="submitted && f['ci'].errors" class="error-message">
+        <div *ngIf="(submitted || f['ci'].touched) && f['ci'].errors" class="error-message">
           <span *ngIf="f['ci'].errors?.['required']">La cédula es requerida</span>
           <span *ngIf="f['ci'].errors?.['pattern']">La cédula debe contener solo números</span>
         </div>
@@ -65,9 +70,10 @@
           type="date" 
           id="fechaNacimiento" 
           formControlName="fechaNacimiento" 
-          [ngClass]="{ 'is-invalid': submitted && f['fechaNacimiento'].errors }"
+
+          [ngClass]="{ 'is-invalid': (submitted || f['fechaNacimiento'].touched) && f['fechaNacimiento'].errors }"
         />
-        <div *ngIf="submitted && f['fechaNacimiento']?.errors" class="error-message">
+        <div *ngIf="(submitted || f['fechaNacimiento'].touched) && f['fechaNacimiento']?.errors" class="error-message">
           <span *ngIf="f['fechaNacimiento']?.errors?.['required']">La fecha de nacimiento es requerida</span>
         </div>
       </div>
@@ -79,10 +85,11 @@
           type="text" 
           id="especialidad" 
           formControlName="especialidad" 
-          [ngClass]="{ 'is-invalid': submitted && f['especialidad'].errors }"
+
+          [ngClass]="{ 'is-invalid': (submitted || f['especialidad'].touched) && f['especialidad'].errors }"
           placeholder="Ingrese su especialidad"
         />
-        <div *ngIf="submitted && f['especialidad']?.errors" class="error-message">
+        <div *ngIf="(submitted || f['especialidad'].touched) && f['especialidad']?.errors" class="error-message">
           <span *ngIf="f['especialidad']?.errors?.['required']">La especialidad es requerida</span>
         </div>
       </div>
@@ -94,10 +101,11 @@
           type="text" 
           id="cargo" 
           formControlName="cargo" 
-          [ngClass]="{ 'is-invalid': submitted && f['cargo'].errors }"
+
+          [ngClass]="{ 'is-invalid': (submitted || f['cargo'].touched) && f['cargo'].errors }"
           placeholder="Ingrese su cargo"
         />
-        <div *ngIf="submitted && f['cargo']?.errors" class="error-message">
+        <div *ngIf="(submitted || f['cargo'].touched) && f['cargo']?.errors" class="error-message">
           <span *ngIf="f['cargo']?.errors?.['required']">El cargo es requerido</span>
         </div>
       </div>
@@ -108,10 +116,11 @@
           type="email" 
           id="email" 
           formControlName="email" 
-          [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+
+          [ngClass]="{ 'is-invalid': (submitted || f['email'].touched) && f['email'].errors }"
           placeholder="Ingrese su correo electrónico"
         />
-        <div *ngIf="submitted && f['email'].errors" class="error-message">
+        <div *ngIf="(submitted || f['email'].touched) && f['email'].errors" class="error-message">
           <span *ngIf="f['email'].errors?.['required']">El correo electrónico es requerido</span>
           <span *ngIf="f['email'].errors?.['email']">Ingrese un correo electrónico válido</span>
         </div>
@@ -123,10 +132,11 @@
           type="password" 
           id="password" 
           formControlName="password" 
-          [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+
+          [ngClass]="{ 'is-invalid': (submitted || f['password'].touched) && f['password'].errors }"
           placeholder="Ingrese su contraseña"
         />
-        <div *ngIf="submitted && f['password'].errors" class="error-message">
+        <div *ngIf="(submitted || f['password'].touched) && f['password'].errors" class="error-message">
           <span *ngIf="f['password'].errors?.['required']">La contraseña es requerida</span>
           <span *ngIf="f['password'].errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</span>
         </div>
@@ -138,10 +148,11 @@
           type="password" 
           id="confirmPassword" 
           formControlName="confirmPassword" 
-          [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }"
+
+          [ngClass]="{ 'is-invalid': (submitted || f['confirmPassword'].touched) && f['confirmPassword'].errors }"
           placeholder="Confirme su contraseña"
         />
-        <div *ngIf="submitted && f['confirmPassword'].errors" class="error-message">
+        <div *ngIf="(submitted || f['confirmPassword'].touched) && f['confirmPassword'].errors" class="error-message">
           <span *ngIf="f['confirmPassword'].errors?.['required']">La confirmación de contraseña es requerida</span>
           <span *ngIf="f['confirmPassword'].errors?.['mustMatch']">Las contraseñas no coinciden</span>
         </div>
