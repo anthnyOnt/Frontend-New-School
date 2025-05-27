@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { Grado } from '../../../core/interfaces/grado';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GradoService {
-  private apiUrl = 'http://localhost:8080/api/v1/grados'; // URL del backend
+  private apiUrl = environment.apiUrl + '/grados'; // URL del backend
 
   constructor(private http: HttpClient) {}
 

@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, delay, throwError} from 'rxjs';
 import { Estudiante } from '../../../core/interfaces/estudiante';
 import { usuario } from '../../../core/interfaces/usuario';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EstudianteService {
-  private apiUrl = 'http://localhost:8080/api/v1/estudiante';
+  private apiUrl = environment.apiUrl + 'estudiante';
   private http = inject(HttpClient);
 
   // private mockEstudiantes: Estudiante[] = [
