@@ -28,7 +28,7 @@ export class ProfesorService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getProfesorById(id: number): Observable<Profesor> {
-    return this.http.get<Profesor>(`${this.apiUrl}/${id}`);
+  getProfesorById(userId: number): Observable<Profesor> {
+    return this.http.get<Profesor>(`${this.apiUrl}/usuario/${userId}`);
   }
 }

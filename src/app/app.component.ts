@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   getRole() {
     if(this.currentRole === 'ADMIN') {
       this.navElements = this.adminNavElements;
-    } else if(this.currentRole === 'PROFESOR') {
+    } else if(this.currentRole === 'DOCENTE') {
       this.navElements = this.profesorNavElements;
     } else if(this.currentRole === 'ESTUDIANTE') {
       this.navElements = this.estudianteNavElements;
