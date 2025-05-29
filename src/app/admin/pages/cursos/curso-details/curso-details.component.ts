@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Contenido } from '../../../../core/interfaces/contenido';
 import { Curso } from '../../../../core/interfaces/curso';
-import { ActivatedRoute } from '@angular/router';
 import { CursoService } from '../../../services/curso/curso.service';
 import { ContenidoService } from '../../../services/contenido/contenido.service'; 
 import { CommonModule, DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute} from '@angular/router';
 import { ContenidoComponent } from "../../../components/contenido/contenido.component";
 import { ProfesorService } from '../../../services/profesor/profesor.service';
 import { Profesor } from '../../../../core/interfaces/profesor';
@@ -13,7 +12,7 @@ import { Profesor } from '../../../../core/interfaces/profesor';
 @Component({
   selector: 'app-curso-details',
   standalone: true,
-  imports: [ContenidoComponent, RouterLink, ContenidoComponent, CommonModule],
+  imports: [ContenidoComponent, ContenidoComponent, CommonModule],
   templateUrl: './curso-details.component.html',
   styleUrl: './curso-details.component.scss'
 })
@@ -22,8 +21,11 @@ export class CursoDetailsComponent implements OnInit{
   contenidos?: Contenido [];
   profesor!: Profesor
 
-  constructor(private route: ActivatedRoute, private cursoService: CursoService, private contenidoService: ContenidoService, private profesorService: ProfesorService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private cursoService: CursoService, private contenidoService: ContenidoService, private profesorService: ProfesorService) {}
 
+  volver(curso: Curso): void{
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
 
   ngOnInit(): void {
     const cursoId = this.route.snapshot.paramMap.get('cursoId'); // OBTENER ID DE LA URL
