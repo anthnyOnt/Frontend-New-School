@@ -1,0 +1,22 @@
+<div class="curso-container">
+  <header>
+    <h1>Cursos</h1>
+  </header>
+
+  <section class="cursos-list">
+      <div *ngFor="let curso of cursos; trackBy: trackById" class="curso-card">
+        <app-curso 
+          [curso]="curso" 
+          (cursoEliminado)="manejarCursoEliminado($event)" 
+          [gradoDescripcion]="gradosMap.get(curso.gradoId) || 'Desconocido'"
+          (cursoEditar)="editarCurso(curso)">
+        </app-curso>
+      </div>
+  </section>
+
+  <div *ngIf="cursos.length === 0" class="no-cursos">
+    <p>No existen cursos</p>
+  </div>
+
+  <button class="btn-add-curso" routerLink="/admin">Volver</button>
+</div>
