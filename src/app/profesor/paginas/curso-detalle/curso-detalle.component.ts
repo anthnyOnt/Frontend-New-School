@@ -57,8 +57,9 @@ export class CursoDetalleComponent implements OnInit {
     this.error = null;
 
     this.route.paramMap.pipe(
+      
       switchMap(params => {
-        const cursoId = Number(params.get('id'));
+        const cursoId = Number(params.get('cursoId'));
         if (!cursoId) {
           throw new Error('ID de curso inválido');
         }
@@ -79,9 +80,9 @@ export class CursoDetalleComponent implements OnInit {
   }
 
   cargarContenidos(cursoId: number): void {
-    this.contenidoService.getContenidosByCursoId(cursoId).subscribe({
+    this.contenidoService.getContenidos().subscribe({
       next: (contenidos) => {
-        this.contenidos = contenidos;
+        this.contenidos = contenidos.filter(contenido => contenido.cursoId === cursoId);
         this.cargando = false;
       },
       error: (err) => {

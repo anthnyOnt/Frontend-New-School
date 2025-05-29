@@ -54,20 +54,6 @@ export class ProfesorMainComponent implements OnInit{
       }
     });
 
-    // Mock data for testing
-    // const mockCursos: Curso[] = [
-    //   { id: 1, nombre: 'Matemáticas Avanzadas', descripcion: 'Curso de álgebra y cálculo avanzado', profesorId: 1, fechaCreacion: new Date(), gradoId: 1 },
-    //   { id: 2, nombre: 'Física Moderna', descripcion: 'Introducción a la física cuántica y relatividad', profesorId: 1, fechaCreacion: new Date(), gradoId: 1},
-    //   { id: 3, nombre: 'Programación en JavaScript', descripcion: 'Curso básico e intermedio de JavaScript', profesorId: 1,fechaCreacion: new Date(), gradoId: 1}
-    // ];
-
-    // Simulate API call with mock data
-    // setTimeout(() => {
-    //   // this.cursos = mockCursos;
-    //   // this.cargando = false;
-    // }, 1000); // Simulate a delay of 1 second
-
-    // Uncomment the following block to use the real API call
     
   }
   trackById(index: number, grado: Curso): number {

@@ -1,6 +1,14 @@
-<article class="curso-card" [routerLink]="['/profesor/cursos', curso.id]">
+<article class="curso-card">
     <div class="upper">
-        <h3 class="curso-title">{{ curso.nombre }}</h3>
+        <h3 class="curso-title">{{ this.curso.nombre }}</h3>
+
     </div>
-    <p class="curso-descripcion">{{ curso.descripcion }}</p>
-</article>
+    <div class="detail-box">
+      <p class="curso-descripcion detail">{{ this.curso.descripcion }}</p>
+      <p *ngIf="gradoDescripcion" class="curso-grado detail"> {{ this.gradoDescripcion}}</p>
+      <div class="ver-button">
+        <button class="ver-curso-button" [routerLink]="['/profesor/cursos', curso.id]" [state]="{curso: curso}">Ver curso</button>
+      </div>
+      
+    </div>
+  </article>

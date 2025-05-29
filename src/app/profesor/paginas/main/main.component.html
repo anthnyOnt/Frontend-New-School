@@ -5,7 +5,7 @@
 
   <section class="cursos-list">
       <div *ngFor="let curso of cursos; trackBy: trackById" class="curso-card">
-        <app-curso-card [curso]="curso"></app-curso-card>
+        <app-curso [curso]="curso"></app-curso>
       </div>
   </section>
 </div>

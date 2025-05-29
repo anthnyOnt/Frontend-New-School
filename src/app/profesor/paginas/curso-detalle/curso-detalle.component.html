@@ -1,7 +1,7 @@
 <div class="curso-detalle-container">
   <!-- Header with back button -->
   <div class="curso-header">
-    <button [routerLink]="['/profesorcursos']" class="back-btn">
+    <button [routerLink]="['profesor/cursos']" class="back-btn">
       ← Volver a Cursos
     </button>
     <h1 *ngIf="curso">{{ curso.nombre }}</h1>
