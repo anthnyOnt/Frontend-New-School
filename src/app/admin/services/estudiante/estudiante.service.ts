@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment.prod';
   providedIn: 'root',
 })
 export class EstudianteService {
-  private apiUrl = environment.apiUrl + 'estudiante';
+  private apiUrl = environment.apiUrl + '/estudiante';
   private http = inject(HttpClient);
 
   // private mockEstudiantes: Estudiante[] = [
