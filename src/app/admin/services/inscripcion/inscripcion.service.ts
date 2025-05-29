@@ -114,8 +114,8 @@ export class InscripcionService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getInscripcionByEstudianteId(estudianteId: number): Observable<Inscripcion> {
-    return this.http.get<Inscripcion>(`${this.apiUrl}/${estudianteId}`);
+  getInscripcionByEstudianteId(estudianteId: number): Observable<Inscripcion[]> {
+    return this.http.get<Inscripcion[]>(`${this.apiUrl}/estudiante/${estudianteId}`);
   }
   
   getInscripcionesByGradoId(gradoId: number): Observable<Inscripcion[]> {

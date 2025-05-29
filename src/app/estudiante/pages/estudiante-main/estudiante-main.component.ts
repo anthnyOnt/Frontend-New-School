@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CursoService } from '../../../admin/services/curso/curso.service';
 import { TareaService } from '../../../admin/services/tarea/tarea.service';
+import { InscripcionService } from '../../../admin/services/inscripcion/inscripcion.service';
+import { EstudianteService } from '../../../admin/services/estudiante/estudiante.service';
+import { AuthService } from '../../../auth/login/service/auth.service';
 import { CursoComponent } from "../../../admin/components/curso/curso.component";
 import { TareaComponent } from '../../components/tarea/tarea.component';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -23,7 +26,7 @@ export class EstudianteMainComponent implements OnInit{
   cargando: boolean = false;
   error: string | null = null;
 
-  constructor(private cursoService: CursoService, private tareaService: TareaService) { }
+  constructor(private estudianteService: EstudianteService, private authService: AuthService, private cursoService: CursoService, private tareaService: TareaService, private inscripcionService: InscripcionService) { }
 
   @ViewChild('tareasCarrusel', { static: false }) tareasCarrusel!: ElementRef;
   mostrarFlechaIzquierda = false;
@@ -36,17 +39,28 @@ export class EstudianteMainComponent implements OnInit{
   cargarCursos(): void {
     this.cargando = true;
     this.error = null;
-    
-    this.cursoService.getCursos().subscribe({
-      next: (cursos) => {
-        this.cursos = cursos;
-      },
-      error: (err) => {
-        console.error('Error al cargar los cursos:', err);
-        this.error = 'No se pudieron cargar los cursos. Por favor, intente nuevamente.';
-        this.cargando = false;
+    const userId = this.authService.getUserId();
+    let estudianteId;
+    let gradoId;
+    if(!userId) {
+      return
+    }
+    this.estudianteService.getEstudianteByUserId(userId).subscribe({
+      next: (estudiante) => {
+        estudianteId = estudiante.id;
+        this.inscripcionService.getInscripcionByEstudianteId(estudianteId).subscribe({
+          next: (inscripciones) => {
+            gradoId = inscripciones[0].gradoId;
+            this.cursoService.getCursoByGrado(gradoId).subscribe({
+              next: (cursos) => {
+                this.cursos = cursos;
+                this.cargando = false;
+              }
+            })
+          }
+        })
       }
-    });
+    })
   }
 
   cargarTareas(): void {

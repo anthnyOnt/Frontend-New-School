@@ -3,12 +3,12 @@ import { CursoService } from '../../services/curso/curso.service';
 import { CommonModule } from '@angular/common';
 import { CursoCompleto } from '../../../core/interfaces/curso-completo';
 import { Curso } from '../../../core/interfaces/curso';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-curso',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './curso.component.html',
   styleUrl: './curso.component.scss'
 })
@@ -23,8 +23,23 @@ export class CursoComponent implements OnInit{
 
   cursoCompleto!: CursoCompleto;
 
-  constructor(private CursoService: CursoService) {}
+  constructor(private CursoService: CursoService, private router: Router, private route: ActivatedRoute) {}
 
+  verCurso(curso: Curso): void {
+    const currentUrl = this.router.url;
+    if(currentUrl.includes('cursos')){
+      this.router.navigate([curso.id], {
+        relativeTo: this.route,
+        state: { curso }
+      });
+    } else {
+      this.router.navigate(['cursos', curso.id], {
+        relativeTo: this.route,
+        state: { curso }
+      })
+    }
+  }
+  
   ngOnInit(): void {
     console.log("Curso component inicializado")
     console.log(this.isAdmin)

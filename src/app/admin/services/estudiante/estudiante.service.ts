@@ -32,6 +32,17 @@ export class EstudianteService {
     return this.http.get<Estudiante[]>(this.apiUrl);
   }
 
+    getEstudianteByUserId(userId: number): Observable<Estudiante> {
+    // if (this.useMockData) {
+    //   // Simulamos un retraso de red (500ms)
+    //   console.log('Obteniendo Estudiantes simulados');
+    //   return of([...this.mockEstudiantes]).pipe(
+    //     delay(500)
+    //   );
+    // }
+    return this.http.get<Estudiante>(`${this.apiUrl}/usuario/${userId}`);
+  }
+
   addEstudiante(est: Estudiante): Observable<Estudiante> {
     // if (this.useMockData) {
     //   console.log('Creando estudiante simulado:', est);
