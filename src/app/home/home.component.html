@@ -11,18 +11,21 @@
 
 <!-- CONTENIDO PRINCIPAL -->
 <main class="main-content">
-  <h1 class="main-title">NewSchool</h1>
+  <h1 class="main-title">Bienvenido a NewSchool</h1>
 
-  <section class="image-section">
-    <div class="image-label">Imagen aquí</div>
-    <img src="assets/logo.jpeg" alt="Imagen principal" />
-  </section>
-
+    <div class="carousel">
+      <img [src]="imagenes[indiceActual]" alt="Imagen del carrusel" class="carousel-img" />
+      <div class="carousel-controls">
+        <button (click)="anterior()">❮</button>
+        <button (click)="siguiente()">❯</button>
+      </div>
+    </div>
+    
   <p class="announcement">Anuncios de la página</p>
 </main>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-logo">Logo aquí</div>
+  <div class="footer-logo"><img src="assets/logo01.png"/></div>
   <div class="footer-text">Footer aquí</div>
 </footer>

@@ -44,6 +44,7 @@
   .main-content {
     text-align: center;
     padding: 2rem;
+    align-items: center;
   
     .main-title {
       font-size: 2.5rem;
@@ -70,6 +71,7 @@
   
     .announcement {
       font-weight: bold;
+      font-size: 25px;
       text-align: left;
       margin: 1rem 0;
       padding-left: 2rem;
@@ -127,3 +129,43 @@
   }
   
   
+  .carousel {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto; // ← centra horizontalmente
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .carousel-img {
+      width: 900px;
+      height: 400px;
+      object-fit: contain;
+      border-end-end-radius: 8px;
+    }
+  
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 20px;
+  
+      button {
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
+  }
