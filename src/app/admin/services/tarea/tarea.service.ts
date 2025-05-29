@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Tarea } from '../../../core/interfaces/tarea';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TareaService {
-  private apiUrl = 'https://tu-api.com/tareas'; // URL del backend
+  private apiUrl = environment.apiUrl + '/tareas'; // URL del backend
   
   // Datos simulados (mock data)
   private mockTareas: Tarea[] = [

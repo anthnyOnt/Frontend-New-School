@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, filter, tap } from 'rxjs/operators';
 import { Contenido } from '../../../core/interfaces/contenido';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContenidoService {
-  private apiUrl = 'https://tu-api.com/contenidos'; // URL del backend
+  private apiUrl = environment.apiUrl + '/tareas'; // URL del backend
   
   // Datos simulados (mock data)
   private mockContenidos: Contenido[] = [
