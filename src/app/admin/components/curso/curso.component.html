@@ -19,7 +19,7 @@
       <p class="curso-descripcion detail">{{ this.curso.descripcion }}</p>
       <p *ngIf="gradoDescripcion" class="curso-grado detail"> {{ this.gradoDescripcion}}</p>
       <div class="ver-button">
-        <button class="ver-curso-button" [routerLink]="['/admin/cursos', curso.id]" [state]="{curso: curso}">Ver curso</button>
+        <button class="ver-curso-button" (click)="verCurso(curso)">Ver curso</button>
       </div>
       
     </div>
