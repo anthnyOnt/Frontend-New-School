@@ -1,44 +1,114 @@
+$verde: #47663B;
+$verde-oscuro: darken($verde, 10%);
+
 .curso-card {
     width: 280px;
-    min-height: 250px; /* Set a consistent minimum height */
-    height: 100%; /* Allow cards to stretch to the same height */
+    min-height: 200px;
     background: white;
     border-radius: 10px;
     padding: 20px;
-    text-align: center;
+    text-align: left;
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
-    color: black; /* Ensure text is visible */
-
-    display: flex; /* Use Flexbox for internal alignment */
-    flex-direction: column; /* Stack content vertically */
-    justify-content: space-between; /* Distribute content evenly */
-    align-items: center; /* Center align content horizontally */
-
+  
     &:hover {
       transform: translateY(-5px);
       box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.2);
     }
+  }
+  
+.upper{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    border-bottom: 4px solid #f0f0f0;
 }
 
-.upper {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-bottom: 1px solid #f0f0f0;
+.detail-box {
+  margin-left: 20px;
+}
+
+
+.ver-curso-button{
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: $verde;
+
+  &:hover{
+    background-color: $verde-oscuro;
+    transform: scale(1.05);
+  }
+}
+
+.fa-ellipsis-v {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  min-width: 160px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  z-index: 1000;
+  border: 1px solid #eaeaea;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #444;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #222;
+}
+
+.dropdown-item:focus {
+  outline: none;
 }
 
 .curso-title {
     font-size: 28px;
     font-weight: bold;
-    color: #333; /* Darker color for better visibility */
+    color: black;
+    margin: 20px 20px;
 }
-
+  
 .curso-descripcion {
     font-size: 20px;
     color: #555;
-    margin-bottom: 10px;
-    text-align: center; /* Center align text */
+}
+  
+.curso-grado{
+  font-size: 20px;
+  color: #555;
 }
 
 .curso-fecha {
@@ -47,10 +117,7 @@
     font-style: italic;
 }
 
-
-.cursos-list {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping if there are too many cards */
-    gap: 20px; /* Add spacing between cards */
-    justify-content: center; /* Center the cards horizontally */
+.detail{
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

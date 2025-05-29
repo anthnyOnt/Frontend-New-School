@@ -13,6 +13,7 @@ import { CursoDetailsComponent } from './admin/pages/cursos/curso-details/curso-
 import { ProfesorMainComponent } from './profesor/paginas/main/main.component';
 import { EstudianteMainComponent } from './estudiante/pages/estudiante-main/estudiante-main.component';
 import { TareaPageComponent } from './estudiante/pages/tarea-page/tarea-page.component';
+import { CursoDetalleComponent } from './profesor/paginas/curso-detalle/curso-detalle.component';
 
 export const routes: Routes = [
   // Public routes
@@ -43,8 +44,8 @@ export const routes: Routes = [
     //data: { roles: ['teacher'] },
     children: [
       { path: '', component: ProfesorMainComponent },
-      { path: 'cursos', component: CursosComponent },
-      { path: 'cursos/:cursoId', component: CursoDetailsComponent },
+      { path: 'cursos', component: ProfesorMainComponent },
+      { path: 'cursos/:cursoId', component: CursoDetalleComponent },
       // Add more teacher-specific views here
     ]
   },

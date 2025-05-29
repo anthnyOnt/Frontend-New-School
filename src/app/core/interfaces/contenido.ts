@@ -5,5 +5,5 @@ export interface Contenido {
     tipo: string;
     url: string;
     creacion: Date;
-    curso_id: number;
+    cursoId: number;
 }

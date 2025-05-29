@@ -24,7 +24,7 @@ export class ContenidoFormComponent implements OnInit, OnChanges {
     tipo: 'documento',
     url: '',
     creacion: new Date(),
-    curso_id: 0
+    cursoId: 0
   };
 
   tiposContenido = [
@@ -58,7 +58,7 @@ export class ContenidoFormComponent implements OnInit, OnChanges {
         tipo: 'documento',
         url: '',
         creacion: new Date(),
-        curso_id: this.cursoId
+        cursoId: this.cursoId
       };
     }
   }
@@ -66,7 +66,7 @@ export class ContenidoFormComponent implements OnInit, OnChanges {
   guardarContenido(): void {
     if (this.validarFormulario()) {
       // Asegurarnos que el curso_id es el correcto
-      this.contenido.curso_id = this.cursoId;
+      this.contenido.cursoId = this.cursoId;
       
       if (this.contenidoEditar) {
         // Editar contenido existente
