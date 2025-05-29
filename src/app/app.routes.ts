@@ -10,6 +10,7 @@ import { authGuard } from './guards/auth.guard';
 import { RegisterComponent } from './auth/register/register/register.component';
 import { CursosComponent } from './admin/pages/cursos/cursos-page/cursos.component';
 import { CursoDetailsComponent } from './admin/pages/cursos/curso-details/curso-details.component';
+import { CursoPageComponent } from './estudiante/pages/curso-page/curso-page.component';
 import { ProfesorMainComponent } from './profesor/paginas/main/main.component';
 import { EstudianteMainComponent } from './estudiante/pages/estudiante-main/estudiante-main.component';
 import { TareaPageComponent } from './estudiante/pages/tarea-page/tarea-page.component';
@@ -57,7 +58,7 @@ export const routes: Routes = [
     //data: { roles: ['student'] },
     children: [
       { path: '', component: EstudianteMainComponent },
-      { path: 'cursos', component: CursosComponent },
+      { path: 'cursos', component: CursoPageComponent },
       { path: 'cursos/:cursoId', component: CursoDetailsComponent },
       { path: 'tareas/:tareaId', component: TareaPageComponent}
       // Add more student-specific views here
