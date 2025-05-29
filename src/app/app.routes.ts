@@ -14,10 +14,14 @@ import { ProfesorMainComponent } from './profesor/paginas/main/main.component';
 import { EstudianteMainComponent } from './estudiante/pages/estudiante-main/estudiante-main.component';
 import { TareaPageComponent } from './estudiante/pages/tarea-page/tarea-page.component';
 import { CursoDetalleComponent } from './profesor/paginas/curso-detalle/curso-detalle.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  // Public routes
-  { path: '', component: LoginComponent, pathMatch: 'full' },
+  // Página principal pública
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+
+  // Rutas de autenticación públicas
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
   // Admin routes
@@ -27,6 +31,7 @@ export const routes: Routes = [
     //data: { roles: ['admin'] },
     children: [
       { path: '', component: AdminMainComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'registrarestudiantes', component: RegistrarEstudianteComponent },
       { path: 'estudiantes', component: VerEstudiantesComponent },
       { path: 'grados', component: GradosPageComponent },
