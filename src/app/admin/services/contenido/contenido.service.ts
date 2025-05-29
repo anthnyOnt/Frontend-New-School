@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment.prod';
   providedIn: 'root'
 })
 export class ContenidoService {
-  private apiUrl = environment.apiUrl + '/tareas'; // URL del backend
+  private apiUrl = environment.apiUrl + '/contenidos'; // URL del backend
   
   // Datos simulados (mock data)
   private mockContenidos: Contenido[] = [
