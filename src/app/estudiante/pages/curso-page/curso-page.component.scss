@@ -1,0 +1,83 @@
+@import '../../../../styles.scss';
+
+.curso-container {
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 25px;
+}
+
+.cursos-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.ver-curso-button{
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: $verde;
+
+  &:hover{
+    background-color: $verde-oscuro;
+    transform: scale(1.05);
+  }
+}
+
+.registrar-section {
+  margin-top: 30px;
+}
+
+.registrar-button {
+  background-color: $verde;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: $verde-oscuro;
+    transform: scale(1.05);
+  }
+}
+
+.no-cursos {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #777;
+}
+
+.btn-add-curso {
+  margin-top: 10px;
+  background-color: $verde;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add-curso:hover {
+  background-color: $verde-oscuro;
+}
