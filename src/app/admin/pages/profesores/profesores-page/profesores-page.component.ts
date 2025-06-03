@@ -5,17 +5,21 @@ import { CommonModule } from '@angular/common';
 import { ProfesorAddComponent } from '../profesores-add/profesores-add.component';
 import { FormsModule } from '@angular/forms';
 import { ProfesorService } from '../../../services/profesor/profesor.service';
-import { RouterLink } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profesores-page',
   standalone: true,
-  imports: [CommonModule, ProfesorAddComponent, FormsModule, RouterLink],
+  imports: [CommonModule, ProfesorAddComponent, FormsModule],
   templateUrl: './profesores-page.component.html',
   styleUrls: ['./profesores-page.component.scss']
 })
 export class ProfesoresPageComponent implements OnInit {
   
+  volver(): void{
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
   // Lista original de profesores
   profesores: Profesor[] = [];
 
@@ -32,7 +36,7 @@ export class ProfesoresPageComponent implements OnInit {
   cargando: boolean = false;
   error: string | null = null;
 
-  constructor(private profesorService: ProfesorService) { }
+  constructor(private profesorService: ProfesorService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarProfesores();

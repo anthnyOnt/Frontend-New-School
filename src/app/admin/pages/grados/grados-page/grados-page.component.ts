@@ -5,17 +5,22 @@ import { CommonModule } from '@angular/common';
 import { GradosAddComponent } from '../grados-add/grados-add.component';
 import { FormsModule } from '@angular/forms';
 import { GradoService } from '../../../services/grado/grado.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-grados-page',
   standalone: true,
-  imports: [GradoComponent, CommonModule, GradosAddComponent, FormsModule,RouterLink],
+  imports: [GradoComponent, CommonModule, GradosAddComponent, FormsModule],
   templateUrl: './grados-page.component.html',
   styleUrl: './grados-page.component.scss'
 })
 export class GradosPageComponent implements OnInit {
   
+
+  volver(): void{
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
   // Lista original de grados
   grados: Grado[] = [];
 
@@ -32,7 +37,7 @@ export class GradosPageComponent implements OnInit {
   cargando: boolean = false;
   error: string | null = null;
 
-  constructor(private gradoService: GradoService) { }
+  constructor(private gradoService: GradoService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarGrados();

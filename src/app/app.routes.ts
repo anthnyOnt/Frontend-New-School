@@ -32,7 +32,7 @@ export const routes: Routes = [
     //data: { roles: ['admin'] },
     children: [
       { path: '', component: AdminMainComponent },
-      { path: 'home', component: HomeComponent },
+      //{ path: 'home', component: HomeComponent },
       { path: 'registrarestudiantes', component: RegistrarEstudianteComponent },
       { path: 'estudiantes', component: VerEstudiantesComponent },
       { path: 'grados', component: GradosPageComponent },
