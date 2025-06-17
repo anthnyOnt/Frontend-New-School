@@ -16,6 +16,7 @@ import { EstudianteMainComponent } from './estudiante/pages/estudiante-main/estu
 import { TareaPageComponent } from './estudiante/pages/tarea-page/tarea-page.component';
 import { CursoDetalleComponent } from './profesor/paginas/curso-detalle/curso-detalle.component';
 import { HomeComponent } from './home/home.component';
+import { VerPadresComponent } from './admin/pages/padres/ver-padres/ver-padres.component';
 
 export const routes: Routes = [
   // Página principal pública
@@ -40,6 +41,7 @@ export const routes: Routes = [
       { path: 'profesores', component: ProfesoresPageComponent },
       { path: 'cursos', component: CursosComponent },
       { path: 'cursos/:cursoId', component: CursoDetailsComponent },
+      { path: 'padres', component: VerPadresComponent}
     ]
   },
 
