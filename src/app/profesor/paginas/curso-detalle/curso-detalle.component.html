@@ -74,6 +74,13 @@
 
         <!-- Tareas Tab -->
         <div class="tab-pane" *ngIf="activeTab === 1">
+          <!-- Add Task button -->
+          <div class="actions-bar">
+            <button class="btn-add-content" (click)="abrirFormularioTarea()">
+              + Agregar Tarea
+            </button>
+          </div>
+          
           <div *ngIf="tareas.length === 0" class="empty-message">
             <p>No hay tareas disponibles para este curso.</p>
           </div>
@@ -89,6 +96,10 @@
                 <span class="fecha-entrega">
                   <strong>Fecha de entrega:</strong> {{ tarea.fecha_entrega | date:'dd/MM/yyyy' }}
                 </span>
+                <div class="tarea-actions">
+                  <button class="edit-btn" (click)="editarTarea(tarea)">✏️</button>
+                  <button class="delete-btn" (click)="eliminarTarea(tarea.id)">🗑️</button>
+                </div>
               </div>
             </div>
           </div>
@@ -105,4 +116,13 @@
     (cerrar)="cerrarFormularioContenido()" 
     (contenidoAgregado)="manejarContenidoAgregado($event)">
   </app-contenido-form>
+  
+  <!-- Form overlay for adding/editing tarea -->
+  <app-tarea-form
+    *ngIf="mostrarFormularioTarea && curso"
+    [cursoId]="curso.id"
+    [tareaEditar]="tareaEditar"
+    (cerrar)="cerrarFormularioTarea()"
+    (tareaAgregada)="manejarTareaAgregada($event)">
+  </app-tarea-form>
 </div>
