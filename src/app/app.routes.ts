@@ -17,11 +17,12 @@ import { TareaPageComponent } from './estudiante/pages/tarea-page/tarea-page.com
 import { CursoDetalleComponent } from './profesor/paginas/curso-detalle/curso-detalle.component';
 import { HomeComponent } from './home/home.component';
 import { VerPadresComponent } from './admin/pages/padres/ver-padres/ver-padres.component';
+import { VerTareaComponent } from './estudiante/pages/ver-tarea/ver-tarea.component';
 
 export const routes: Routes = [
   // Página principal pública
   { path: '', component: HomeComponent, pathMatch: 'full' },
-
+  
   // Rutas de autenticación públicas
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -67,7 +68,8 @@ export const routes: Routes = [
       { path: '', component: EstudianteMainComponent },
       { path: 'cursos', component: CursoPageComponent },
       { path: 'cursos/:cursoId', component: CursoDetailsComponent },
-      { path: 'tareas/:tareaId', component: TareaPageComponent}
+      { path: 'tareas/:tareaId', component: TareaPageComponent},
+      { path: 'tarea/:id', component: VerTareaComponent}
       // Add more student-specific views here
     ]
   },

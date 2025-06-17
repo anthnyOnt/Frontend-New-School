@@ -1,1 +1,23 @@
-<p>ver-tarea works!</p>
+<div>
+    <h2>{{ tarea?.titulo }}</h2>
+    <p>{{ tarea?.descripcion }}</p>
+    <p>Puntaje máximo: {{ tarea?.puntaje_maximo }}</p>
+    <p>Entrega: {{ tarea?.fecha_entrega | date }}</p>
+  
+    <button (click)="mostrarFormularioEntrega()">Agregar entrega</button>
+  
+    <div *ngIf="mostrarEditor" class="editor-container">
+      <div class="toolbar">
+        <button type="button" title="Bold"><b>B</b></button>
+        <button type="button" title="Italic"><i>I</i></button>
+        <button type="button" title="Underline"><u>U</u></button>
+        <button type="button" title="Numbered list">1.</button>
+        <button type="button" title="Bullet list">•</button>
+        <button type="button" title="Insert link">🔗</button>
+        <button type="button" title="Clear formatting">⛔</button> 
+      </div>
+      <div class="editor" contenteditable="true" placeholder="Write something..."></div>
+      <button>Enviar entrega</button>
+    </div>
+  </div>
+  

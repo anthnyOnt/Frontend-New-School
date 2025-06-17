@@ -7,7 +7,8 @@
     <div class="tarea-meta">
       <span class="tarea-puntaje">Puntaje máximo: {{ tarea?.puntaje_maximo }}</span>
       <span class="tarea-fecha">Entrega: {{ tarea?.fecha_entrega | date }}</span>
-      <button class="ver-btn"><b>Ver tarea</b></button>
+      <button [routerLink]="['/estudiante/tarea', tarea?.id]" class="ver-btn"><b>Ver tarea</b></button>
+
     </div>
   </div>
   

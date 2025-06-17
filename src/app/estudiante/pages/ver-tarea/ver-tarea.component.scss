@@ -1,0 +1,101 @@
+.tarea-detalle {
+    padding: 20px;
+    background: #e8f5e9;
+    border-radius: 12px;
+    box-shadow: 0 7px 7px rgba(0, 128, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+  
+    h2 {
+      color: #2e7d32;
+      margin-bottom: 12px;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    
+    p {
+      color: #4e4e4e;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    
+    .agregar-entrega {
+      margin-top: 20px;
+      background: #a5d6a7;
+      color: #013a01;
+      border: none;
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+  
+      &:hover {
+        background: #cff36d;
+      }
+    }
+  }
+  
+  button {
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: bold;
+    background: #a5d6a7;
+    color: #013a01;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: #cff36d;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tarea-detalle {
+      padding: 12px;
+      h2 {
+        font-size: 22px;
+      }
+      p {
+        font-size: 13px;
+      }
+      .agregar-entrega {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+  
+  .editor-container {
+    border: 1px solid #ccc;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: #fefefe;
+  }
+  
+  .toolbar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .toolbar button {
+    padding: 4px 8px;
+    border: none;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .editor {
+    min-height: 120px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: white;
+  }
+  
