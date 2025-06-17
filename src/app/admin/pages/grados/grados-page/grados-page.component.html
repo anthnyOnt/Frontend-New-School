@@ -28,7 +28,7 @@
 
   <!-- Botón para abrir el formulario de agregar grado -->
 
-  <button class="btn-add-grade" routerLink="/main">Volver</button>
+  <button class="btn-add-grade" routerLink="/admin">Volver</button>
   <!-- Formulario emergente para añadir grados -->
   <app-grados-add *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()" [gradoEditar]="gradoEditar" (gradoAgregado)="agregarNuevoGrado($event)"></app-grados-add>
 
