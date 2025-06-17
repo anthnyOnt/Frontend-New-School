@@ -1,1 +1,30 @@
-<p>ver-padres works!</p>
+
+<div class="padre-container">
+  <h2>Lista de padres</h2>
+
+  <button class="registrar-button" routerLink="/admin/registrarpadres">Registrar padre</button>
+  <hr>
+  <table class="padres-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>CI</th>
+        <th>Hijo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let padre of padres; trackBy: trackById">
+        <td>{{ padre.usuario.nombre }}</td>
+        <td>{{ padre.usuario.email }}</td>
+        <td>{{ padre.usuario.ci }}</td>
+        <td>{{ padre.usuario.nombre }}</td>
+        <td class="padre-actions">
+          <button class="delete-btn" (click)="eliminarPadre(padre)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="registrar-button" routerLink="/admin">Volver</button>
+</div>
