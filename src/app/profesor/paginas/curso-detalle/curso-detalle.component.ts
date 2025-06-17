@@ -13,6 +13,7 @@ import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import { ContenidoFormComponent } from '../../components/contenido-form/contenido-form.component';
+import { TareaFormComponent } from '../../components/tarea-form/tarea-form.component';
 
 @Component({
   selector: 'app-curso-detalle',
@@ -24,7 +25,8 @@ import { ContenidoFormComponent } from '../../components/contenido-form/contenid
     CardModule,
     DividerModule,
     ButtonModule,
-    ContenidoFormComponent
+    ContenidoFormComponent,
+    TareaFormComponent
   ],
   templateUrl: './curso-detalle.component.html',
   styleUrls: ['./curso-detalle.component.scss']
@@ -40,6 +42,10 @@ export class CursoDetalleComponent implements OnInit {
   // Control del formulario de contenido
   mostrarFormularioContenido: boolean = false;
   contenidoEditar: Contenido | null = null;
+  
+  // Control del formulario de tarea
+  mostrarFormularioTarea: boolean = false;
+  tareaEditar: Tarea | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -94,9 +100,9 @@ export class CursoDetalleComponent implements OnInit {
   }
 
   cargarTareas(cursoId: number): void {
-    this.tareaService.getTareasByCursoId(cursoId).subscribe({
+    this.tareaService.getTareas().subscribe({
       next: (tareas) => {
-        this.tareas = tareas;
+        this.tareas = tareas.filter(tarea => tarea.cursoId === cursoId);
         this.cargando = false;
       },
       error: (err) => {
@@ -161,5 +167,44 @@ export class CursoDetalleComponent implements OnInit {
 
   cambiarTab(index: number): void {
     this.activeTab = index;
+  }
+
+  // Métodos para gestionar el formulario de tarea
+  abrirFormularioTarea(): void {
+    this.tareaEditar = null;
+    this.mostrarFormularioTarea = true;
+  }
+
+  cerrarFormularioTarea(): void {
+    this.mostrarFormularioTarea = false;
+    this.tareaEditar = null;
+  }
+
+  manejarTareaAgregada(tarea: Tarea): void {
+    // Recargar las tareas después de agregar/actualizar
+    if (this.curso) {
+      this.cargarTareas(this.curso.id);
+    }
+  }
+
+  editarTarea(tarea: Tarea): void {
+    this.tareaEditar = { ...tarea };
+    this.mostrarFormularioTarea = true;
+  }
+
+  eliminarTarea(id: number): void {
+    if (confirm('¿Está seguro de que desea eliminar esta tarea?')) {
+      this.tareaService.deleteTarea(id).subscribe({
+        next: () => {
+          if (this.curso) {
+            this.cargarTareas(this.curso.id);
+          }
+        },
+        error: (err) => {
+          console.error('Error al eliminar la tarea:', err);
+          alert('No se pudo eliminar la tarea. Por favor, intente nuevamente.');
+        }
+      });
+    }
   }
 }
