@@ -1,9 +1,10 @@
-<div>
+<div class="tarea-detalle">
     <h2>{{ tarea?.titulo }}</h2>
     <p>{{ tarea?.descripcion }}</p>
-    <p>Puntaje máximo: {{ tarea?.puntaje_maximo }}</p>
-    <p>Entrega: {{ tarea?.fecha_entrega | date }}</p>
-  
+    <h2>Algebra</h2>
+    <p>Algerbra descripcion</p>
+    <p>Puntaje máximo: 10</p>
+    <p>Entrega: Jun 24, 2025</p>
     <button (click)="mostrarFormularioEntrega()">Agregar entrega</button>
   
     <div *ngIf="mostrarEditor" class="editor-container">

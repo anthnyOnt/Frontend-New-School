@@ -22,22 +22,22 @@ export class VerTareaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Ajusta el nombre del parámetro según tu routing
-    const tareaId = this.route.snapshot.paramMap.get('id');  
-
-    if (tareaId) {
-      this.tareaService.getTareaById(Number(tareaId)).subscribe({
-        next: (tarea) => {
-          this.tarea = tarea;
-        },
-        error: (err) => {
-          console.error('Error al obtener tarea!', err);
-        }
-      });
-    } else {
-      console.warn('No se encontró id en la URL');
-    }
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.tareaService.getTareaById(+id).subscribe({
+          next: tarea => {
+            this.tarea = tarea;
+            console.log('Tarea cargada dinámicamente:', tarea);
+          },
+          error: err => {
+            console.error('Error al cargar tarea:', err);
+          }
+        });
+      }
+    });
   }
+  
 
   mostrarFormularioEntrega() {
     this.mostrarEditor = true;
