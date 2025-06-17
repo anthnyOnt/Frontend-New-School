@@ -10,7 +10,6 @@
         <th>Nombre</th>
         <th>Email</th>
         <th>CI</th>
-        <th>Hijo</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -19,7 +18,6 @@
         <td>{{ padre.usuario.nombre }}</td>
         <td>{{ padre.usuario.email }}</td>
         <td>{{ padre.usuario.ci }}</td>
-        <td>{{ padre.usuario.nombre }}</td>
         <td class="padre-actions">
           <button class="delete-btn" (click)="eliminarPadre(padre)">🗑️</button>
         </td>
