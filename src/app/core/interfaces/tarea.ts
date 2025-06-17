@@ -3,6 +3,7 @@ export interface Tarea {
     titulo: string;
     descripcion: string;
     fecha_entrega: Date;
-    puntaje_max: number;
-    curso_id: number;
+    puntaje_maximo: number;
+    cursoId: number;
+    archivo: string;
 }

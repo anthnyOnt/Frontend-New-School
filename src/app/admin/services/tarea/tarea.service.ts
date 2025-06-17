@@ -13,46 +13,6 @@ export class TareaService {
   
   // Datos simulados (mock data)
   private mockTareas: Tarea[] = [
-    {
-      id: 1,
-      titulo: "Ejercicios de Álgebra",
-      descripcion: "Resolver los problemas 1-10 del capítulo 3 del libro de texto.",
-      fecha_entrega: new Date("2025-05-10"),
-      puntaje_max: 20,
-      curso_id: 1 // Matemáticas
-    },
-    {
-      id: 2,
-      titulo: "Ensayo sobre Movimiento Rectilíneo",
-      descripcion: "Escribir un ensayo de 500 palabras explicando el movimiento rectilíneo uniforme y sus aplicaciones.",
-      fecha_entrega: new Date("2025-05-15"),
-      puntaje_max: 30,
-      curso_id: 2 // Física
-    },
-    {
-      id: 3,
-      titulo: "Proyecto de JavaScript",
-      descripcion: "Crear una pequeña aplicación web utilizando lo aprendido sobre DOM y eventos.",
-      fecha_entrega: new Date("2025-05-20"),
-      puntaje_max: 50,
-      curso_id: 3 // Programación
-    },
-    {
-      id: 4,
-      titulo: "Quiz de Funciones",
-      descripcion: "Prepararse para el quiz sobre funciones matemáticas y sus gráficos.",
-      fecha_entrega: new Date("2025-05-05"),
-      puntaje_max: 15,
-      curso_id: 1 // Matemáticas
-    },
-    {
-      id: 5,
-      titulo: "Informe de Laboratorio",
-      descripcion: "Elaborar un informe sobre el experimento de caída libre realizado en clase.",
-      fecha_entrega: new Date("2025-05-18"),
-      puntaje_max: 40,
-      curso_id: 2 // Física
-    }
   ];
 
   // Flag para usar datos simulados
@@ -70,11 +30,11 @@ export class TareaService {
     }
     return this.http.get<Tarea[]>(this.apiUrl);
   }
-  // Obtener tareas por curso ID
+
   getTareasByCursoId(cursoId: number): Observable<Tarea[]> {
     if (this.useMockData) {
       console.log('Obteniendo tareas simuladas por curso id', cursoId);
-      const tareasFiltradas = this.mockTareas.filter(t => t.curso_id === cursoId);
+      const tareasFiltradas = this.mockTareas.filter(t => t.cursoId === cursoId);
       return of(tareasFiltradas).pipe(
         delay(500)
       );

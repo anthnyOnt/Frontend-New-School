@@ -100,9 +100,9 @@ export class CursoDetalleComponent implements OnInit {
   }
 
   cargarTareas(cursoId: number): void {
-    this.tareaService.getTareasByCursoId(cursoId).subscribe({
+    this.tareaService.getTareas().subscribe({
       next: (tareas) => {
-        this.tareas = tareas;
+        this.tareas = tareas.filter(tarea => tarea.cursoId === cursoId);
         this.cargando = false;
       },
       error: (err) => {

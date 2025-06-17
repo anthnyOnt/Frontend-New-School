@@ -22,8 +22,9 @@ export class TareaFormComponent implements OnInit, OnChanges {
     titulo: '',
     descripcion: '',
     fecha_entrega: new Date(),
-    puntaje_max: 10,
-    curso_id: 0
+    puntaje_maximo: 10,
+    cursoId: 0,
+    archivo: ""
   };
 
   constructor(private tareaService: TareaService) {}
@@ -50,8 +51,9 @@ export class TareaFormComponent implements OnInit, OnChanges {
         titulo: '',
         descripcion: '',
         fecha_entrega: fechaEntrega,
-        puntaje_max: 10,
-        curso_id: this.cursoId
+        puntaje_maximo: 10,
+        cursoId: this.cursoId,
+        archivo: ""
       };
     }
   }
@@ -59,7 +61,7 @@ export class TareaFormComponent implements OnInit, OnChanges {
   guardarTarea(): void {
     if (this.validarFormulario()) {
       // Asegurarnos que el curso_id es el correcto
-      this.tarea.curso_id = this.cursoId;
+      this.tarea.cursoId = this.cursoId;
       
       if (this.tareaEditar) {
         // Editar tarea existente
@@ -99,7 +101,7 @@ export class TareaFormComponent implements OnInit, OnChanges {
       alert('La descripción es obligatoria');
       return false;
     }
-    if (this.tarea.puntaje_max <= 0) {
+    if (this.tarea.puntaje_maximo <= 0) {
       alert('El puntaje máximo debe ser mayor a 0');
       return false;
     }
